@@ -12,6 +12,8 @@ public class ServerThread extends Thread{
 	private Object inputObject;
 	private PrintWriter output;
 	
+	//
+	
 	public ServerThread(Socket socket) {
 		this.socket = socket;
 	}
