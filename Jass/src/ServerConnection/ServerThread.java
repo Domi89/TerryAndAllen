@@ -41,6 +41,9 @@ public class ServerThread extends Thread{
 							this.clientClass();
 							break;
 							
+						case "Message":
+							this.messageClass();
+							
 						case "Card":
 							this.cardClass();
 							break;
@@ -71,6 +74,11 @@ public class ServerThread extends Thread{
 	}
 	
 	
+	private void messageClass() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void clientClass() {
 		// TODO Auto-generated method stub
 		

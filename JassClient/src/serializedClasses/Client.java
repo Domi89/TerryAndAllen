@@ -1,4 +1,4 @@
-package connection;
+package serializedClasses;
 
 import java.io.Serializable;
 
@@ -6,13 +6,13 @@ import java.io.Serializable;
 
 public class Client implements Serializable{
 	
-	private String clientName;
+	private static String clientName;
 	
 	public Client (String clientName) {
 		this.clientName = clientName;
 	}
 
-	public String getClientName() {
+	public static String getClientName() {
 		return clientName;
 	}
 
