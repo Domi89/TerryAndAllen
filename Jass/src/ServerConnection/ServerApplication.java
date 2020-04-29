@@ -14,8 +14,6 @@ public class ServerApplication {
 		
 		try(ServerSocket serverSocket = new ServerSocket(45138)){
 			
-			
-			
 			while(true) {
 				
 				Socket socket = serverSocket.accept();

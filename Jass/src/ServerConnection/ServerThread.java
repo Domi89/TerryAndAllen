@@ -21,6 +21,7 @@ public class ServerThread extends Thread{
 					
 			while(true) {
 				String echoString = input.readLine();
+				System.out.println("Received client input: "+echoString);
 				if(echoString.equals("exit")) {
 					break;
 				}
