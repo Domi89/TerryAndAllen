@@ -4,16 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ServerThread extends Thread{
 	private Socket socket;
 	private Object inputObject;
-	private PrintWriter output;
-	
-	//
-	
+	private ObjectOutputStream outputStream;
+	private ObjectInputStream inputStream;
+		
 	public ServerThread(Socket socket) {
 		this.socket = socket;
 	}
@@ -22,12 +22,14 @@ public class ServerThread extends Thread{
 		
 		try {
 			try {
-				ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-				this.output = new PrintWriter(socket.getOutputStream(),true);
+				this.inputStream = new ObjectInputStream(socket.getInputStream());
+				
+				this.outputStream = new ObjectOutputStream(socket.getOutputStream());
+				//* this.output = new PrintWriter(socket.getOutputStream(),true);
 
 				while(true) {
 										
-					this.inputObject = objectInput.readObject();
+					this.inputObject = this.inputStream.readObject();
 					String className = inputObject.getClass().getSimpleName();
 					
 					System.out.println("Received class name: "+className);
@@ -98,7 +100,13 @@ public class ServerThread extends Thread{
 
 		String inputString = (String) inputObject;
 		System.out.println("Received client input: "+inputString);
-		output.println(inputString);
+		
+		try {
+			outputStream.writeObject(inputString);
+		} catch (IOException e) {
+			System.out.println("Fehler stringClass() "+e.getMessage());
+		}
+		
 		
 	}
 	

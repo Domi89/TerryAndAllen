@@ -1,4 +1,4 @@
-package serializedClasses;
+package ServerConnection;
 
 import java.io.Serializable;
 
@@ -8,7 +8,6 @@ public class Message implements Serializable{
 	private String message;
 	
 	public Message() {
-		this.clientName = Client.getClientName();
 	}
 
 	public String getClientName() {
