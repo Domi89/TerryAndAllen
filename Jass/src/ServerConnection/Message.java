@@ -7,7 +7,9 @@ public class Message implements Serializable{
 	private String clientName;
 	private String message;
 	
-	public Message() {
+	public Message(String clientName, String message) {
+		this.clientName=clientName;
+		this.message=message;
 	}
 
 	public String getClientName() {

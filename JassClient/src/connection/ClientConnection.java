@@ -17,8 +17,9 @@ public class ClientConnection {
 	private Object inputObject;
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
+	private Message m;
 	
-	public ClientConnection() {
+	public ClientConnection() throws InterruptedException {
 		
 		try(Socket socket = new Socket("localhost", 45138)){
 			try {
@@ -29,19 +30,19 @@ public class ClientConnection {
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 					
-									
+							
 					Scanner scanner = new Scanner(System.in);
 					String echoString;
 					String response;
+					
+					MessageThread mt = new MessageThread(this.outputStream);
 					
 					do {
 						System.out.println("String to be echoed ");
 						echoString = scanner.nextLine();
 						this.outputStream.writeObject(echoString);
 						//stringToEcho.println(echoString);
-						
-				
-						
+												
 						if(!echoString.contentEquals("Exit")) {
 
 							this.inputObject = inputStream.readObject();
@@ -51,17 +52,9 @@ public class ClientConnection {
 						}
 			
 					} while (!echoString.equals("exit"));
-					
-					
-					
-					//----------------------------------------------------
-					
-					
-					
-					
+						
 					
 					while(true) {
-					
 						
 						//ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());					
 						this.inputObject = this.inputStream.readObject();
@@ -97,7 +90,7 @@ public class ClientConnection {
 				
 				} catch (ClassNotFoundException e) {
 					System.out.println("Class / Object Error");
-				}
+				} 
 				
 			} catch (IOException e) {
 				System.out.println("Thread exception "+e.getMessage());
@@ -113,6 +106,14 @@ public class ClientConnection {
 		
 	}
 
+	
+	
+	public void sendMessage(String clientName, String message) {
+		
+		this.m = new Message(clientName, message);
+		
+	}
+	
 	private void deckClass() {
 		// TODO Auto-generated method stub
 		
