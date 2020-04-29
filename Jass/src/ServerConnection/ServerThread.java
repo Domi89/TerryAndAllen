@@ -27,45 +27,37 @@ public class ServerThread extends Thread{
 				this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 				//* this.output = new PrintWriter(socket.getOutputStream(),true);
 
-				while(true)
-					try {
-						{
-												
-							this.inputObject = this.inputStream.readObject();
-							this.sleep(5000);
+				while(true) {
+										
+					this.inputObject = this.inputStream.readObject();
+					String className = inputObject.getClass().getSimpleName();
+					
+					System.out.println("Received class name: "+className);
+					
+					switch (className) {
+						case "String":
+							this.stringClass();	
+							break;
+						
+						case "Client":
+							this.clientClass();
+							break;
 							
-							String className = inputObject.getClass().getSimpleName();
+						case "Message":
+							this.messageClass();
 							
-							System.out.println("Received class name: "+className);
+						case "Card":
+							this.cardClass();
+							break;
 							
-							switch (className) {
-								case "String":
-									this.stringClass();	
-									break;
-								
-								case "Client":
-									this.clientClass();
-									break;
-									
-								case "Message":
-									this.messageClass();
-									
-								case "Card":
-									this.cardClass();
-									break;
-									
-								case "Deck":
-									this.deckClass();
-									break;
-									
-								default:
-									System.out.println("Class is not defined in ServerThread!");
-							}
-																
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}	
+						case "Deck":
+							this.deckClass();
+							break;
+							
+						default:
+							System.out.println("Class is not defined in ServerThread!");
+					}
+															
 				}
 			
 			} catch (ClassNotFoundException e) {
@@ -85,7 +77,6 @@ public class ServerThread extends Thread{
 	
 	
 	private void messageClass() {
-		System.out.println("Message erhalten: ");
 		// TODO Auto-generated method stub
 		
 	}
