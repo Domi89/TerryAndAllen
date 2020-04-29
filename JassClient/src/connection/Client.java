@@ -1,6 +1,10 @@
 package connection;
 
-public class Client {
+import java.io.Serializable;
+
+//needs to implement Serializable to sende those Objects via ObjectOutputStream
+
+public class Client implements Serializable{
 	
 	private String clientName;
 	

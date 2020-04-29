@@ -3,6 +3,7 @@ package connection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -14,7 +15,9 @@ public class ClientConnection {
 			
 			BufferedReader echoes = new BufferedReader(
 				new InputStreamReader(socket.getInputStream()));
-			PrintWriter stringToEcho = new PrintWriter(socket.getOutputStream(), true);
+			
+			
+			ObjectOutputStream stringToEcho = new ObjectOutputStream(socket.getOutputStream());
 		
 			Scanner scanner = new Scanner(System.in);
 			String echoString;
@@ -23,7 +26,8 @@ public class ClientConnection {
 			do {
 				System.out.println("String to be echoed ");
 				echoString = scanner.nextLine();
-				stringToEcho.println(echoString);
+				stringToEcho.writeObject(echoString);
+				//stringToEcho.println(echoString);
 				if(!echoString.contentEquals("Exit")) {
 					response = echoes.readLine();
 					System.out.println(response);
