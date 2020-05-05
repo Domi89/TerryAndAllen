@@ -92,6 +92,8 @@ public class ClientConnection {
 							default:
 								System.out.println("Class is not defined in ServerThread!");
 						}
+						// test
+						
 																
 					}
 				
