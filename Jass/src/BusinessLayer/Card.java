@@ -1,7 +1,7 @@
 package BusinessLayer;
 
 public class Card implements Comparable<Card>{
-	//
+	// h
 	private Suit suit;
 	private Rank rank;
 	
