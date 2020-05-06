@@ -4,14 +4,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import serializedClasses.Message;
+import serializedClasses.MessageHistory;
 
 public class ServerThreadInput extends Thread{
 	
 	private ObjectInputStream inputStream;
 	private Object inputObject;
+	private MessageHistory mh;
 	
-	public ServerThreadInput(ObjectInputStream inputStream) {
+	public ServerThreadInput(ObjectInputStream inputStream, MessageHistory mh) {
 		this.inputStream = inputStream;
+		this.mh = mh;
 	}
 	
 	public void run() {
@@ -71,6 +74,7 @@ public class ServerThreadInput extends Thread{
 
 	private void messageClass(Message m) {
 		System.out.println("Message: "+m.getClientName()+" :"+m.getMessage());
+		this.mh.addMessage(m);
 		
 	}
 

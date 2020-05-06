@@ -1,14 +1,13 @@
-package ServerConnection;
+package serializedClasses;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
-import serializedClasses.Message;
-
-public class MessageHistory {
+public class MessageHistory implements Serializable{
 	
-	Stack<Message> history;
+	private Stack<Message> history;
 	
 	public MessageHistory() {
 		this.history = new Stack<Message>();
@@ -20,6 +19,10 @@ public class MessageHistory {
 	
 	public Message getLatestMessage() {
 		return history.peek();
+	}
+	
+	public Stack getMessageHistory() {
+		return history;
 	}
 	
 	public String toString() {

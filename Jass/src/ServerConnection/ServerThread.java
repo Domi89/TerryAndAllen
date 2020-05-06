@@ -9,14 +9,16 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import serializedClasses.Message;
+import serializedClasses.MessageHistory;
 
 public class ServerThread extends Thread{
 	private Socket socket;
 	private Object inputObject;
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
+	private MessageHistory mh;
 		
-	public ServerThread(Socket socket) {
+	public ServerThread(Socket socket, MessageHistory mh) {
 		this.socket = socket;
 	}
 	
@@ -29,10 +31,10 @@ public class ServerThread extends Thread{
 				//* this.output = new PrintWriter(socket.getOutputStream(),true);
 
 				
-				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream);
+				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream, this.mh);
 				serverThreadInput.start();
 				
-				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream);
+				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream, this.mh);
 				serverThreadOutput.start();
 				
 				while(true) {

@@ -7,9 +7,14 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import serializedClasses.MessageHistory;
+
 public class ServerApplication {
 
 	public static void main (String[] args) {
+		
+		//TODO Messages must be saved in the BusinessLayer / Model
+		MessageHistory mh = new MessageHistory();
 		
 		
 		try(ServerSocket serverSocket = new ServerSocket(45138)){
@@ -17,7 +22,7 @@ public class ServerApplication {
 			while(true) {
 				
 				Socket socket = serverSocket.accept();
-				ServerThread serverThread = new ServerThread(socket);
+				ServerThread serverThread = new ServerThread(socket, mh);
 				serverThread.start();
 						
 			}
