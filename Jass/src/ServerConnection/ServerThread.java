@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import serializedClasses.Message;
+
 public class ServerThread extends Thread{
 	private Socket socket;
 	private Object inputObject;
@@ -21,17 +23,28 @@ public class ServerThread extends Thread{
 	public void run() {
 		
 		try {
-			try {
+			//try {
 				this.inputStream = new ObjectInputStream(socket.getInputStream());
-				
 				this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 				//* this.output = new PrintWriter(socket.getOutputStream(),true);
 
+				
+				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream);
+				serverThreadInput.start();
+				
+				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream);
+				serverThreadOutput.start();
+				
 				while(true) {
-										
+					
+				}
+				
+				/*
+							
+				while(true) {
+					
 					this.inputObject = this.inputStream.readObject();
 					String className = inputObject.getClass().getSimpleName();
-					
 					System.out.println("Received class name: "+className);
 					
 					switch (className) {
@@ -44,7 +57,8 @@ public class ServerThread extends Thread{
 							break;
 							
 						case "Message":
-							this.messageClass();
+							
+							this.messageClass((Message) this.inputObject);
 							
 						case "Card":
 							this.cardClass();
@@ -57,12 +71,21 @@ public class ServerThread extends Thread{
 						default:
 							System.out.println("Class is not defined in ServerThread!");
 					}
-															
+						
+					
+					
+					
+					
+					
 				}
+				
+				*/
+						
+			//} 
+			//catch (ClassNotFoundException e) {
+			//	System.out.println("Class / Object Error");
+			//}
 			
-			} catch (ClassNotFoundException e) {
-				System.out.println("Class / Object Error");
-			}
 			
 		} catch (IOException e) {
 			System.out.println("Thread exception "+e.getMessage());
@@ -76,8 +99,8 @@ public class ServerThread extends Thread{
 	}
 	
 	
-	private void messageClass() {
-		// TODO Auto-generated method stub
+	private void messageClass(Message m) {
+		System.out.println("Message: "+m.getClientName()+" :"+m.getMessage());
 		
 	}
 

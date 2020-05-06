@@ -1,4 +1,4 @@
-package connection;
+package model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,29 +11,45 @@ import java.util.Scanner;
 
 import serializedClasses.Message;
 
-public class ClientConnection {
+public class ClientConnection extends Thread{
 	
 	private Socket socket;
 	private Object inputObject;
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
-	
-	public ClientConnection() {
+
+	public void run() {
 		
 		try(Socket socket = new Socket("localhost", 45138)){
-			try {
-				try {
-					
+							
 					System.out.println("test");
 					
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 					
-									
+					while(true) {
+						
+						try {
+							this.inputObject = this.inputStream.readObject();
+							String inputString = (String) this.inputObject;
+							System.out.println(inputString);
+						} catch (ClassNotFoundException e) {
+							System.out.println("ClientConnection ClassNotFound "+e.getMessage());
+						}
+												
+						
+						
+					}
+					
+					
+					
+					/*				
 					Scanner scanner = new Scanner(System.in);
 					String echoString;
 					String response;
+					*/
 					
+					/*
 					do {
 						System.out.println("String to be echoed ");
 						echoString = scanner.nextLine();
@@ -51,14 +67,14 @@ public class ClientConnection {
 						}
 			
 					} while (!echoString.equals("exit"));
-					
+					*/
 					
 					
 					//----------------------------------------------------
 					
 					
 					
-					
+					/*
 					
 					while(true) {
 					
@@ -97,22 +113,21 @@ public class ClientConnection {
 																
 					}
 				
-				} catch (ClassNotFoundException e) {
-					System.out.println("Class / Object Error");
-				}
-				
-			} catch (IOException e) {
-				System.out.println("Thread exception "+e.getMessage());
-			} 
-			
-		
+					*/
+					
+							
 		} catch (IOException e) {
-			System.out.println("Client connection problem");
-		}
-		
+			System.out.println("Connection Problem "+e.getMessage());
+		} 
+	}
 	
-		
-		
+	
+	public void sendMessageToServer(Message m) {
+		try {
+			this.outputStream.writeObject(m);
+		} catch (IOException e) {
+			System.out.println("Fehler ClientConnection sendMessageToServer "+e.getMessage());
+			}
 	}
 
 	private void deckClass() {
