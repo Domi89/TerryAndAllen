@@ -2,8 +2,6 @@ package serializedClasses;
 
 import java.io.Serializable;
 
-//needs to implement Serializable to sende those Objects via ObjectOutputStream
-
 public class Client implements Serializable{
 	
 	private static String clientName;

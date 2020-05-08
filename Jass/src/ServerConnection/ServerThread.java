@@ -26,12 +26,10 @@ public class ServerThread extends Thread{
 	public void run() {
 		
 		try {
-			//try {
+			
 				this.inputStream = new ObjectInputStream(socket.getInputStream());
 				this.outputStream = new ObjectOutputStream(socket.getOutputStream());
-				//* this.output = new PrintWriter(socket.getOutputStream(),true);
-
-				
+								
 				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream, this.mh);
 				serverThreadInput.start();
 				
@@ -41,54 +39,6 @@ public class ServerThread extends Thread{
 				while(true) {
 					
 				}
-				
-				/*
-							
-				while(true) {
-					
-					this.inputObject = this.inputStream.readObject();
-					String className = inputObject.getClass().getSimpleName();
-					System.out.println("Received class name: "+className);
-					
-					switch (className) {
-						case "String":
-							this.stringClass();	
-							break;
-						
-						case "Client":
-							this.clientClass();
-							break;
-							
-						case "Message":
-							
-							this.messageClass((Message) this.inputObject);
-							
-						case "Card":
-							this.cardClass();
-							break;
-							
-						case "Deck":
-							this.deckClass();
-							break;
-							
-						default:
-							System.out.println("Class is not defined in ServerThread!");
-					}
-						
-					
-					
-					
-					
-					
-				}
-				
-				*/
-						
-			//} 
-			//catch (ClassNotFoundException e) {
-			//	System.out.println("Class / Object Error");
-			//}
-			
 			
 		} catch (IOException e) {
 			System.out.println("Thread exception "+e.getMessage());
