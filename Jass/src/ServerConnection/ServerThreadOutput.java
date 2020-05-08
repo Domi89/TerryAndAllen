@@ -20,7 +20,11 @@ public class ServerThreadOutput extends Thread{
 		while(true) {
 			try {
 				currentThread().sleep(5000);
-				this.outputStream.writeObject(mh);
+				
+				if (mh != null) {
+					this.outputStream.writeObject(this.mh);
+				}
+			
 							
 			} catch (InterruptedException e) {
 				System.out.println("Thread interrupted "+e.getMessage());

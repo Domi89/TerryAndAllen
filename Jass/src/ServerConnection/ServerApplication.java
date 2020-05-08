@@ -16,12 +16,12 @@ public class ServerApplication {
 		//TODO Messages must be saved in the BusinessLayer / Model
 		MessageHistory mh = new MessageHistory();
 		
-		
 		try(ServerSocket serverSocket = new ServerSocket(45138)){
 			
 			while(true) {
 				
 				Socket socket = serverSocket.accept();
+				//TODO eventuel serialize weil mehrere Threads darauf zugreifen.
 				ServerThread serverThread = new ServerThread(socket, mh);
 				serverThread.start();
 						

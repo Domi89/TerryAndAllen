@@ -20,6 +20,7 @@ public class ServerThread extends Thread{
 		
 	public ServerThread(Socket socket, MessageHistory mh) {
 		this.socket = socket;
+		this.mh = mh;
 	}
 	
 	public void run() {
@@ -99,41 +100,4 @@ public class ServerThread extends Thread{
 			}
 		}
 	}
-	
-	
-	private void messageClass(Message m) {
-		System.out.println("Message: "+m.getClientName()+" :"+m.getMessage());
-		
-	}
-
-	private void clientClass() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void cardClass() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void deckClass() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void stringClass() {
-
-		String inputString = (String) inputObject;
-		System.out.println("Received client input: "+inputString);
-		
-		try {
-			outputStream.writeObject(inputString);
-		} catch (IOException e) {
-			System.out.println("Fehler stringClass() "+e.getMessage());
-		}
-		
-		
-	}
-	
-
 }

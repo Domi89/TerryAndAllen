@@ -9,24 +9,49 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.MessageHistory;
 
-public class ClientConnection extends Thread{
+public class ClientThread extends Thread{
 	
 	private Socket socket;
+
+
 	private Object inputObject;
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
+	private Client client;
+	private MessageHistory messageHistory;
+	private ClientThreadInput clientThreadInput; 
+	private ClientThreadOutput clientThreadOutput;
 
+	public ClientThread (Client client, MessageHistory messageHistory) {
+		this.client = client;
+		this.messageHistory = messageHistory;
+	}
+	
 	public void run() {
 		
 		try(Socket socket = new Socket("localhost", 45138)){
 							
-					System.out.println("test");
 					
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 					
+					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.messageHistory, this.client);
+					clientThreadInput.start();
+					
+					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.messageHistory, this.client);
+					clientThreadOutput.start();
+					
+					
+					//TODO braucht es das?
+					while (true) {
+						
+					}
+					
+					/*
 					while(true) {
 						
 						try {
@@ -36,11 +61,9 @@ public class ClientConnection extends Thread{
 						} catch (ClassNotFoundException e) {
 							System.out.println("ClientConnection ClassNotFound "+e.getMessage());
 						}
-												
-						
 						
 					}
-					
+					*/
 					
 					
 					/*				
@@ -122,6 +145,23 @@ public class ClientConnection extends Thread{
 	}
 	
 	
+	public ClientThreadInput getClientThreadInput() {
+		return clientThreadInput;
+	}
+
+	public void setClientThreadInput(ClientThreadInput clientThreadInput) {
+		this.clientThreadInput = clientThreadInput;
+	}
+
+	public ClientThreadOutput getClientThreadOutput() {
+		return clientThreadOutput;
+	}
+
+	public void setClientThreadOutput(ClientThreadOutput clientThreadOutput) {
+		this.clientThreadOutput = clientThreadOutput;
+	}
+	
+	/*
 	public void sendMessageToServer(Message m) {
 		try {
 			this.outputStream.writeObject(m);
@@ -129,6 +169,7 @@ public class ClientConnection extends Thread{
 			System.out.println("Fehler ClientConnection sendMessageToServer "+e.getMessage());
 			}
 	}
+	*/
 
 	private void deckClass() {
 		// TODO Auto-generated method stub

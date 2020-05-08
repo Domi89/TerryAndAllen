@@ -14,7 +14,7 @@ public class MessageHistory implements Serializable{
 	}
 	
 	public void addMessage(Message message) {
-		this.history.add(message);
+		this.history.push(message);
 	}
 	
 	public Message getLatestMessage() {

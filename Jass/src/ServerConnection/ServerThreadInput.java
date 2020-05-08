@@ -37,17 +37,12 @@ public class ServerThreadInput extends Thread{
 							break;
 							
 						case "Message":
+							Message message = (Message) this.inputObject;
+							//Message message = new Message("", "");
 							
-							this.messageClass((Message) this.inputObject);
-							
-						case "Card":
-							this.cardClass();
+							this.messageClass(message);
 							break;
-							
-						case "Deck":
-							this.deckClass();
-							break;
-							
+														
 						default:
 							System.out.println("Class is not defined in ServerThread!");
 					}
@@ -62,15 +57,6 @@ public class ServerThreadInput extends Thread{
 			
 	}
 
-	private void deckClass() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void cardClass() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void messageClass(Message m) {
 		System.out.println("Message: "+m.getClientName()+" :"+m.getMessage());
