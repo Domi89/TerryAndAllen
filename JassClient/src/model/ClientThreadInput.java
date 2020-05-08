@@ -63,7 +63,14 @@ public class ClientThreadInput extends Thread{
 
 	private void messageHistoryClass(MessageHistory messageHistory) {
 		this.messageHistory = messageHistory;
-		System.out.println("Message history: "+this.messageHistory);
+		
+		if(this.messageHistory.getMessageHistory().size()!=0) {
+			System.out.println("Message history: "+this.messageHistory.getLatestMessage());
+			System.out.println("MessageHistorySize = "+this.messageHistory.getMessageHistory().size());
+		} else {
+			System.out.println("Message History = Null");
+		}
+		
 		
 	}
 

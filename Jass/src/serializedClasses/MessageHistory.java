@@ -1,16 +1,15 @@
 package serializedClasses;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Stack;
 
 public class MessageHistory implements Serializable{
 	
-	private Stack<Message> history;
+	private ArrayList<Message> history;
 	
 	public MessageHistory() {
-		this.history = new Stack<Message>();
+		this.history = new ArrayList<Message>();
 	}
 	
 	public void addMessage(Message message) {
@@ -18,10 +17,10 @@ public class MessageHistory implements Serializable{
 	}
 	
 	public Message getLatestMessage() {
-		return history.peek();
+		return history.get(history.size()-1);
 	}
 	
-	public Stack getMessageHistory() {
+	public ArrayList<Message> getMessageHistory() {
 		return history;
 	}
 	

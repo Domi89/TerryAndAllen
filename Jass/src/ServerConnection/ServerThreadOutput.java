@@ -21,7 +21,7 @@ public class ServerThreadOutput extends Thread{
 			try {
 				currentThread().sleep(5000);
 				
-				if (mh != null) {
+				if (this.mh.getMessageHistory().size()!=0) {
 					this.outputStream.writeObject(this.mh);
 				}
 			
