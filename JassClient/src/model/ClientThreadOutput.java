@@ -5,17 +5,17 @@ import java.io.ObjectOutputStream;
 
 import serializedClasses.Client;
 import serializedClasses.Message;
-import serializedClasses.MessageHistory;
+
 
 public class ClientThreadOutput extends Thread{
 	
 	private ObjectOutputStream outputStream;
-	private MessageHistory messageHistory;
+
 	private Client client;
 	
-	public ClientThreadOutput (ObjectOutputStream outputStream, MessageHistory messageHistory, Client client) {
+	public ClientThreadOutput (ObjectOutputStream outputStream, Client client) {
 		this.outputStream = outputStream;
-		this.messageHistory = messageHistory;
+
 		this.client = client;
 	}
 	

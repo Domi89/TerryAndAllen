@@ -2,25 +2,29 @@ package ServerConnection;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import serializedClasses.Message;
-import serializedClasses.MessageHistory;
+
 
 public class ServerThreadInput extends Thread{
 	
 	private ObjectInputStream inputStream;
 	private Object inputObject;
-	private MessageHistory mh;
+
+	private ArrayList<Message> history;
 	
-	public ServerThreadInput(ObjectInputStream inputStream, MessageHistory mh) {
+	public ServerThreadInput(ObjectInputStream inputStream, ArrayList<Message> history) {
 		this.inputStream = inputStream;
-		this.mh = mh;
+		this.history = history;
 	}
 	
 	public void run() {
 		
 		try {
 			try {
+				
+				
 				while(true) {
 					
 					this.inputObject = this.inputStream.readObject();
@@ -60,8 +64,8 @@ public class ServerThreadInput extends Thread{
 
 	private void messageClass(Message m) {
 		System.out.println("Message: "+m.getClientName()+" :"+m.getMessage());
-		this.mh.addMessage(m);
-		
+		this.history.add(m);
+
 	}
 
 	private void clientClass() {

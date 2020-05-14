@@ -6,10 +6,12 @@ public class Message implements Serializable{
 	
 	private String clientName;
 	private String message;
+	private boolean sent;
 	
 	public Message(String clientName, String message) {
 		this.clientName=clientName;
 		this.message=message;
+		this.sent=false;
 	}
 
 	public String getClientName() {
@@ -34,6 +36,14 @@ public class Message implements Serializable{
 		s+= ": ";
 		s+= this.message;
 		return s;
+	}
+	
+	public void setSent(boolean b) {
+		this.sent = b;
+	}
+	
+	public boolean getSent() {
+		return this.sent;
 	}
 	
 }

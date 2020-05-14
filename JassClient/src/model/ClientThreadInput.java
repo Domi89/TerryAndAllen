@@ -2,21 +2,19 @@ package model;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import serializedClasses.Client;
 import serializedClasses.Message;
-import serializedClasses.MessageHistory;
 
 public class ClientThreadInput extends Thread{
 	
 	private ObjectInputStream inputStream;
 	private Object inputObject;
-	private MessageHistory messageHistory;
 	private Client client;
 	
-	public ClientThreadInput(ObjectInputStream inputStream, MessageHistory messageHistory, Client client){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client){
 		this.inputStream = inputStream;
-		this.messageHistory = messageHistory;
 		this.client = client;
 	}
 	
@@ -25,6 +23,7 @@ public class ClientThreadInput extends Thread{
 		try {
 			
 			while(true) {
+				
 				this.inputObject = this.inputStream.readObject();
 				String className = inputObject.getClass().getSimpleName();
 				System.out.println("Received class name: "+className);
@@ -39,15 +38,25 @@ public class ClientThreadInput extends Thread{
 						break;
 					
 					case "Message":
-						this.messageClass();
+						Message message = (Message) this.inputObject;
+						this.messageClass(message);
 						break;
 						
-					case "MessageHistory":
-						this.messageHistoryClass((MessageHistory) this.inputObject);
+					case "ArrayList":
+						ArrayList<Message> history = new ArrayList<Message>();	
+						history = (ArrayList<Message>) this.inputObject;
+						System.out.println("-----ArrayList input--------");
+						
+						for(Message me: history) {
+							System.out.println(me);
+						}
+						
+						
+						System.out.println("---------------------------------------");
 						break;
 					
 					default:
-						System.out.println("Class is not defined in ServerThread!");
+						System.out.println("Class is not defined in ClientThreadInput!");
 				}
 			}
 						
@@ -61,21 +70,11 @@ public class ClientThreadInput extends Thread{
 		
 	}
 
-	private void messageHistoryClass(MessageHistory messageHistory) {
-		this.messageHistory = messageHistory;
-		
-		if(this.messageHistory.getMessageHistory().size()!=0) {
-			System.out.println("Message history: "+this.messageHistory.getLatestMessage());
-			System.out.println("MessageHistorySize = "+this.messageHistory.getMessageHistory().size());
-		} else {
-			System.out.println("Message History = Null");
-		}
-		
-		
-	}
 
-	private void messageClass() {
-		// TODO Auto-generated method stub
+	private void messageClass(Message m) {
+		System.out.println("-----NEW message-------");
+		System.out.println(m);
+		System.out.println("-----NEW message-------");
 		
 	}
 

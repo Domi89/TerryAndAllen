@@ -6,15 +6,17 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
-import serializedClasses.MessageHistory;
+import serializedClasses.Message;
 
 public class ServerApplication {
 
-	public static void main (String[] args) {
+	//private MessageHistory messageHistory;
+	
+	public ServerApplication(ArrayList<Message> history) {
 		
-		//TODO Messages must be saved in the BusinessLayer / Model
-		MessageHistory mh = new MessageHistory();
+
 		
 		try(ServerSocket serverSocket = new ServerSocket(45138)){
 			
@@ -22,13 +24,16 @@ public class ServerApplication {
 				
 				Socket socket = serverSocket.accept();
 				//TODO eventuel serialize weil mehrere Threads darauf zugreifen.
-				ServerThread serverThread = new ServerThread(socket, mh);
+				ServerThread serverThread = new ServerThread(socket, history);
 				serverThread.start();
 						
 			}
 			
 		} catch(IOException e){
 			System.out.println("Serverexception: "+e.getMessage());			
-		}
+		}	
+		
+		
 	}
+	
 }

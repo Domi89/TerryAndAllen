@@ -11,45 +11,43 @@ import java.util.Scanner;
 
 import serializedClasses.Client;
 import serializedClasses.Message;
-import serializedClasses.MessageHistory;
+
 
 public class ClientThread extends Thread{
 	
 	private Socket socket;
-
-
 	private Object inputObject;
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
 	private Client client;
-	private MessageHistory messageHistory;
-	private ClientThreadInput clientThreadInput; 
+	private ClientThreadInput clientThreadInput;
 	private ClientThreadOutput clientThreadOutput;
 
-	public ClientThread (Client client, MessageHistory messageHistory) {
+	public ClientThread (Client client) {
 		this.client = client;
-		this.messageHistory = messageHistory;
 	}
 	
 	public void run() {
 		
 		try(Socket socket = new Socket("localhost", 45138)){
 							
-					
+			
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 					
-					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.messageHistory, this.client);
-					clientThreadInput.start();
+					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client);
+					this.clientThreadInput.start();
 					
-					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.messageHistory, this.client);
-					clientThreadOutput.start();
+					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client);
+					this.clientThreadOutput.start();
 					
-					
-					//TODO braucht es das?
-					while (true) {
+					while(true) {
 						
 					}
+					
+			
+						
+					
 											
 		} catch (IOException e) {
 			System.out.println("Connection Problem "+e.getMessage());
@@ -61,17 +59,11 @@ public class ClientThread extends Thread{
 		return clientThreadInput;
 	}
 
-	public void setClientThreadInput(ClientThreadInput clientThreadInput) {
-		this.clientThreadInput = clientThreadInput;
-	}
 
 	public ClientThreadOutput getClientThreadOutput() {
 		return clientThreadOutput;
 	}
 
-	public void setClientThreadOutput(ClientThreadOutput clientThreadOutput) {
-		this.clientThreadOutput = clientThreadOutput;
-	}
 	
 	private void deckClass() {
 		// TODO Auto-generated method stub

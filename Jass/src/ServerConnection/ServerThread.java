@@ -7,20 +7,22 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import serializedClasses.Message;
-import serializedClasses.MessageHistory;
+
 
 public class ServerThread extends Thread{
 	private Socket socket;
 	private Object inputObject;
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
-	private MessageHistory mh;
+	private ArrayList<Message> history;
 		
-	public ServerThread(Socket socket, MessageHistory mh) {
+	public ServerThread(Socket socket, ArrayList<Message> history) {
 		this.socket = socket;
-		this.mh = mh;
+
+		this.history = history;
 	}
 	
 	public void run() {
@@ -30,10 +32,10 @@ public class ServerThread extends Thread{
 				this.inputStream = new ObjectInputStream(socket.getInputStream());
 				this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 								
-				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream, this.mh);
+				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream, this.history);
 				serverThreadInput.start();
 				
-				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream, this.mh);
+				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history);
 				serverThreadOutput.start();
 				
 				while(true) {
