@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 import serializedClasses.Client;
 import serializedClasses.Message;
@@ -9,11 +10,12 @@ public class JassClientModel {
 	
 
 	ClientThread clientThread;
-	Boolean connected = false;
+	Supplier <Boolean> connected = ()-> false;
+	
 	Client client;
 	ArrayList<Message> history = new ArrayList<Message>();
 	
-	public Boolean getConnected() {
+	public Supplier<Boolean> getConnected() {
 		return this.connected;
 	}
 	

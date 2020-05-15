@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Supplier;
 
 import serializedClasses.Client;
 import serializedClasses.Message;
@@ -26,21 +27,25 @@ public class ClientThread extends Thread{
 	private ArrayList<Message> history;
 	private String ip;
 	private int port;
-	private Boolean connected;
+	private Supplier<Boolean> connected;
 	
-	public ClientThread (Client client, ArrayList<Message> history, String ip, int port, Boolean connected) {
+	public ClientThread (Client client, ArrayList<Message> history, String ip, int port,  Supplier<Boolean> connected) {
 		this.client = client;
 		this.history = history;
 		this.ip = ip;
 		this.port = port;
 		this.connected = connected;
+		
 	}
+	
+	
 	
 	public ClientThread (Client client, ArrayList<Message> history) {
 		this.client = client;
 		this.history = history;
 		this.ip = "localhost";
 		this.port = 45138;
+		
 	}
 	
 	public void run() {

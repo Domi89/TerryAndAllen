@@ -1,13 +1,16 @@
 package controller;
 
+import java.util.function.Supplier;
+
+import model.Connection;
 import view.JassClientConnectCenter;
 
 public class ConnectedController extends Thread {
 	
-	private Boolean connected;
+	private Supplier<Boolean> connected;
 	private JassClientConnectCenter view;
 	
-	public ConnectedController (Boolean connected, JassClientConnectCenter view) {
+	public ConnectedController (Supplier<Boolean> connected, JassClientConnectCenter view) {
 		this.connected = connected;
 		this.view = view;
 	}
@@ -22,9 +25,9 @@ public class ConnectedController extends Thread {
 				e.printStackTrace();
 			}
 			System.out.println(connected);
-			if(connected) {
-				
-				this.view.closeStage();
+			if(Connection.connected) {
+				System.out.println("Connected");
+				//this.view.closeStage();
 			}
 			
 			

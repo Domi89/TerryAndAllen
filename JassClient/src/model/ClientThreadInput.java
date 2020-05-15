@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 import serializedClasses.Client;
 import serializedClasses.Message;
@@ -13,9 +14,9 @@ public class ClientThreadInput extends Thread{
 	private Object inputObject;
 	private Client client;
 	private ArrayList<Message> history;
-	private Boolean connected;
+	private Supplier<Boolean> connected;
 	
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history, Boolean connected){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history, Supplier<Boolean> connected){
 		this.inputStream = inputStream;
 		this.client = client;
 		this.history = history;
@@ -79,15 +80,16 @@ public class ClientThreadInput extends Thread{
 
 	private void stringClass(String string) {
 		if(string.equals("Connected")) {
-			this.setConnected(true);	
+			this.setConnected(()->true);
+			Connection.connected = true;
 		}
 	}
 
-	public Boolean getConnected() {
+	public Supplier<Boolean> getConnected() {
 		return connected;
 	}
 
-	public void setConnected(Boolean connected) {
+	public void setConnected(Supplier<Boolean> connected) {
 		this.connected = connected;
 	}
 
