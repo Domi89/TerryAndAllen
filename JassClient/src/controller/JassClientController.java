@@ -2,6 +2,7 @@ package controller;
 
 import application.JassClientApplication;
 import model.JassClientModel;
+import view.JassClientConnectCenter;
 import view.JassClientView;
 
 public class JassClientController {
@@ -16,6 +17,11 @@ public class JassClientController {
 		this.view.getButton().setOnAction(e -> sendMessageView());
 		Actualizer actualizer = new Actualizer(this.view, this.model);
 		actualizer.start();
+		
+		
+		
+		
+		
 	}
 
 	private void sendMessageView() {
