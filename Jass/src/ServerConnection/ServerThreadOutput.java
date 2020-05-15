@@ -18,6 +18,13 @@ public class ServerThreadOutput extends Thread{
 	
 	public void run() {
 		
+		try {
+			this.outputStream.writeObject("Connected");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		while(true) {
 			try {
 				currentThread().sleep(5000);

@@ -26,13 +26,14 @@ public class ClientThread extends Thread{
 	private ArrayList<Message> history;
 	private String ip;
 	private int port;
-
-	public ClientThread (Client client, ArrayList<Message> history, String ip, int port) {
+	private Boolean connected;
+	
+	public ClientThread (Client client, ArrayList<Message> history, String ip, int port, Boolean connected) {
 		this.client = client;
 		this.history = history;
 		this.ip = ip;
 		this.port = port;
-		
+		this.connected = connected;
 	}
 	
 	public ClientThread (Client client, ArrayList<Message> history) {
@@ -50,7 +51,7 @@ public class ClientThread extends Thread{
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 					
-					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.history);
+					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.history, this.connected);
 					this.clientThreadInput.start();
 					
 					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client, this.history);

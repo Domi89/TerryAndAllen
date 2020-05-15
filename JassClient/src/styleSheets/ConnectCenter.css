@@ -1,0 +1,9 @@
+
+
+#invalid{
+	-fx-text-fill: red;
+}
+
+#normal{
+	-fx-text-fill: black;
+}

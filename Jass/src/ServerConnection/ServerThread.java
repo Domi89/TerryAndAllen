@@ -38,6 +38,8 @@ public class ServerThread extends Thread{
 				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history);
 				serverThreadOutput.start();
 				
+				
+				
 				while(true) {
 					
 				}

@@ -13,11 +13,13 @@ public class ClientThreadInput extends Thread{
 	private Object inputObject;
 	private Client client;
 	private ArrayList<Message> history;
+	private Boolean connected;
 	
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history, Boolean connected){
 		this.inputStream = inputStream;
 		this.client = client;
 		this.history = history;
+		this.connected = connected;
 	}
 	
 	public void run() {
@@ -32,7 +34,8 @@ public class ClientThreadInput extends Thread{
 				
 				switch (className) {
 					case "String":
-						this.stringClass();	
+						String string = (String) this.inputObject;
+						this.stringClass(string);	
 						break;
 				
 					case "Client":
@@ -74,9 +77,18 @@ public class ClientThreadInput extends Thread{
 		
 	}
 
-	private void stringClass() {
-		// TODO Auto-generated method stub
-		
+	private void stringClass(String string) {
+		if(string.equals("Connected")) {
+			this.setConnected(true);	
+		}
+	}
+
+	public Boolean getConnected() {
+		return connected;
+	}
+
+	public void setConnected(Boolean connected) {
+		this.connected = connected;
 	}
 
 }

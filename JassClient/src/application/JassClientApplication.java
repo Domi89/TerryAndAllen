@@ -1,5 +1,6 @@
 package application;
 
+import controller.ConnectCenterController;
 import controller.JassClientController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,18 +16,20 @@ public class JassClientApplication extends Application{
 	JassClientView view;
 	JassClientConnectCenter view2;
 	JassClientController controller;
+	ConnectCenterController controller2;
 	
 	public static Stage primaryStage = new Stage();
-	
 	
 	public static void main(String[] args) {
 		launch();
 	}
 	
 	public void start(Stage primaryStage) throws Exception{
-		//model = new JassClientModel();
+		model = new JassClientModel();
 		//view = new JassClientView(primaryStage, model);
+		
 		view2 = new JassClientConnectCenter(primaryStage, model);
+		controller2 = new ConnectCenterController(model,view2);
 		//controller = new JassClientController(model, view);
 		this.primaryStage = primaryStage;
 	}

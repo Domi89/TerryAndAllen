@@ -21,6 +21,7 @@ public class JassClientConnectCenter {
 	private TextField benutzerText, ipText, portText;
 	private Button connect;
 	private BorderPane root;
+	private Stage stage;
 	
 	public JassClientConnectCenter(Stage stage, JassClientModel model) {
 		
@@ -35,10 +36,13 @@ public class JassClientConnectCenter {
 
         this.benutzerText = new TextField();
         this.ipText = new TextField();
+        
         this.portText = new TextField();
+        this.portText.setText("45138");
         //Connection BUtton
         this.connect = new Button ("Verbinden");
-                      
+       
+        this.connect.setDisable(true);
        	HBox hBox = new HBox();
         
         VBox labelBox = new VBox();
@@ -59,11 +63,17 @@ public class JassClientConnectCenter {
         this.root.setCenter(hBox);
         
         this.scene = new Scene(this.root);
-        stage.setTitle("Verbindung zum Server aufbauen");
-        stage.setScene(this.scene);
-        stage.show();
+        this.scene.getStylesheets().add(getClass().getResource("../styleSheets/ConnectCenter.css").toExternalForm());
+        this.stage = stage;
+        this.stage.setTitle("Verbindung zum Server aufbauen");
+        this.stage.setScene(this.scene);
+        this.stage.show();
 	}
 
+	public void closeStage() {
+		
+		this.stage.close();
+	}
 	public JassClientModel getModel() {
 		return model;
 	}

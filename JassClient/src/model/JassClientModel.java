@@ -9,9 +9,13 @@ public class JassClientModel {
 	
 
 	ClientThread clientThread;
+	Boolean connected = false;
 	Client client;
 	ArrayList<Message> history = new ArrayList<Message>();
 	
+	public Boolean getConnected() {
+		return this.connected;
+	}
 	
 	public JassClientModel() {
 		
@@ -33,7 +37,7 @@ public class JassClientModel {
 	public void connectToServer(String clientName, String ip, int port) {
 		
 		this.client = new Client(clientName);
-		this.clientThread = new ClientThread(this.client, this.history, ip, port);
+		this.clientThread = new ClientThread(this.client, this.history, ip, port, this.connected);
 		this.clientThread.start();
 		
 		
