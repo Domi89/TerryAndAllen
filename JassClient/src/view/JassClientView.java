@@ -30,6 +30,9 @@ public class JassClientView {
 		hbox.getChildren().add(textField);
 		hbox.getChildren().add(button);
 		
+		//MessageLabelActualizer mla = new MessageLabelActualizer(this.messageLabel, this.model);
+		//mla.start();
+		
 		this.root = new BorderPane();
 		this.root.setTop(messageLabel);
 		this.root.setCenter(hbox);
@@ -65,7 +68,6 @@ public class JassClientView {
 	public void setMessageLabel(Label messageLabel) {
 		this.messageLabel = messageLabel;
 	}
-	
 	
 
 }

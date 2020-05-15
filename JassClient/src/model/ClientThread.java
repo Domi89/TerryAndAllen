@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import serializedClasses.Client;
@@ -22,23 +23,37 @@ public class ClientThread extends Thread{
 	private Client client;
 	private ClientThreadInput clientThreadInput;
 	private ClientThreadOutput clientThreadOutput;
+	private ArrayList<Message> history;
+	private String ip;
+	private int port;
 
-	public ClientThread (Client client) {
+	public ClientThread (Client client, ArrayList<Message> history, String ip, int port) {
 		this.client = client;
+		this.history = history;
+		this.ip = ip;
+		this.port = port;
+		
+	}
+	
+	public ClientThread (Client client, ArrayList<Message> history) {
+		this.client = client;
+		this.history = history;
+		this.ip = "localhost";
+		this.port = 45138;
 	}
 	
 	public void run() {
 		
-		try(Socket socket = new Socket("localhost", 45138)){
+		try(Socket socket = new Socket(this.ip, this.port)){
 							
 			
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 					
-					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client);
+					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.history);
 					this.clientThreadInput.start();
 					
-					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client);
+					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client, this.history);
 					this.clientThreadOutput.start();
 					
 					while(true) {
@@ -62,32 +77,6 @@ public class ClientThread extends Thread{
 
 	public ClientThreadOutput getClientThreadOutput() {
 		return clientThreadOutput;
-	}
-
-	
-	private void deckClass() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void cardClass() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void messageClass() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void clientClass() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void stringClass() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

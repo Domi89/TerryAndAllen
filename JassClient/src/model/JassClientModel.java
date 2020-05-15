@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -7,13 +9,14 @@ public class JassClientModel {
 	
 
 	ClientThread clientThread;
-	Client client = new Client("Client 0");
+	Client client;
+	ArrayList<Message> history = new ArrayList<Message>();
 	
 	
 	public JassClientModel() {
 		
-		clientThread = new ClientThread(this.client);
-		clientThread.start();
+		//clientThread = new ClientThread(this.client, this.history);
+		//clientThread.start();
 		
 	}
 	
@@ -21,6 +24,19 @@ public class JassClientModel {
 		Message m = new Message(client.getClientName(), s);
 		clientThread.getClientThreadOutput().sendMessageToServer(m);
 	
+	}
+	
+	public ArrayList<Message> getHistory(){
+		return this.history;
+	}
+	
+	public void connectToServer(String clientName, String ip, int port) {
+		
+		this.client = new Client(clientName);
+		this.clientThread = new ClientThread(this.client, this.history, ip, port);
+		this.clientThread.start();
+		
+		
 	}
 
 }

@@ -12,10 +12,12 @@ public class ClientThreadInput extends Thread{
 	private ObjectInputStream inputStream;
 	private Object inputObject;
 	private Client client;
+	private ArrayList<Message> history;
 	
-	public ClientThreadInput(ObjectInputStream inputStream, Client client){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history){
 		this.inputStream = inputStream;
 		this.client = client;
+		this.history = history;
 	}
 	
 	public void run() {
@@ -42,18 +44,6 @@ public class ClientThreadInput extends Thread{
 						this.messageClass(message);
 						break;
 						
-					case "ArrayList":
-						ArrayList<Message> history = new ArrayList<Message>();	
-						history = (ArrayList<Message>) this.inputObject;
-						System.out.println("-----ArrayList input--------");
-						
-						for(Message me: history) {
-							System.out.println(me);
-						}
-						
-						
-						System.out.println("---------------------------------------");
-						break;
 					
 					default:
 						System.out.println("Class is not defined in ClientThreadInput!");
@@ -75,6 +65,7 @@ public class ClientThreadInput extends Thread{
 		System.out.println("-----NEW message-------");
 		System.out.println(m);
 		System.out.println("-----NEW message-------");
+		history.add(m);
 		
 	}
 

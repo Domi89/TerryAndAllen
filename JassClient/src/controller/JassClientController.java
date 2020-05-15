@@ -13,12 +13,9 @@ public class JassClientController {
 	public JassClientController(JassClientModel model, JassClientView view) {
 		this.model = model;
 		this.view = view;
-		
-		
 		this.view.getButton().setOnAction(e -> sendMessageView());
-	
-	
-	
+		Actualizer actualizer = new Actualizer(this.view, this.model);
+		actualizer.start();
 	}
 
 	private void sendMessageView() {
@@ -31,8 +28,8 @@ public class JassClientController {
 		}
 	}
 	
-	private void actualizeMessageLabel(String s) {
-		this.view.getMessageLabel().setText(s);
-	}
+	
+	
+
 
 }
