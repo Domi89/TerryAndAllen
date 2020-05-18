@@ -7,11 +7,11 @@ import view.JassClientConnectCenter;
 
 public class ConnectedController extends Thread {
 	
-	private Supplier<Boolean> connected;
+
 	private JassClientConnectCenter view;
 	
-	public ConnectedController (Supplier<Boolean> connected, JassClientConnectCenter view) {
-		this.connected = connected;
+	public ConnectedController (JassClientConnectCenter view) {
+	
 		this.view = view;
 	}
 
@@ -24,10 +24,11 @@ public class ConnectedController extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(connected);
+			
 			if(Connection.connected) {
 				System.out.println("Connected");
 				//this.view.closeStage();
+				this.view.closeStage();
 			}
 			
 			

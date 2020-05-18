@@ -37,7 +37,7 @@ public class ConnectCenterController {
 		
 		this.view.getConnect().setOnAction(e -> connectToServer());
 		
-		ConnectionThreadTest ctt = new ConnectionThreadTest(this.view);
+		
 		
 	
 	}
@@ -120,8 +120,10 @@ public class ConnectCenterController {
 		
 		int port = Integer.parseInt(this.view.getPortText().getText());
 		this.model.connectToServer(this.view.getBenutzerText().getText(), this.view.getIpText().getText(), port);
-		ConnectedController cc = new ConnectedController(model.getConnected(), this.view);
-		cc.start();
+		
+		
+		ConnectedController cc = new ConnectedController(this.view);
+		cc.run();
 	}
 	
 	
