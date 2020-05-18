@@ -27,7 +27,6 @@ public class JassClientApplication extends Application{
 	public void start(Stage primaryStage) throws Exception{
 		model = new JassClientModel();
 		//view = new JassClientView(primaryStage, model);
-		
 		view2 = new JassClientConnectCenter(primaryStage, model);
 		controller2 = new ConnectCenterController(model,view2);
 		//controller = new JassClientController(model, view);
