@@ -154,6 +154,9 @@ public class JassClientConnectCenter {
 		this.root = root;
 	}
 	
+	public void closeConnect() {
+		stage.close();
+	}
 	
 	
 }
