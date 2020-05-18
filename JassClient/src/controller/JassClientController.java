@@ -1,6 +1,6 @@
 package controller;
 
-import application.JassClientApplication;
+import application.JassClientApplicationConnection;
 import model.JassClientModel;
 import view.JassClientConnectCenter;
 import view.JassClientView;
@@ -9,7 +9,7 @@ public class JassClientController {
 	
 	private JassClientModel model;
 	private JassClientView view;
-	private JassClientApplication start = new JassClientApplication();
+	private JassClientApplicationConnection start = new JassClientApplicationConnection();
 	
 	public JassClientController(JassClientModel model, JassClientView view) {
 		this.model = model;

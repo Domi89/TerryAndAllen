@@ -29,6 +29,8 @@ public class ConnectedController extends Thread {
 				System.out.println("Connected");
 				//this.view.closeStage();
 				this.view.closeStage();
+				
+				
 			}
 			
 			

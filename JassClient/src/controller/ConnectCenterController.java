@@ -1,6 +1,6 @@
 package controller;
 
-import application.JassClientApplication;
+import application.JassClientApplicationConnection;
 import model.JassClientModel;
 import view.JassClientConnectCenter;
 
@@ -9,7 +9,7 @@ public class ConnectCenterController {
 	
 	private JassClientModel model;
 	private JassClientConnectCenter view;
-	private JassClientApplication start = new JassClientApplication();
+	private JassClientApplicationConnection start = new JassClientApplicationConnection();
 	
 	// Supplier ()->
 	
@@ -36,10 +36,7 @@ public class ConnectCenterController {
 				);
 		
 		this.view.getConnect().setOnAction(e -> connectToServer());
-		
-		
-		
-	
+			
 	}
 
 	private Object validatePortText(String newValue) {
