@@ -82,6 +82,7 @@ public class ClientThreadInput extends Thread{
 		if(string.equals("Connected")) {
 			this.setConnected(()->true);
 			Connection.connected = true;
+			
 		}
 	}
 
