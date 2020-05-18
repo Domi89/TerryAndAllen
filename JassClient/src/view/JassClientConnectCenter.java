@@ -26,8 +26,7 @@ public class JassClientConnectCenter {
 	public JassClientConnectCenter(Stage stage, JassClientModel model) {
 		
 		this.model = model;
-		
-			
+
 
         //Create the fields for the Connection 
         this.benutzer = new Label("Username: ");
@@ -68,6 +67,10 @@ public class JassClientConnectCenter {
         this.stage.setTitle("Verbindung zum Server aufbauen");
         this.stage.setScene(this.scene);
         this.stage.show();
+        
+        
+        
+        
 	}
 
 	public void closeStage() {
@@ -154,9 +157,6 @@ public class JassClientConnectCenter {
 		this.root = root;
 	}
 	
-	public void closeConnect() {
-		stage.close();
-	}
 	
 	
 }
