@@ -14,12 +14,13 @@ import view.JassClientView;
 public class JassClientApplicationConnection extends Application{
 	
 	JassClientModel model;
-	// 2 JassClientView view;
+	//JassClientView view;
 	JassClientConnectCenter view2;
-	// 2 JassClientController controller;
+	//JassClientController controller;
 	ConnectCenterController controller2;
 	
 	public static Stage primaryStage = new Stage();
+	
 	
 	public static void main(String[] args) {
 		launch();
@@ -32,10 +33,6 @@ public class JassClientApplicationConnection extends Application{
 		controller2 = new ConnectCenterController(model,view2);
 		//controller = new JassClientController(model, view);
 		this.primaryStage = primaryStage;
-		
-		
-		
-		
 		
 		
 		
