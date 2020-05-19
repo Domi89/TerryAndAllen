@@ -3,6 +3,8 @@ package ServerConnection;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import serializedClasses.Client;
 import serializedClasses.Message;
 
 public class ServerThreadOutput extends Thread{
@@ -10,10 +12,12 @@ public class ServerThreadOutput extends Thread{
 	private ObjectOutputStream outputStream;
 
 	private ArrayList<Message> history;
+	private Client client;
 	
-	public ServerThreadOutput(ObjectOutputStream outputStream, ArrayList<Message> history) {
+	public ServerThreadOutput(ObjectOutputStream outputStream, ArrayList<Message> history, Client client) {
 		this.outputStream = outputStream;
 		this.history = history;
+		this.client = client;
 	}
 	
 	public void run() {

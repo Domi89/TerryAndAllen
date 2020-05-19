@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import serializedClasses.Client;
 import serializedClasses.Message;
 
 
@@ -18,24 +19,28 @@ public class ServerThread extends Thread{
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
 	private ArrayList<Message> history;
-		
+	private Client client;	
+	
 	public ServerThread(Socket socket, ArrayList<Message> history) {
 		this.socket = socket;
-
 		this.history = history;
+		
 	}
 	
 	public void run() {
 		
 		try {
 			
+				
+				
+			
 				this.inputStream = new ObjectInputStream(socket.getInputStream());
 				this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 								
-				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream, this.history);
+				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream, this.history, this.client);
 				serverThreadInput.start();
 				
-				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history);
+				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history, this.client);
 				serverThreadOutput.start();
 				
 				

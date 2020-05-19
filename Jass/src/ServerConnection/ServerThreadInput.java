@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+import serializedClasses.Client;
+
 import serializedClasses.Message;
 
 
@@ -13,10 +15,12 @@ public class ServerThreadInput extends Thread{
 	private Object inputObject;
 
 	private ArrayList<Message> history;
+	private Client client;
 	
-	public ServerThreadInput(ObjectInputStream inputStream, ArrayList<Message> history) {
+	public ServerThreadInput(ObjectInputStream inputStream, ArrayList<Message> history, Client client) {
 		this.inputStream = inputStream;
 		this.history = history;
+		this.client = client;
 	}
 	
 	public void run() {
@@ -37,7 +41,8 @@ public class ServerThreadInput extends Thread{
 							break;
 						
 						case "Client":
-							this.clientClass();
+							Client receivedClient = (Client) this.inputObject;
+							this.clientClass(receivedClient);
 							break;
 							
 						case "Message":
@@ -62,16 +67,18 @@ public class ServerThreadInput extends Thread{
 	}
 
 
+	private void clientClass(Client client) {
+		this.client = client;
+		System.out.println("Received Client name: "+client.getClientName());
+		
+	}
+
 	private void messageClass(Message m) {
 		System.out.println("Message: "+m.getClientName()+" :"+m.getMessage());
 		this.history.add(m);
 
 	}
 
-	private void clientClass() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void stringClass() {
 		// TODO Auto-generated method stub
