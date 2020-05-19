@@ -48,6 +48,19 @@ public class ServerApplication {
 	public void setServerThreads(ArrayList<ServerThread> serverThreads) {
 		this.serverThreads = serverThreads;
 	}
+	
+	public ServerThread getServerThreadByClientName (String name) {
+		ServerThread returnThread = null;
+		if(this.serverThreads.size()>0) {
+			for (int i = 0; i<this.serverThreads.size(); i++) {
+				if(this.serverThreads.get(i).getClient().getClientName().equals(name)){
+					return this.serverThreads.get(i);
+				}
+			}
+		} 
+		return returnThread;
+		
+	}
 
 	
 }
