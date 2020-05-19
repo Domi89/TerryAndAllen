@@ -21,6 +21,7 @@ public class JassClientView {
 	private HBox hbox;
 	private JassClientViewMenBar menBar;
 	private JassClientViewChat chat;
+	private JassClientViewCenter center;
 	
 	//Instanziieren der Buttons
 	private Button chatButton;
@@ -47,6 +48,7 @@ public class JassClientView {
 		//Initial labels and buttons
 		menBar = new JassClientViewMenBar();
 		chat = new JassClientViewChat();
+		center = new JassClientViewCenter();
 		
 		//Draft HBox
 		hbox= new HBox();
@@ -58,7 +60,7 @@ public class JassClientView {
 	
 		this.root.setTop(menBar);
 		this.root.setRight(chat);
-		this.root.setCenter(hbox);
+		this.root.setCenter(center);
 		
 		//Grösse der root definieren
 		this.root.setMinSize(1280, 800);
