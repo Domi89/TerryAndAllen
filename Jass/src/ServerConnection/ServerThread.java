@@ -21,6 +21,14 @@ public class ServerThread extends Thread{
 	private ArrayList<Message> history;
 	private Client client;	
 	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public ServerThread(Socket socket, ArrayList<Message> history) {
 		this.socket = socket;
 		this.history = history;
@@ -30,9 +38,6 @@ public class ServerThread extends Thread{
 	public void run() {
 		
 		try {
-			
-				
-				
 			
 				this.inputStream = new ObjectInputStream(socket.getInputStream());
 				this.outputStream = new ObjectOutputStream(socket.getOutputStream());

@@ -31,12 +31,15 @@ public class ServerThreadOutput extends Thread{
 		
 		while(true) {
 			try {
+				
 				currentThread().sleep(5000);
 				
 				writeNewMessages();
-									
+				
 			} catch (InterruptedException e) {
+				
 				System.out.println("Thread interrupted "+e.getMessage());
+				
 			} 
 		}
 

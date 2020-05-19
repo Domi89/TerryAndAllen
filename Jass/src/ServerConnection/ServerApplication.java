@@ -14,6 +14,9 @@ public class ServerApplication {
 
 	//private MessageHistory messageHistory;
 	
+	private ArrayList<ServerThread> serverThreads = new ArrayList<ServerThread>();
+	
+
 	public ServerApplication(ArrayList<Message> history) {
 		
 
@@ -24,8 +27,10 @@ public class ServerApplication {
 				
 				Socket socket = serverSocket.accept();
 				//TODO eventuel serialize weil mehrere Threads darauf zugreifen.
-				ServerThread2 serverThread = new ServerThread2(socket, history);
-				serverThread.start();
+				
+				serverThreads.add(new ServerThread(socket, history));
+				serverThreads.get(serverThreads.size()-1).start();
+
 						
 			}
 			
@@ -35,5 +40,14 @@ public class ServerApplication {
 		
 		
 	}
+	
+	public ArrayList<ServerThread> getServerThreads() {
+		return serverThreads;
+	}
+
+	public void setServerThreads(ArrayList<ServerThread> serverThreads) {
+		this.serverThreads = serverThreads;
+	}
+
 	
 }

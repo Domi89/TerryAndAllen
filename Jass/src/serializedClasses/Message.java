@@ -19,23 +19,31 @@ public class Message implements Serializable{
 	}
 
 	public void setClientName(String clientName) {
+		
 		this.clientName = clientName;
+		
 	}
 
 	public String getMessage() {
+		
 		return message;
+		
 	}
 
 	public void setMessage(String message) {
+		
 		this.message = message;
+		
 	}
 	
 	public String toString() {
+		
 		String s = "";
 		s+= this.clientName;
 		s+= ": ";
 		s+= this.message;
 		return s;
+		
 	}
 	
 	public void setSent(boolean b) {
