@@ -33,8 +33,3 @@ public class JassClientViewChat extends VBox{
 }
 
 
-
-//Draft HBox
-//	hbox= new HBox();
-//	hbox.getChildren().add(chatField);
-//	hbox.getChildren().add(chatButton);
