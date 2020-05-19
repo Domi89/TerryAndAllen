@@ -31,8 +31,7 @@ public class JassClientView {
 	
 	//Labels 
 	private Label messageLabel;
-	private Label winLabel1, winLabel2, winLabel3, winLabel4;
-	
+		
 	public JassClientView(Stage stage, JassClientModel model) {
 		this.model = model;
 		
