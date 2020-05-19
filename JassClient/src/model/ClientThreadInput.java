@@ -14,13 +14,12 @@ public class ClientThreadInput extends Thread{
 	private Object inputObject;
 	private Client client;
 	private ArrayList<Message> history;
-	private Supplier<Boolean> connected;
-	
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history, Supplier<Boolean> connected){
+
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history){
 		this.inputStream = inputStream;
 		this.client = client;
 		this.history = history;
-		this.connected = connected;
+	
 	}
 	
 	public void run() {
@@ -80,18 +79,14 @@ public class ClientThreadInput extends Thread{
 
 	private void stringClass(String string) {
 		if(string.equals("Connected")) {
-			this.setConnected(()->true);
+			
 			Connection.connected = true;
 			
 		}
 	}
 
-	public Supplier<Boolean> getConnected() {
-		return connected;
-	}
 
-	public void setConnected(Supplier<Boolean> connected) {
-		this.connected = connected;
-	}
+
+
 
 }

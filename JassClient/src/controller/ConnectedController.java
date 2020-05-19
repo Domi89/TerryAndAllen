@@ -25,11 +25,14 @@ public class ConnectedController extends Thread {
 				e.printStackTrace();
 			}
 			
-			if(Connection.connected) {
-				System.out.println("Connected");
-				//this.view.closeStage();
-				this.view.closeStage();
+			if(Connection.connected != null) {
+				if(Connection.connected = true) {
+					System.out.println("Connected");
+					//this.view.closeStage();
+					this.view.closeStage();
+				}
 				
+
 				
 			}
 			

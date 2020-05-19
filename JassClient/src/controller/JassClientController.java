@@ -14,7 +14,7 @@ public class JassClientController {
 	public JassClientController(JassClientModel model, JassClientView view) {
 		this.model = model;
 		this.view = view;
-		this.view.getButton().setOnAction(e -> sendMessageView());
+		//this.view.getButton().setOnAction(e -> sendMessageView());
 		Actualizer actualizer = new Actualizer(this.view, this.model);
 		actualizer.start();
 		
@@ -24,16 +24,7 @@ public class JassClientController {
 		
 	}
 
-	private void sendMessageView() {
-		if(this.view.getTextField().getText().equals("")){
-			return;
-		} else {
-			String s = this.view.getTextField().getText();
-			this.model.sendTextToServer(s);
-			this.view.getTextField().setText("");
-		}
-	}
-	
+
 	
 	
 

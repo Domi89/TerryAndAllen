@@ -1,16 +1,20 @@
 package serializedClasses;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.io.Serializable;
 
-public class Client implements Serializable{
+public class Client implements Serializable {
 	
-	private static String clientName;
+	private String clientName;
 	
 	public Client (String clientName) {
 		this.clientName = clientName;
 	}
 
-	public static String getClientName() {
+	public String getClientName() {
 		return clientName;
 	}
 

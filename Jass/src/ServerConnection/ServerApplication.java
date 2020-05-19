@@ -24,7 +24,7 @@ public class ServerApplication {
 				
 				Socket socket = serverSocket.accept();
 				//TODO eventuel serialize weil mehrere Threads darauf zugreifen.
-				ServerThread serverThread = new ServerThread(socket, history);
+				ServerThread2 serverThread = new ServerThread2(socket, history);
 				serverThread.start();
 						
 			}

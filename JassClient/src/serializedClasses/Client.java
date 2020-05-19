@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class Client implements Serializable{
 	
-	private static String clientName;
+	private String clientName;
 	
 	public Client (String clientName) {
 		this.clientName = clientName;
 	}
 
-	public static String getClientName() {
+	public String getClientName() {
 		return clientName;
 	}
 

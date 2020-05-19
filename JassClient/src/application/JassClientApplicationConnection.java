@@ -4,6 +4,7 @@ import controller.ConnectCenterController;
 import controller.JassClientController;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.Connection;
 import model.JassClientModel;
 import view.JassClientConnectCenter;
 import view.JassClientView;

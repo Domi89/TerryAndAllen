@@ -24,6 +24,7 @@ public class ClientThreadOutput extends Thread{
 	
 	public void run() {
 		
+			
 		this.sendClientToServer();
 		
 		while (true) {
@@ -44,6 +45,7 @@ public class ClientThreadOutput extends Thread{
 		try {
 			Client sC = this.client;
 			this.outputStream.writeObject(sC);
+			
 			System.out.println("Sent Client name: "+sC.getClientName());
 			
 		} catch (IOException e) {
