@@ -25,14 +25,12 @@ public class ClientThread extends Thread{
 	private Client client;
 	private ClientThreadInput clientThreadInput;
 	private ClientThreadOutput clientThreadOutput;
-	private ArrayList<Message> history;
 	private String ip;
 	private int port;
 	
 	
-	public ClientThread (Client client, ArrayList<Message> history, String ip, int port) {
+	public ClientThread (Client client, String ip, int port) {
 		this.client = client;
-		this.history = history;
 		this.ip = ip;
 		this.port = port;
 		
@@ -40,9 +38,8 @@ public class ClientThread extends Thread{
 	
 	
 	
-	public ClientThread (Client client, ArrayList<Message> history) {
+	public ClientThread (Client client) {
 		this.client = client;
-		this.history = history;
 		this.ip = "localhost";
 		this.port = 45138;
 		
@@ -55,10 +52,10 @@ public class ClientThread extends Thread{
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 
-					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.history);
+					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client);
 					this.clientThreadInput.start();
 					
-					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client, this.history);
+					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client);
 					this.clientThreadOutput.start();
 					
 					while(true) {

@@ -14,14 +14,13 @@ public class ClientThreadOutput extends Thread{
 	private ObjectOutputStream outputStream;
 
 	private Client client;
-	private ArrayList<Message> history;
 	private ObservableList<Message> chatHistory;
 	
-	public ClientThreadOutput (ObjectOutputStream outputStream, Client client, ArrayList<Message> history) {
+	public ClientThreadOutput (ObjectOutputStream outputStream, Client client) {
 		this.outputStream = outputStream;
 		this.chatHistory = chatHistory;
 		this.client = client;
-		this.history = history;
+
 	}
 	
 	public void run() {

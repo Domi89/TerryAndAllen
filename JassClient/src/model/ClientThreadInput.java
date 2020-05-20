@@ -14,14 +14,13 @@ public class ClientThreadInput extends Thread{
 	private ObjectInputStream inputStream;
 	private Object inputObject;
 	private Client client;
-	private ArrayList<Message> history;
+	private ArrayList<Message> history = new ArrayList<Message>();
 
 
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client){
 		this.inputStream = inputStream;
 		this.client = client;
-		this.history = history;
-		
+			
 	}
 	
 	public void run() {
@@ -63,6 +62,14 @@ public class ClientThreadInput extends Thread{
 
 	}
 
+
+	public ArrayList<Message> getHistory() {
+		return history;
+	}
+
+	public void setHistory(ArrayList<Message> history) {
+		this.history = history;
+	}
 
 	private void messageClass(Message m) {
 		Message inMessage = m;

@@ -22,7 +22,6 @@ public class JassClientApplicationGameNewStage{
 		this.view = new JassClientView(stage, model);
 		controller = new JassClientController(model, view);
 		
-		//admin note: niklas ist bestückt wie ein Pferd, und was für eins!
         Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -56,10 +55,13 @@ public class JassClientApplicationGameNewStage{
 	
 	
 	private void updater() { 
-		this.view.getChat().getLabelChat().setText("FETTSACK");
-		ArrayList<Message> m = new ArrayList<Message>();
+		//this.view.getChat().getLabelChat().setText("FETTSACK");
+		String gay = new String();
+		gay = this.model.getClientThread().getClientThreadInput().getHistory().toString();
+		this.view.getChat().getLabelChat().setText(gay);
+
+
 		
-		System.out.println(m.toString());
 	}
 	
 }

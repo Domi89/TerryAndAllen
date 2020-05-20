@@ -13,7 +13,7 @@ public class JassClientModel {
 
 	private ClientThread clientThread;
 	private Client client;
-	private ArrayList<Message> history = new ArrayList<Message>();
+	//private ArrayList<Message> history = new ArrayList<Message>();
 	
 
 	public ClientThread getClientThread() {
@@ -37,14 +37,14 @@ public class JassClientModel {
 	
 
 	
-	public ArrayList<Message> getHistory(){
-		return this.history;
-	}
+	//public ArrayList<Message> getHistory(){
+		//return this.history;
+	//}
 	
 	public void connectToServer(String clientName, String ip, int port) {
 		
 		this.client = new Client(clientName);
-		this.clientThread = new ClientThread(this.client, this.history, ip, port);
+		this.clientThread = new ClientThread(this.client, ip, port);
 		this.clientThread.start();
 		
 		
