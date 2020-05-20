@@ -13,11 +13,9 @@ public class JassClientModel {
 
 	private ClientThread clientThread;
 	private Client client;
-	private volatile ArrayList<Message> history = new ArrayList<Message>();
+	private ArrayList<Message> history = new ArrayList<Message>();
 	
 
-	
-	
 	public ClientThread getClientThread() {
 		return clientThread;
 	}

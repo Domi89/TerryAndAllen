@@ -60,9 +60,7 @@ public class ClientThreadInput extends Thread{
 		} catch (IOException e) {
 			System.out.println("Thread exception "+e.getMessage());
 		}
-		
-		
-		
+
 	}
 
 
