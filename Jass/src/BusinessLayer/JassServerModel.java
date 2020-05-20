@@ -17,7 +17,7 @@ public class JassServerModel {
 		this.history = new ArrayList<Message>();
 		
 		ServerApplication serverApplication = new ServerApplication(this.history);
-	
+		
 	}
 
 }

@@ -15,8 +15,11 @@ public class ServerApplication {
 	//private MessageHistory messageHistory;
 	
 	private ArrayList<ServerThread> serverThreads = new ArrayList<ServerThread>();
-	
+	//protected ObservableList<ServerThread> serverThreads = FXCollections.;
+	//protected ObservableList<ServerThread> serverThreads = FXCollections.observableArrayList();
 
+	
+	
 	public ServerApplication(ArrayList<Message> history) {
 		
 

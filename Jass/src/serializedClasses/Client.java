@@ -5,13 +5,15 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.Serializable;
+import java.net.Socket;
 
 public class Client implements Serializable {
-	
+
 	private String clientName;
 	
 	public Client (String clientName) {
 		this.clientName = clientName;
+		
 	}
 
 	public String getClientName() {
@@ -23,7 +25,7 @@ public class Client implements Serializable {
 	}
 
 	public String toString() {
-		return "Client [clientName=" + clientName + "]";
+		return "Client [clientName=" + clientName + "] ";
 	}
 
 }
