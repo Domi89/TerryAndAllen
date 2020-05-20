@@ -11,23 +11,22 @@ public class JassClientViewCenter extends BorderPane{
 	private Label winLabel1, winLabel2, winLabel3, winLabel4;
 	private Label namePlayer1, namePlayer2, namePlayer3, namePlayer4;
 
-	private JassClientViewVBoxCard jcvv;
+	private JassClientViewVBoxCard jcvv, jcvv2;
 			
 	public JassClientViewCenter() {
 		super();
 		
-		//Button test = new Button("Wuhuuuu biatch");
 		
 		jcvv = new JassClientViewVBoxCard();
+		jcvv2 = new JassClientViewVBoxCard();
 		
 		HBox hb = new HBox();
 		hb.setId("tisch");
-	
 		hb.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
-		//hb.getChildren().add(test);
-		
+				
 		this.setCenter(hb);
 		this.setLeft(jcvv);
+		this.setRight(jcvv2);
 				
 		
 		
