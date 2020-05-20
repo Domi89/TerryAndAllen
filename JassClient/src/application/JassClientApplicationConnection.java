@@ -15,9 +15,9 @@ import view.JassClientView;
 public class JassClientApplicationConnection extends Application{
 	
 	JassClientModel model;
-	//JassClientView view;
+	JassClientView view;
 	JassClientConnectCenter view2;
-	//JassClientController controller;
+	JassClientController controller;
 	ConnectCenterController controller2;
 	
 	public static Stage primaryStage = new Stage();
@@ -29,12 +29,16 @@ public class JassClientApplicationConnection extends Application{
 	
 	public void start(Stage primaryStage) throws Exception{
 		model = new JassClientModel();
-		//view = new JassClientView(primaryStage, model);
 		view2 = new JassClientConnectCenter(primaryStage, model);
 		controller2 = new ConnectCenterController(model,view2);
-		//controller = new JassClientController(model, view);
 		this.primaryStage = primaryStage;
 		
+	}
+	
+	public void startSecond(Stage primaryStage) {
+		
+		view = new JassClientView(primaryStage, model);
+		controller = new JassClientController(model, view);
 		
 		
 	}

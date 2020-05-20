@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -68,7 +69,11 @@ public class JassClientView {
 		
 		//Erstellen und anzeigen der Scene
 		this.scene = new Scene(this.root);
+		
+		 Image icon = new Image(getClass().getResourceAsStream("../images/Schelle.png"));
+		
 		stage.setTitle("Jass Spiel");
+		stage.getIcons().add(icon);
 		stage.setScene(this.scene);
 		stage.show();
 		

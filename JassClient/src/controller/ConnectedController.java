@@ -17,7 +17,9 @@ public class ConnectedController extends Thread {
 
 	public void run() {
 		
-		while(true) {
+		boolean test = true;
+		
+		while(test) {
 			try {
 				this.sleep(5000);
 			} catch (InterruptedException e) {
@@ -30,6 +32,8 @@ public class ConnectedController extends Thread {
 					System.out.println("Connected");
 					//this.view.closeStage();
 					this.view.closeStage();
+					test = false;
+					
 				}
 				
 

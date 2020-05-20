@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -63,8 +64,12 @@ public class JassClientConnectCenter {
         
         this.scene = new Scene(this.root);
         this.scene.getStylesheets().add(getClass().getResource("../styleSheets/ConnectCenter.css").toExternalForm());
+        
+        Image icon = new Image(getClass().getResourceAsStream("../images/Schelle.png"));
+        
         this.stage = stage;
         this.stage.setTitle("Verbindung zum Server aufbauen");
+        this.stage.getIcons().add(icon);
         this.stage.setScene(this.scene);
         this.stage.show();
         
@@ -76,7 +81,15 @@ public class JassClientConnectCenter {
 	public void closeStage() {
 		
 		this.stage.close();
+		this.openNewView();
+				
 	}
+	
+	public void openNewView() {
+		Stage newStage = new Stage();	    
+		JassClientView jCV = new JassClientView(newStage, this.model);
+	}
+	
 	public JassClientModel getModel() {
 		return model;
 	}
@@ -156,7 +169,7 @@ public class JassClientConnectCenter {
 	public void setRoot(BorderPane root) {
 		this.root = root;
 	}
-	
-	
+
+
 	
 }

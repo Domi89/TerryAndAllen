@@ -16,7 +16,7 @@ public class ConnectCenterController {
 	private Boolean benutzerNameValidate = false;
 	private Boolean ipValidate = false;
 	private Boolean portValidate = false;
-
+	private ConnectedController cc;
 	
 	public ConnectCenterController(JassClientModel model, JassClientConnectCenter view) {
 		this.model = model;
@@ -118,8 +118,9 @@ public class ConnectCenterController {
 		int port = Integer.parseInt(this.view.getPortText().getText());
 		this.model.connectToServer(this.view.getBenutzerText().getText(), this.view.getIpText().getText(), port);
 		
-		ConnectedController cc = new ConnectedController(this.view);
+		this.cc = new ConnectedController(this.view);
 		cc.run();
+		
 	}
 	
 	
