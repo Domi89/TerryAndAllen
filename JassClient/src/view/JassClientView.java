@@ -113,6 +113,8 @@ public class JassClientView {
 	public void setMessageLabel(Label messageLabel) {
 		this.messageLabel = messageLabel;
 	}
+
+
 	
 
 }

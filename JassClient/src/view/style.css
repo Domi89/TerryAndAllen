@@ -1,5 +1,5 @@
 
-#tisch{
+#tisch0{
 		-fx-background-image: url(/images/JassTeppichGruen.jpg);
 		-fx-background-repeat: stretch; 
 		-fx-background-position: center center; 
@@ -7,14 +7,14 @@
  		 
 }
 
-#tisch2{
+#tisch1{
 		-fx-background-image: url(/images/JassTeppichRot.jpg);
 		-fx-background-repeat: stretch; 
 		-fx-background-position: center center; 
 		-fx-background-size: 500px;
 }
 
-#tisch3{
+#tisch2{
 		-fx-background-image: url(/images/JassTeppichPanda.jpg);
 		-fx-background-repeat: stretch; 
 		-fx-background-position: center center; 
