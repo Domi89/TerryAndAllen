@@ -12,7 +12,13 @@ public class JassClientViewVBoxCard extends VBox{
 	public JassClientViewVBoxCard() {
 		super();
 		
-		String imageUrl1 = "/images/backOfCard.jpg";
+		for (int i = 0; i < 4; i++) {
+			String cardNr = "imageUrl"+i;
+			createCard(cardNr);		
+		}
+		
+		
+	/*	String imageUrl1 = "/images/backOfCard.jpg";
 		String imageUrl2 = "/images/backOfCard.jpg";
 		String imageUrl3 = "/images/backOfCard.jpg";
 		String imageUrl4 = "/images/backOfCard.jpg";
@@ -26,21 +32,23 @@ public class JassClientViewVBoxCard extends VBox{
         ImageView imageView2 = new ImageView(image2);
         ImageView imageView3 = new ImageView(image3);
         ImageView imageView4 = new ImageView(image4);
-        
-        this.getChildren().addAll(imageView1,imageView2,imageView3,imageView4);
-        
-//		 String imageUrl = "https://docs.oracle.com/javafx/javafx/images/javafx-documentation.png";
-//	        Image image = new Image(imageUrl,160,60,false,true);
-		//Image beispiel = new Image(this.getClass().getClassLoader().getResourceAsStream("/images/eichel0$.gif"));
-	
+         */
 		
-		
+        this.getChildren().addAll(imageView);
+       
 		
 		//this.getChildren().add(test);	
 		
 		
 		
 	}
+
+	private createCard(String cardNr) {
+		cardNr = "/images/backOfCard.jpg";
+		Image image = new Image(cardNr, 100, 150, false, true); 
+		ImageView imageView = new ImageView(image);	
+	} 
+	return imageView
 	
 	
 	
