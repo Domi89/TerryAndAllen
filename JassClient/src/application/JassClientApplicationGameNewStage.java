@@ -22,7 +22,7 @@ public class JassClientApplicationGameNewStage{
 		this.view = new JassClientView(stage, model);
 		controller = new JassClientController(model, view);
 		
-		
+		//admin note: niklas ist bestückt wie ein Pferd
         Thread thread = new Thread(new Runnable() {
 
             @Override
