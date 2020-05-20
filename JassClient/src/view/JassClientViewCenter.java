@@ -12,6 +12,7 @@ public class JassClientViewCenter extends BorderPane{
 	private Label namePlayer1, namePlayer2, namePlayer3, namePlayer4;
 
 	private JassClientViewVBoxCard jcvv, jcvv2;
+	private JassClientViewHBoxCard jcvh;
 			
 	public JassClientViewCenter() {
 		super();
@@ -19,6 +20,7 @@ public class JassClientViewCenter extends BorderPane{
 		
 		jcvv = new JassClientViewVBoxCard();
 		jcvv2 = new JassClientViewVBoxCard();
+		jcvh = new JassClientViewHBoxCard();
 		
 		HBox hb = new HBox();
 		hb.setId("tisch");
@@ -27,6 +29,7 @@ public class JassClientViewCenter extends BorderPane{
 		this.setCenter(hb);
 		this.setLeft(jcvv);
 		this.setRight(jcvv2);
+		this.setTop(jcvh);
 				
 		
 		
