@@ -22,6 +22,15 @@ public class JassClientView {
 	private HBox hbox;
 	private JassClientViewMenBar menBar;
 	private JassClientViewChat chat;
+	
+	public JassClientViewChat getChat() {
+		return chat;
+	}
+
+	public void setChat(JassClientViewChat chat) {
+		this.chat = chat;
+	}
+
 	private JassClientViewCenter center;
 	
 	//Instanziieren der Buttons
@@ -70,7 +79,8 @@ public class JassClientView {
 		//Erstellen und anzeigen der Scene
 		this.scene = new Scene(this.root);
 		
-		 Image icon = new Image(getClass().getResourceAsStream("../images/Schelle.png"));
+	
+		Image icon = new Image(getClass().getResourceAsStream("../images/Schelle.png"));
 		
 		stage.setTitle("Jass Spiel");
 		stage.getIcons().add(icon);
@@ -79,6 +89,10 @@ public class JassClientView {
 		
 	}
 
+	public void updateMessageLabel() {
+		this.getChat().getLabelChat().setText(this.model.getHistory().toString());
+	}
+	
 	public Button getButton() {
 		return chatButton;
 	}

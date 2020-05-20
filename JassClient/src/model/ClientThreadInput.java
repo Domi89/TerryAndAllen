@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
+import javafx.collections.ObservableList;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -15,11 +16,12 @@ public class ClientThreadInput extends Thread{
 	private Client client;
 	private ArrayList<Message> history;
 
+
 	public ClientThreadInput(ObjectInputStream inputStream, Client client, ArrayList<Message> history){
 		this.inputStream = inputStream;
 		this.client = client;
 		this.history = history;
-	
+		
 	}
 	
 	public void run() {
@@ -65,10 +67,12 @@ public class ClientThreadInput extends Thread{
 
 
 	private void messageClass(Message m) {
+		Message inMessage = m;
+		m.setSent(false);
 		System.out.println("-----NEW message-------");
-		System.out.println(m);
+		System.out.println(inMessage);
 		System.out.println("-----NEW message-------");
-		history.add(m);
+		history.add(inMessage);
 		
 	}
 

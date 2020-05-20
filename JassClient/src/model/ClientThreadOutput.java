@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -14,10 +15,11 @@ public class ClientThreadOutput extends Thread{
 
 	private Client client;
 	private ArrayList<Message> history;
+	private ObservableList<Message> chatHistory;
 	
 	public ClientThreadOutput (ObjectOutputStream outputStream, Client client, ArrayList<Message> history) {
 		this.outputStream = outputStream;
-
+		this.chatHistory = chatHistory;
 		this.client = client;
 		this.history = history;
 	}

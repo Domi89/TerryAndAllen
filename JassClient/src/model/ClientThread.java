@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
+import javafx.collections.ObservableList;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -27,14 +28,14 @@ public class ClientThread extends Thread{
 	private ArrayList<Message> history;
 	private String ip;
 	private int port;
-
+	
 	
 	public ClientThread (Client client, ArrayList<Message> history, String ip, int port) {
 		this.client = client;
 		this.history = history;
 		this.ip = ip;
 		this.port = port;
-			
+		
 	}
 	
 	
@@ -53,11 +54,7 @@ public class ClientThread extends Thread{
 							
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
-					
-					
-					
-					
-					
+
 					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.history);
 					this.clientThreadInput.start();
 					
@@ -87,4 +84,6 @@ public class ClientThread extends Thread{
 		return clientThreadOutput;
 	}
 
+	
+	
 }

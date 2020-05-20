@@ -35,12 +35,9 @@ public class ConnectedController extends Thread {
 					test = false;
 					
 				}
-				
-
-				
+			
 			}
-			
-			
+				
 		}
 		
 		

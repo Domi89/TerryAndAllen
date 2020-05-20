@@ -3,16 +3,31 @@ package model;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
 public class JassClientModel {
 	
 
-	ClientThread clientThread;
-	Client client;
-	ArrayList<Message> history = new ArrayList<Message>();
+	private ClientThread clientThread;
+	private Client client;
+	private volatile ArrayList<Message> history = new ArrayList<Message>();
 	
+
+	
+	
+	public ClientThread getClientThread() {
+		return clientThread;
+	}
+
+
+
+	public void setClientThread(ClientThread clientThread) {
+		this.clientThread = clientThread;
+	}
+
 
 	
 	public JassClientModel() {
@@ -36,5 +51,20 @@ public class JassClientModel {
 		
 		
 	}
+
+
+
+	public Client getClient() {
+		return client;
+	}
+
+
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
+	
+	
 
 }

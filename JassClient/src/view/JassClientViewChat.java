@@ -10,8 +10,8 @@ public class JassClientViewChat extends VBox{
 	
 	private Label labelChat = new Label();
 	private TextField chatField = new TextField ("Nachricht hier eingeben");
-	private Button send = new Button("Senden");
-		
+	private Button sendButton = new Button("Senden");
+	
 	
 	public JassClientViewChat() {
 		super();
@@ -21,12 +21,46 @@ public class JassClientViewChat extends VBox{
 		
 		
 		HBox bottom = new HBox();
-		bottom.getChildren().addAll(chatField, send);
+		bottom.getChildren().addAll(chatField, sendButton);
 		
 		
 		this.getChildren().addAll(labelChat, bottom);		
 		
 	}
+	
+
+	public Label getLabelChat() {
+		return labelChat;
+	}
+
+
+	public void setLabelChat(Label labelChat) {
+		this.labelChat = labelChat;
+	}
+
+
+	public TextField getChatField() {
+		return chatField;
+	}
+
+
+	public void setChatField(TextField chatField) {
+		this.chatField = chatField;
+	}
+
+
+	public Button getSendButton() {
+		return sendButton;
+	}
+
+
+	public void setSend(Button sendButton) {
+		this.sendButton = sendButton;
+	}
+
+
+	
+		
 			
 		
 

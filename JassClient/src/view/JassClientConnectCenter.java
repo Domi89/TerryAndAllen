@@ -1,5 +1,6 @@
 package view;
 
+import application.JassClientApplicationGameNewStage;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -87,7 +88,9 @@ public class JassClientConnectCenter {
 	
 	public void openNewView() {
 		Stage newStage = new Stage();	    
-		JassClientView jCV = new JassClientView(newStage, this.model);
+		//JassClientView jCV = new JassClientView(newStage, this.model);
+				
+		JassClientApplicationGameNewStage jcagns = new JassClientApplicationGameNewStage(newStage, this.model);
 	}
 	
 	public JassClientModel getModel() {
