@@ -14,10 +14,10 @@
 		-fx-background-size: 500px;
 }
 
-#backCard{
-			
-		-fx-size: 500px;
- 
-	
+#tisch3{
+		-fx-background-image: url(/images/JassTeppichPanda.jpg);
+		-fx-background-repeat: stretch; 
+		-fx-background-position: center center; 
+		-fx-background-size: 500px;
 }
 

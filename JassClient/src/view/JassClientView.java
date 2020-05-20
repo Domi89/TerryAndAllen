@@ -89,10 +89,7 @@ public class JassClientView {
 		
 	}
 
-	public void updateMessageLabel() {
-		this.getChat().getLabelChat().setText(this.model.getHistory().toString());
-	}
-	
+		
 	public Button getButton() {
 		return chatButton;
 	}
