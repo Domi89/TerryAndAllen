@@ -3,9 +3,12 @@ package model;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableIntegerValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import serializedClasses.Card;
@@ -20,11 +23,14 @@ public class ClientThreadInput extends Thread{
 	//private ArrayList<Message> history = new ArrayList<Message>();
 	private ObservableList<Message> history = FXCollections.observableArrayList();
 	private ObservableList<Card> cards;
+	private ObservableIntegerValue updated;
+	private ObservableList<Integer> updatedCards;
 
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards){
 		this.inputStream = inputStream;
 		this.client = client;
 		this.cards = cards;
+		this.updatedCards = updatedCards;
 			
 	}
 	
@@ -80,6 +86,9 @@ public class ClientThreadInput extends Thread{
 
 
 	private void newCards(ArrayList<Card> inputCards) {
+		
+		this.updatedCards.add(0);
+		
 		System.out.println(inputCards);
 		this.cards.addAll(inputCards);
 		

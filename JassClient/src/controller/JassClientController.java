@@ -39,7 +39,7 @@ public class JassClientController {
                 };
                 while (true) {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException ex) {
                     }
 
@@ -63,7 +63,7 @@ public class JassClientController {
                 };
                 while (true) {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException ex) {
                     }
 
@@ -94,9 +94,17 @@ public class JassClientController {
 	}
 	
 	private void cardUpdater() { 
-		System.out.println(this.model.getCards());
-		if(this.model.getCards().size()>0) {
-			this.view.getCenter().getJcwpc().newDeckReceived(this.model.getCards());
+		
+		if(this.model.getUpdatedCards().size()>0 && 
+				this.model.getUpdatedCards().get(this.model.getUpdatedCards().size()-1)==0) {
+			
+			System.out.println(this.model.getCards());
+			if(this.model.getCards().size()>0) {
+				this.view.getCenter().getJcwpc().newDeckReceived(this.model.getCards());
+			
+			}
+			this.model.getUpdatedCards().set(this.model.getUpdatedCards().size()-1, 1);
+	
 		}
 		
 		

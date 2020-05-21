@@ -13,11 +13,13 @@ public class JassClientViewPlayerCard extends HBox{
 	public JassClientViewPlayerCard() {
 		super();
 
-						
+				/*	
 		for (int i = 0; i < 9; i++) {
 			String cardNr = "/images/eichel"+ i +"$.gif";
 			createCard(cardNr);	
 			}
+				
+				*/
 		
 		}
 
@@ -31,8 +33,21 @@ public class JassClientViewPlayerCard extends HBox{
 		
 		public void newDeckReceived(ObservableList<Card> cards) {
 			
-			System.out.println("newDeckReceived");
-			System.out.println("grösse: "+cards.size());
+			this.getChildren().clear();
+			for (Card c: cards) {
+				
+				
+				String suit = c.getSuit().name();
+				String rank = c.getRank().name();
+				
+				String cardNr ="/images/"+suit+" "+rank+".gif";
+				System.out.println("CARDNUMMER:"+cardNr+"ENDE");
+				createCard(cardNr);		
+				
+			}
+			
+						
+			
 			
 		}
 	

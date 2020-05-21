@@ -40,6 +40,15 @@ public class JassClientViewCenter extends BorderPane{
 		hb.setId("tisch0");
 		hb.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
 		
+		jcwpc.setMinSize(900, 150);
+		jcwpc.setMaxSize(900, 150);
+		jcvh.setMinSize(900, 150);
+		jcvh.setMaxSize(900, 150);
+		
+		jcvv.setMinSize(150, 600);
+		jcvv.setMaxSize(150, 600);
+		jcvv2.setMinSize(150, 600);
+		jcvv2.setMaxSize(150, 600);
 		
 		this.setCenter(hb);
 		this.setLeft(jcvv);

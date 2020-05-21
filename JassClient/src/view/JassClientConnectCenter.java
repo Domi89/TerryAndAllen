@@ -37,6 +37,7 @@ public class JassClientConnectCenter {
 
         this.benutzerText = new TextField();
         this.ipText = new TextField();
+        this.ipText.setText("localhost");
         
         this.portText = new TextField();
         this.portText.setText("45138");

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
+import javafx.beans.value.ObservableIntegerValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import serializedClasses.Card;
@@ -16,7 +17,19 @@ public class JassClientModel {
 	private Client client;
 	//private ArrayList<Message> history = new ArrayList<Message>();
 	private ObservableList<Card> cards = FXCollections.observableArrayList();
-	
+	private ObservableList<Integer> updatedCards = FXCollections.observableArrayList();
+
+	public ObservableList<Integer> getUpdatedCards() {
+		return updatedCards;
+	}
+
+
+
+	public void setUpdatedCards(ObservableList<Integer> updatedCards) {
+		this.updatedCards = updatedCards;
+	}
+
+
 
 	public ObservableList<Card> getCards() {
 		return cards;
@@ -58,7 +71,7 @@ public class JassClientModel {
 	public void connectToServer(String clientName, String ip, int port) {
 		
 		this.client = new Client(clientName);
-		this.clientThread = new ClientThread(this.client, ip, port, this.cards);
+		this.clientThread = new ClientThread(this.client, ip, port, this.cards, this.updatedCards);
 		this.clientThread.start();
 		
 		
