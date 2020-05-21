@@ -59,8 +59,8 @@ public class JassClientApplicationGameNewStage{
 		String gay = new String();
 		gay = this.model.getClientThread().getClientThreadInput().getHistory().toString();
 		this.view.getChat().getLabelChat().setText(gay);
-
-
+		
+		
 		
 	}
 	

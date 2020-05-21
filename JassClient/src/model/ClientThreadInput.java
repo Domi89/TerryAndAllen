@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import serializedClasses.Client;
 import serializedClasses.Message;
@@ -14,7 +15,8 @@ public class ClientThreadInput extends Thread{
 	private ObjectInputStream inputStream;
 	private Object inputObject;
 	private Client client;
-	private ArrayList<Message> history = new ArrayList<Message>();
+	//private ArrayList<Message> history = new ArrayList<Message>();
+	private ObservableList<Message> history = FXCollections.observableArrayList();
 
 
 	public ClientThreadInput(ObjectInputStream inputStream, Client client){
@@ -63,11 +65,11 @@ public class ClientThreadInput extends Thread{
 	}
 
 
-	public ArrayList<Message> getHistory() {
+	public ObservableList<Message> getHistory() {
 		return history;
 	}
 
-	public void setHistory(ArrayList<Message> history) {
+	public void setHistory(ObservableList<Message> history) {
 		this.history = history;
 	}
 
@@ -77,7 +79,7 @@ public class ClientThreadInput extends Thread{
 		System.out.println("-----NEW message-------");
 		System.out.println(inMessage);
 		System.out.println("-----NEW message-------");
-		history.add(inMessage);
+		this.history.add(inMessage);
 		
 	}
 
