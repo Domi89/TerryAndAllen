@@ -23,16 +23,17 @@
 
 #messageLabel{
 	
-	-fx-font-size: 20px ; 
+	-fx-font-size: 10px ; 
 	-fx-text-fill: black; 
 	-fx-background-color: lightblue;
 	-fx-border-radius: 10 10 10 10; 
     -fx-background-radius: 10 10 10 10; 
     -fx-min-width: 270;
-    -fx-min-height:300;
+    -fx-min-height:600;
 	-fx-max-width: 270;
-    -fx-max-height:300;
+    -fx-max-height:600;
     -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+   
 }
 
 #chatField{
@@ -40,7 +41,7 @@
     -fx-min-height: 50;
 	-fx-max-width: 200;
     -fx-max-height: 50;
-
+    -fx-font-size: 12px ; 
 }
 
 #chatButton{

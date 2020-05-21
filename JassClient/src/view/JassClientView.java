@@ -1,6 +1,8 @@
 package view;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -65,9 +67,13 @@ public class JassClientView {
 		hbox.getChildren().add(chatField);
 		hbox.getChildren().add(chatButton);
 		
+		
+		
 		//Setzten der Behälter in die BorderPane
 		this.root = new BorderPane();
-	
+		this.chat.setPadding(new Insets(10, 10, 10, 10));
+
+
 		this.root.setTop(menBar);
 		this.root.setRight(chat);
 		this.root.setCenter(center);

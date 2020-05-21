@@ -76,7 +76,7 @@ public class JassClientController {
 		String messageString = "";
 		
 		for(Message m : messagesArrayList) {
-			messageString+=m.getClientName()+": "+m.getMessage()+"\n";
+			messageString+="  "+m.getClientName()+": "+m.getMessage()+"\n";
 		}
 		
 		this.view.getChat().getLabelChat().setText(messageString);
