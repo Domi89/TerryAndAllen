@@ -3,6 +3,7 @@ package view;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -12,7 +13,7 @@ public class JassClientViewCenter extends BorderPane{
 	private Label winLabel1, winLabel2, winLabel3, winLabel4;
 	private Label namePlayer1, namePlayer2, namePlayer3, namePlayer4;
 
-	public HBox hb;
+	private HBox hb;
 	
 	private JassClientViewVBoxCard jcvv, jcvv2;
 	private JassClientViewHBoxCard jcvh;
@@ -28,7 +29,7 @@ public class JassClientViewCenter extends BorderPane{
 		jcwpc = new JassClientViewPlayerCard();
 		
 		HBox hb = new HBox();
-		hb.setId("tisch2");
+		hb.setId("tisch0");
 		hb.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
 		
 		
@@ -46,8 +47,15 @@ public class JassClientViewCenter extends BorderPane{
 		
 	}
 
-			
+		public HBox getHbox() {
+			return this.hb;
+		}
 		
+		public void setTisch() {
+			//hb.setBackground(background.);
+			hb.setBackground(Background.EMPTY);
+			
+		}
 		
 		
 }

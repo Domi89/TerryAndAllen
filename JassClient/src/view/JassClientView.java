@@ -133,11 +133,13 @@ public class JassClientView {
 //Hier mit dem Switch auf den obigen HBOX zugreifen.... 
 	public void changeTable() {
 		
+		//init
 		int i = JassClientViewFarbeWechseln.colourChange();
 			
 		switch(i) {
 			case 0:
-				//center.hb.setId("tisch0");
+				//center.getHbox().setId("tisch2");
+				center.setTisch();
 				
 				break;
 			case 1:

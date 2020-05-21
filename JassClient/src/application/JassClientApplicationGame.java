@@ -24,9 +24,9 @@ public class JassClientApplicationGame extends Application{
 	
 	
 	public void start(Stage primaryStage) throws Exception{
-		//model = new JassClientModel();
+		model = new JassClientModel();
 		view = new JassClientView(primaryStage, model);
-		//controller = new JassClientController(model, view);
+		controller = new JassClientController(model, view);
 		this.primaryStage = primaryStage;
 		
 	
