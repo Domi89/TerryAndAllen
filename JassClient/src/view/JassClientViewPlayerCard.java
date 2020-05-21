@@ -46,11 +46,7 @@ public class JassClientViewPlayerCard extends HBox{
 				
 			}
 			
-						
-			
-			
 		}
-	
 		
 
 	
