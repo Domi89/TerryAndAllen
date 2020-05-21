@@ -22,46 +22,11 @@ public class JassClientApplicationGameNewStage{
 		this.view = new JassClientView(stage, model);
 		controller = new JassClientController(model, view);
 		
-        Thread thread = new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                Runnable updater = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        updater();
-                    }
-                };
-
-                while (true) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                    }
-
-                    // UI update is run on the Application thread
-                    Platform.runLater(updater);
-                }
-            }
-
-        });
-		
-        thread.setDaemon(true);
-        
-        thread.start();
 		
 	}
 	
 	
-	private void updater() { 
-		//this.view.getChat().getLabelChat().setText("FETTSACK");
-		String gay = new String();
-		gay = this.model.getClientThread().getClientThreadInput().getHistory().toString();
-		this.view.getChat().getLabelChat().setText(gay);
-		
-		
-		
-	}
+
 	
 }
