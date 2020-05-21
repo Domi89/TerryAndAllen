@@ -1,30 +1,32 @@
 package view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class JassClientViewChat extends VBox{
 	
+	//private ScrollPane labelChat = new ScrollPane();
 	private Label labelChat = new Label();
 	private TextField chatField = new TextField();
 	private Button sendButton = new Button("Senden");
 	
 	
+	
+	
 	public JassClientViewChat() {
 		super();
-		
 		labelChat.setMinSize(200.0, 100.0);
-		//labelChat.setStyle("-fx-font-size: 20px ; -fx-text-fill: black; -fx-background-color: grey"); 
 		labelChat.setId("messageLabel");
 		this.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
 		HBox bottom = new HBox();
 		this.setSpacing(10);
 		this.chatField.setId("chatField");
-		
 		bottom.getChildren().addAll(chatField, sendButton);
 		this.sendButton.setId("chatButton");
 		
