@@ -71,10 +71,20 @@ public class JassClientController {
 	}
 
 	private void updater() { 
-		//this.view.getChat().getLabelChat().setText("FETTSACK");
-		String gay = new String();
-		gay = this.model.getClientThread().getClientThreadInput().getHistory().toString();
-		this.view.getChat().getLabelChat().setText(gay);
+			
+		ArrayList<Message> messagesArrayList = new ArrayList<Message>();
+		
+		for (int i = 0; i<this.model.getClientThread().getClientThreadInput().getHistory().size(); i++) {
+			messagesArrayList.add(this.model.getClientThread().getClientThreadInput().getHistory().get(i));
+		}
+		
+		String messageString = "";
+		
+		for(Message m : messagesArrayList) {
+			messageString+=m.getClientName()+": "+m.getMessage()+"\n";
+		}
+		
+		this.view.getChat().getLabelChat().setText(messageString);
 		
 		
 		

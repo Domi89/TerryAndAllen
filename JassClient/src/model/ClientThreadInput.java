@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,6 +69,9 @@ public class ClientThreadInput extends Thread{
 	public ObservableList<Message> getHistory() {
 		return history;
 	}
+	
+
+	
 
 	public void setHistory(ObservableList<Message> history) {
 		this.history = history;
