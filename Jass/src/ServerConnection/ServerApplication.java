@@ -8,6 +8,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import BusinessLayer.Constants;
+import BusinessLayer.Deck;
+import serializedClasses.Card;
 import serializedClasses.Message;
 
 public class ServerApplication {
@@ -21,12 +24,17 @@ public class ServerApplication {
 	//protected ObservableList<ServerThread> serverThreads = FXCollections.observableArrayList();
 	private ArrayList<Message> history;
 	
+	//0=no game startet , 1=game in progress
+	private int gameStatus = 0;
+	
 	
 	public ServerApplication() {
 		this.history = new ArrayList<Message>();
 		
 		
-	    Thread thread = new Thread(new Runnable() {
+		
+		// schreibt Messages allen Clients
+	    Thread threadWriteMessages = new Thread(new Runnable() {
      
             public void run() {
                 Runnable writeNewMessages = new Runnable() {
@@ -35,7 +43,6 @@ public class ServerApplication {
                         writeNewMessages();
                     }
                 };
-
                 while (true) {
                     try {
                         Thread.sleep(1000);
@@ -48,13 +55,61 @@ public class ServerApplication {
             }
 
         });
+        threadWriteMessages.setDaemon(true);
+        threadWriteMessages.start();
 		
-        thread.setDaemon(true);
+		
         
-        thread.start();
-		
-		
-		
+        
+        Thread thread4PlayersConnected = new Thread(new Runnable() {
+            
+            public void run() {
+                Runnable thread4PlayersConnected = new Runnable() {
+
+                    public void run() {
+                    	thread4PlayersConnected();
+                    }
+                };
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    thread4PlayersConnected();
+                }
+            }
+
+			private void thread4PlayersConnected() {
+				
+				
+				if (serverThreads.size()==Constants.MAX_PLAYERS && gameStatus == 0) {
+					Deck deck = new Deck();
+					int playerNumber = 0;
+					
+					
+					for (ServerThread sT: serverThreads) {
+					
+						
+						ArrayList<Card> sendCards = new ArrayList<Card>();
+						
+						for(int i = 0; i<9; i++) {
+							sendCards.add(deck.getCards().pop());
+						}
+						
+						sT.getServerThreadOutput().sendCards(sendCards);
+						
+					}
+					
+					gameStatus = 1;
+				}
+				
+			}
+
+        });
+        thread4PlayersConnected.setDaemon(true);
+        thread4PlayersConnected.start();
 		
 		
 		

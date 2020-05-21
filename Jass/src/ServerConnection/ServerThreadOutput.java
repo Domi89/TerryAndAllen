@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -73,6 +74,28 @@ public class ServerThreadOutput extends Thread{
 			
 	}
 	
+	public void sendCard(Card c) {
+		
+		try {
+			this.outputStream.writeObject(c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+	}
+	
 
+	public void sendCards(ArrayList<Card> send) {
+		
+		try {
+			this.outputStream.writeObject(send);
+			System.out.println("Gesendete Karten: "+send);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+	}
 	
 }

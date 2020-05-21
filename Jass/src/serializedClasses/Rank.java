@@ -1,6 +1,8 @@
-package BusinessLayer;
+package serializedClasses;
 
-public enum Rank{
+import java.io.Serializable;
+
+public enum Rank implements Serializable {
 	
 	Saechs (6, 6, 0, 0, 11, 0),
 	Sibe (7, 7, 0, 0, 0, 0),

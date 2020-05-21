@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -18,11 +19,12 @@ public class ClientThreadInput extends Thread{
 	private Client client;
 	//private ArrayList<Message> history = new ArrayList<Message>();
 	private ObservableList<Message> history = FXCollections.observableArrayList();
+	private ObservableList<Card> cards;
 
-
-	public ClientThreadInput(ObjectInputStream inputStream, Client client){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards){
 		this.inputStream = inputStream;
 		this.client = client;
+		this.cards = cards;
 			
 	}
 	
@@ -51,6 +53,17 @@ public class ClientThreadInput extends Thread{
 						this.messageClass(message);
 						break;
 						
+					case "ArrayList":
+						ArrayList<Card> inputCards = (ArrayList<Card>) this.inputObject;
+						if (inputCards.size()==9) {
+							this.newCards(inputCards);
+						} else {
+							System.out.println("Nicht 9 Karten erhalten Grösse:" +inputCards.size());
+						}
+	
+						break;
+						
+						
 					
 					default:
 						System.out.println("Class is not defined in ClientThreadInput!");
@@ -65,6 +78,13 @@ public class ClientThreadInput extends Thread{
 
 	}
 
+
+	private void newCards(ArrayList<Card> inputCards) {
+		System.out.println(inputCards);
+		this.cards.addAll(inputCards);
+		
+		
+	}
 
 	public ObservableList<Message> getHistory() {
 		return history;

@@ -1,6 +1,8 @@
-package BusinessLayer;
+package serializedClasses;
 
-public class Card implements Comparable<Card>{
+import java.io.Serializable;
+
+public class Card implements Comparable<Card>, Serializable {
 	// h
 	private Suit suit;
 	private Rank rank;

@@ -1,8 +1,12 @@
 package view;
 
+import java.util.ArrayList;
+
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import serializedClasses.Card;
 
 public class JassClientViewPlayerCard extends HBox{
 	
@@ -24,6 +28,13 @@ public class JassClientViewPlayerCard extends HBox{
 			ImageView imageView = new ImageView(image);	
 			this.getChildren().addAll(imageView);
 		} 
+		
+		public void newDeckReceived(ObservableList<Card> cards) {
+			
+			System.out.println("newDeckReceived");
+			System.out.println("grösse: "+cards.size());
+			
+		}
 	
 		
 

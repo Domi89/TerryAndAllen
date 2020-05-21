@@ -2,6 +2,8 @@ package BusinessLayer;
 
 import java.util.ArrayList;
 
+import serializedClasses.Card;
+
 public class Player {
 
 	private ArrayList<Card> activeCards;

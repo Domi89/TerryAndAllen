@@ -55,9 +55,11 @@ public class JassClientViewFarbeWechseln {
 		Scene scene = new Scene (vBox);
 		vBox.setStyle("-fx-background-color: grey");
 		
+	
+		
 		butGreen.setOnAction(e-> {
 			colourChoice = 0;
-			
+					
 			settingsStage.close();
 		});
 	

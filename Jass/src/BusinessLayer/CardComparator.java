@@ -2,6 +2,9 @@ package BusinessLayer;
 
 import java.util.Comparator;
 
+import serializedClasses.Card;
+import serializedClasses.Suit;
+
 public class CardComparator implements Comparator<Card> {
 
 	private static Suit trumpf = null;

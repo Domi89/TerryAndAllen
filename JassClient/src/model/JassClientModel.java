@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -14,7 +15,20 @@ public class JassClientModel {
 	private ClientThread clientThread;
 	private Client client;
 	//private ArrayList<Message> history = new ArrayList<Message>();
+	private ObservableList<Card> cards = FXCollections.observableArrayList();
 	
+
+	public ObservableList<Card> getCards() {
+		return cards;
+	}
+
+
+
+	public void setCards(ObservableList<Card> cards) {
+		this.cards = cards;
+	}
+
+
 
 	public ClientThread getClientThread() {
 		return clientThread;
@@ -44,7 +58,7 @@ public class JassClientModel {
 	public void connectToServer(String clientName, String ip, int port) {
 		
 		this.client = new Client(clientName);
-		this.clientThread = new ClientThread(this.client, ip, port);
+		this.clientThread = new ClientThread(this.client, ip, port, this.cards);
 		this.clientThread.start();
 		
 		

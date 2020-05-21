@@ -19,6 +19,14 @@ public class JassClientViewCenter extends BorderPane{
 	private JassClientViewHBoxCard jcvh;
 	private JassClientViewPlayerCard jcwpc;
 			
+	public JassClientViewPlayerCard getJcwpc() {
+		return jcwpc;
+	}
+
+	public void setJcwpc(JassClientViewPlayerCard jcwpc) {
+		this.jcwpc = jcwpc;
+	}
+
 	public JassClientViewCenter() {
 		super();
 		

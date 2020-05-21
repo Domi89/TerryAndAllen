@@ -2,6 +2,9 @@ package BusinessLayer;
 
 import java.util.Stack;
 
+import serializedClasses.Card;
+import serializedClasses.Suit;
+
 public class PointsCalculator {
 	
 	public PointsCalculator() {

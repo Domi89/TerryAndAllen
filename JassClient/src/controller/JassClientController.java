@@ -28,18 +28,15 @@ public class JassClientController {
 		//this.view.getButton().setOnAction(e -> sendMessageView());
 		
 		
-        Thread thread = new Thread(new Runnable() {
-
-            @Override
+		
+		//Message Label updater
+        Thread threadMessage = new Thread(new Runnable() {
             public void run() {
-                Runnable updater = new Runnable() {
-
-                    @Override
+                Runnable updaterMessage = new Runnable() {
                     public void run() {
-                        updater();
+                        updaterMessage();
                     }
                 };
-
                 while (true) {
                     try {
                         Thread.sleep(1000);
@@ -47,16 +44,46 @@ public class JassClientController {
                     }
 
                     // UI update is run on the Application thread
-                    Platform.runLater(updater);
+                    Platform.runLater(updaterMessage);
                 }
             }
-
         });
-		
-        thread.setDaemon(true);
-        
-        thread.start();
+        threadMessage.setDaemon(true);
+        threadMessage.start();
 	
+        
+        
+        
+        Thread threadCardUpdater = new Thread(new Runnable() {
+            public void run() {
+                Runnable cardUpdater = new Runnable() {
+                    public void run() {
+                    	cardUpdater();
+                    }
+                };
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    Platform.runLater(cardUpdater);
+                }
+            }
+        });
+        threadCardUpdater.setDaemon(true);
+        threadCardUpdater.start(); 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //events für die MenuBar
         this.view.getColourChange().setOnAction(e-> colChange());
 		
@@ -65,12 +92,29 @@ public class JassClientController {
 		//historyListener.add(new Message("test","test"));
 
 	}
+	
+	private void cardUpdater() { 
+		System.out.println(this.model.getCards());
+		if(this.model.getCards().size()>0) {
+			this.view.getCenter().getJcwpc().newDeckReceived(this.model.getCards());
+		}
+		
+		
+	}
+	
+	
+	
 
 	private void colChange() {
 		this.view.changeTable();
 	}
 
-	private void updater() { 
+	
+	
+	
+	
+	//Message Label updater
+	private void updaterMessage() { 
 			
 		ArrayList<Message> messagesArrayList = new ArrayList<Message>();
 		
@@ -85,10 +129,11 @@ public class JassClientController {
 		}
 		
 		this.view.getChat().getLabelChat().setText(messageString);
-		
-		
-		
 	}
+	
+	
+	
+	
 	private void sendMessageToServer() {
 		
 		String messageText = this.view.getChat().getChatField().getText();

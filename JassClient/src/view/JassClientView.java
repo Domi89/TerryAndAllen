@@ -27,6 +27,102 @@ public class JassClientView {
 	private JassClientViewChat chat;
 	private JassClientViewCenter center;
 	
+	public JassClientModel getModel() {
+		return model;
+	}
+
+	public void setModel(JassClientModel model) {
+		this.model = model;
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+	public BorderPane getRoot() {
+		return root;
+	}
+
+	public void setRoot(BorderPane root) {
+		this.root = root;
+	}
+
+	public HBox getHbox() {
+		return hbox;
+	}
+
+	public void setHbox(HBox hbox) {
+		this.hbox = hbox;
+	}
+
+	public JassClientViewMenBar getMenBar() {
+		return menBar;
+	}
+
+	public void setMenBar(JassClientViewMenBar menBar) {
+		this.menBar = menBar;
+	}
+
+	public JassClientViewCenter getCenter() {
+		return center;
+	}
+
+	public void setCenter(JassClientViewCenter center) {
+		this.center = center;
+	}
+
+	public Button getChatButton() {
+		return chatButton;
+	}
+
+	public void setChatButton(Button chatButton) {
+		this.chatButton = chatButton;
+	}
+
+	public Button getTrumpfEichle() {
+		return trumpfEichle;
+	}
+
+	public void setTrumpfEichle(Button trumpfEichle) {
+		this.trumpfEichle = trumpfEichle;
+	}
+
+	public Button getTrumpfSchaele() {
+		return trumpfSchaele;
+	}
+
+	public void setTrumpfSchaele(Button trumpfSchaele) {
+		this.trumpfSchaele = trumpfSchaele;
+	}
+
+	public Button getTrumpfRose() {
+		return trumpfRose;
+	}
+
+	public void setTrumpfRose(Button trumpfRose) {
+		this.trumpfRose = trumpfRose;
+	}
+
+	public Button getTrumpSchilte() {
+		return trumpSchilte;
+	}
+
+	public void setTrumpSchilte(Button trumpSchilte) {
+		this.trumpSchilte = trumpSchilte;
+	}
+
+	public TextField getChatField() {
+		return chatField;
+	}
+
+	public void setChatField(TextField chatField) {
+		this.chatField = chatField;
+	}
+
 	public JassClientViewChat getChat() {
 		return chat;
 	}
@@ -131,15 +227,19 @@ public class JassClientView {
 
 
 //Hier mit dem Switch auf den obigen HBOX zugreifen.... 
+	// es liegt am Zugriff an die HBox
 	public void changeTable() {
 		
 		//init
-		int i = JassClientViewFarbeWechseln.colourChange();
+		JassClientViewFarbeWechseln i = new JassClientViewFarbeWechseln();
+		int in = i.colourChange();
 			
-		switch(i) {
+		switch(in) {
 			case 0:
+				
+				//root.getStylesheets().addAll(this.getClass().getResource("style2.css").toExternalForm());
 				//center.getHbox().setId("tisch2");
-				center.setTisch();
+				//center.setTisch();
 				
 				break;
 			case 1:
@@ -147,7 +247,7 @@ public class JassClientView {
 				
 				break;
 			case 2:
-				//center.hb.setId("tisch2");
+				// 
 				
 				break;
 			}
