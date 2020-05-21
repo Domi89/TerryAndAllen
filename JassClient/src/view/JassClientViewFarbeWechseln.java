@@ -18,7 +18,7 @@ public class JassClientViewFarbeWechseln {
 	
 
 	
-	public int colourChange() {
+	public static int colourChange() {
 		
 		Stage settingsStage = new Stage();
 		
@@ -31,23 +31,20 @@ public class JassClientViewFarbeWechseln {
 				+ " -fx-text-fill: white");
 		
 			
-		Button butGreen = new Button("Grüne JassMatte");
+		Button butGreen = new Button();
 		butGreen.setMinSize(200.0, 100.0);
 		butGreen.setMaxSize(201.0, 101.0);
-		butGreen.setStyle("-fx-font-size: 20px ; -fx-font-weight: bold;"
-				+ " -fx-text-fill: black; -fx-background-image: url(/images/JassTeppichGruen.jpg)");
+		butGreen.setStyle("-fx-background-image: url(/images/JassTeppichGruen.jpg)");
 		
-		Button butRed = new Button("Rote JassMatte");
+		Button butRed = new Button();
 		butRed.setMinSize(200.0, 100.0);
 		butRed.setMaxSize(201.0, 101.0);
-		butRed.setStyle("-fx-font-size: 20px ; -fx-font-weight: bold;"
-				+ " -fx-text-fill: black; -fx-background-image: url(/images/JassTeppichRot.jpg)");
+		butRed.setStyle("-fx-background-image: url(/images/JassTeppichRot.jpg)");
 	
-		Button butPan = new Button("Panda JassMatte");
+		Button butPan = new Button();
 		butPan.setMinSize(200.0, 100.0);
 		butPan.setMaxSize(201.0, 101.0);
-		butPan.setStyle("-fx-font-size: 20px ; -fx-font-weight: bold;"
-				+ " -fx-text-fill: black; -fx-background-image: url(/images/JassTeppichPanda.jpg)");
+		butPan.setStyle("-fx-background-image: url(/images/JassTeppichPanda.jpg)");
 		
 		HBox hBox = new HBox();
 		hBox.getChildren().addAll(butGreen, butRed, butPan);		
@@ -56,7 +53,7 @@ public class JassClientViewFarbeWechseln {
 		vBox.getChildren().addAll(colourLabel, hBox);
 		
 		Scene scene = new Scene (vBox);
-		vBox.setStyle("-fx-background-color: yellow");
+		vBox.setStyle("-fx-background-color: grey");
 		
 		butGreen.setOnAction(e-> {
 			colourChoice = 0;
