@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import model.JassClientModel;
 import serializedClasses.Card;
 import serializedClasses.Message;
+import serializedClasses.Rank;
+import serializedClasses.Suit;
 import view.JassClientConnectCenter;
 import view.JassClientView;
 
@@ -186,18 +188,16 @@ public class JassClientController {
 		
 		imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 		     public void handle(MouseEvent event) {
-		    	 System.out.println(cardNr);
+		    	System.out.println(cardNr);
 		    	 //sendCard(event.getSource().getClass().getName());
 		    	 
-		         System.out.println("Tile pressed ");
-		         event.consume();
+		       System.out.println("Tile pressed ");
+		       event.consume();
 		     
-		         ImageView imageView = (ImageView) event.getSource();
-		         view.getCenter().getJcwpc().getChildren().remove(event.getSource());
-		       
-		         
-		         
-		         
+		       ImageView imageView = (ImageView) event.getSource();
+		       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+		       view.getCenter().getTisch().setBottom(imageView);
+		       sendSelectedCard(cardNr); 		                  
 		         
 		     }
 		});
@@ -205,6 +205,28 @@ public class JassClientController {
 		
 		this.view.getCenter().getJcwpc().getChildren().addAll(imageView);
 	} 
+	
+	
+	public void sendSelectedCard(String cardNr) {
+				
+		String[] splitStr = cardNr.split("\\s+");
+		
+		String suit = splitStr[0];
+		String rank = splitStr[1];
+		
+		suit = suit.replace("/images/", "");
+		rank = rank.replace(".gif", "");
+		
+	
+		Card card = new Card(Suit.valueOf(suit), Rank.valueOf(rank));
+		
+		this.model.getClientThread().getClientThreadOutput().sendCardToServer(card);
+		
+		System.out.println("suit "+suit);
+		System.out.println("rank "+rank);
+		//       /images/Eichle Sibe.gif
+		
+	}
 	
 	
 	

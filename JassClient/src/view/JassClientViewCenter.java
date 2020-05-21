@@ -18,7 +18,16 @@ public class JassClientViewCenter extends BorderPane{
 	private JassClientViewVBoxCard jcvv, jcvv2;
 	private JassClientViewHBoxCard jcvh;
 	private JassClientViewPlayerCard jcwpc;
-			
+	private JassClientViewCenterTisch tisch;
+	
+	public JassClientViewCenterTisch getTisch() {
+		return tisch;
+	}
+
+	public void setTisch(JassClientViewCenterTisch tisch) {
+		this.tisch = tisch;
+	}
+
 	public JassClientViewPlayerCard getJcwpc() {
 		return jcwpc;
 	}
@@ -35,15 +44,9 @@ public class JassClientViewCenter extends BorderPane{
 		jcvv2 = new JassClientViewVBoxCard();
 		jcvh = new JassClientViewHBoxCard();
 		jcwpc = new JassClientViewPlayerCard();
+		tisch= new JassClientViewCenterTisch();
 		
-		HBox hb = new HBox();
-		hb.setId("tisch0");
-		hb.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
-		
-		
-		
-		
-		
+	
 		
 		jcwpc.setMinSize(900, 150);
 		jcwpc.setMaxSize(900, 150);
@@ -55,7 +58,8 @@ public class JassClientViewCenter extends BorderPane{
 		jcvv2.setMinSize(150, 600);
 		jcvv2.setMaxSize(150, 600);
 		
-		this.setCenter(hb);
+				
+		this.setCenter(tisch);
 		this.setLeft(jcvv);
 		jcvv.setAlignment(Pos.CENTER);
 		this.setRight(jcvv2);

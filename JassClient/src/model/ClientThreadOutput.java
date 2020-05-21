@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
+import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -53,6 +54,16 @@ public class ClientThreadOutput extends Thread{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void sendCardToServer(Card card) {
+		try {
+			this.outputStream.writeObject(card);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 

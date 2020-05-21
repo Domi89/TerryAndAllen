@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+import serializedClasses.Card;
 import serializedClasses.Client;
 
 import serializedClasses.Message;
@@ -45,6 +46,11 @@ public class ServerThreadInput extends Thread{
 							this.clientClass(receivedClient);
 							break;
 							
+						case "Card":
+							Card receivedCard = (Card) this.inputObject;
+							this.cardClass(receivedCard);
+							break;
+							
 						case "Message":
 							Message message = (Message) this.inputObject;
 							//Message message = new Message("", "");
@@ -66,6 +72,13 @@ public class ServerThreadInput extends Thread{
 			
 	}
 
+
+	private void cardClass(Card receivedCard) {
+		//TODO Abspeichern in ArrayList ArrayList, Senden der erhaltenen Karte an die Restlichen Threads
+		// Überprüfen, wenn 4 Karten erhalten, auswerten wer gewonnen und punkte nachtragen
+		System.out.println("Received Card from Client: "+receivedCard);
+		
+	}
 
 	private void clientClass(Client client) {
 		this.client = client;
