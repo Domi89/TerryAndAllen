@@ -15,12 +15,50 @@ public class ServerApplication {
 	//private MessageHistory messageHistory;
 	
 	private ArrayList<ServerThread> serverThreads = new ArrayList<ServerThread>();
+	
+	//private ObservableList<ServerThread> serverThreadsObservable = new ObservableList<ServerThread>();
 	//protected ObservableList<ServerThread> serverThreads = FXCollections.;
 	//protected ObservableList<ServerThread> serverThreads = FXCollections.observableArrayList();
+	private ArrayList<Message> history;
+	
+	
+	public ServerApplication() {
+		this.history = new ArrayList<Message>();
+		
+		
+	    Thread thread = new Thread(new Runnable() {
+     
+            public void run() {
+                Runnable writeNewMessages = new Runnable() {
 
-	
-	
-	public ServerApplication(ArrayList<Message> history) {
+                    public void run() {
+                        writeNewMessages();
+                    }
+                };
+
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    writeNewMessages();
+                }
+            }
+
+        });
+		
+        thread.setDaemon(true);
+        
+        thread.start();
+		
+		
+		
+		
+		
+		
+		
 		
 
 		
@@ -64,6 +102,27 @@ public class ServerApplication {
 		return returnThread;
 		
 	}
+	
+	
+	private void writeNewMessages() {
+		
+		if (this.history!=null) {
+			
+			for (Message message: this.history) {
+				if (message.getSent()) {
+				} else {
+					for (ServerThread sT: this.serverThreads) {
+						sT.getServerThreadOutput().writeNewMessages(message);
+						message.setSent(true);
+					}
+				}
+			}
+			
+		}
+	
+		
+	}
 
+	
 	
 }

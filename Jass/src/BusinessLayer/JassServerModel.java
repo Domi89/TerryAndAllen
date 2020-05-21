@@ -8,15 +8,10 @@ import serializedClasses.Message;
 
 
 public class JassServerModel {
-	
-
-	private ArrayList<Message> history;
-	
-	public JassServerModel() {
-	
-		this.history = new ArrayList<Message>();
 		
-		ServerApplication serverApplication = new ServerApplication(this.history);
+	public JassServerModel() {
+
+		ServerApplication serverApplication = new ServerApplication();
 		
 	}
 
