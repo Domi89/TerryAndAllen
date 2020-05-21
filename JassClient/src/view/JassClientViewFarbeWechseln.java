@@ -13,8 +13,8 @@ public class JassClientViewFarbeWechseln {
 
 	public static int colourChoice = 0;
 	
-	Button butGreen, butRed, butPanda;
-	Label colourLabel;
+	//Button butGreen, butRed, butPanda;
+	//Label colourLabel;
 	
 
 	
@@ -23,7 +23,7 @@ public class JassClientViewFarbeWechseln {
 		Stage settingsStage = new Stage();
 		
 		settingsStage.initModality(Modality.APPLICATION_MODAL);
-		settingsStage.setTitle("Settings");
+		settingsStage.setTitle("Farbe Einstellen");
 		settingsStage.setMinWidth(250);
 		
 		Label colourLabel = new Label("Wähle dein JassTeppich!");
@@ -56,7 +56,7 @@ public class JassClientViewFarbeWechseln {
 		vBox.getChildren().addAll(colourLabel, hBox);
 		
 		Scene scene = new Scene (vBox);
-		vBox.setStyle("-fx-background-color: black");
+		vBox.setStyle("-fx-background-color: yellow");
 		
 		butGreen.setOnAction(e-> {
 			colourChoice = 0;

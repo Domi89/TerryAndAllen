@@ -12,7 +12,7 @@ public class JassClientViewCenter extends BorderPane{
 	private Label winLabel1, winLabel2, winLabel3, winLabel4;
 	private Label namePlayer1, namePlayer2, namePlayer3, namePlayer4;
 
-	private HBox hb;
+	public HBox hb;
 	
 	private JassClientViewVBoxCard jcvv, jcvv2;
 	private JassClientViewHBoxCard jcvh;
@@ -45,23 +45,7 @@ public class JassClientViewCenter extends BorderPane{
 		
 	}
 
-	
-	//Hier mit dem Switch auf den obigen HBOX zugreifen.... 
-	public static void changeCSS() {
 		
-		int i = JassClientViewFarbeWechseln.colourChoice;
-			
-		switch(i) {
-			
-			case 0:
-				this.hb.setId("tisch0");
-				this.hb.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
-				
-				
-			}
-
-		
-	}
 		
 		
 		

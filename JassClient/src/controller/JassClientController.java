@@ -57,12 +57,17 @@ public class JassClientController {
         
         thread.start();
 	
-        
+        //events für die MenuBar
+        this.view.getColourChange().setOnAction(e-> colChange());
 		
 		this.view.getChat().getSendButton().setOnAction(e -> sendMessageToServer());
 		
 		//historyListener.add(new Message("test","test"));
 
+	}
+
+	private void colChange() {
+		this.view.changeTable();
 	}
 
 	private void updater() { 

@@ -31,7 +31,7 @@ public class JassClientViewMenBar extends MenuBar{
      verlassen.setOnAction((ActionEvent e) -> closeBox());
      
      //Farbe Wechseln Befehl
-     farbeWechseln.setOnAction((ActionEvent e) -> changeColour());
+    // farbeWechseln.setOnAction((ActionEvent e) -> changeColour());
      
      
      //Zuordnen der Items
@@ -44,16 +44,6 @@ public class JassClientViewMenBar extends MenuBar{
      }
 
      
-     
-     
-     private void changeColour() {
-    	 JassClientViewCenter.changeCSS();
-		
-	}
-
-
-
-
 	public void closeBox() {
           Platform.exit();
      }

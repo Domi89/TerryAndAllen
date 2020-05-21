@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -22,6 +23,7 @@ public class JassClientView {
 	private HBox hbox;
 	private JassClientViewMenBar menBar;
 	private JassClientViewChat chat;
+	private JassClientViewCenter center;
 	
 	public JassClientViewChat getChat() {
 		return chat;
@@ -31,7 +33,7 @@ public class JassClientView {
 		this.chat = chat;
 	}
 
-	private JassClientViewCenter center;
+	
 	
 	//Instanziieren der Buttons
 	private Button chatButton;
@@ -114,6 +116,33 @@ public class JassClientView {
 		this.messageLabel = messageLabel;
 	}
 
+	public MenuItem getColourChange() {
+		return menBar.farbeWechseln;
+	}
+	
+
+
+
+
+//Hier mit dem Switch auf den obigen HBOX zugreifen.... 
+	public void changeTable() {
+		
+		int i = JassClientViewFarbeWechseln.colourChoice;
+			
+		switch(i) {
+			case 0:
+				center.hb.setId("tisch0");
+				break;
+			case 1:
+				center.hb.setId("tisch1");
+				break;
+			case 2:
+				center.hb.setId("tisch2");
+				break;
+			}
+
+		
+	}
 
 	
 
