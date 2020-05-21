@@ -34,7 +34,7 @@ public class ServerThreadOutput extends Thread{
 				
 				currentThread().sleep(5000);
 				
-				writeNewMessages();
+			//	writeNewMessages();
 				
 			} catch (InterruptedException e) {
 				
@@ -60,6 +60,17 @@ public class ServerThreadOutput extends Thread{
 			}
 		}
 		
+	}
+	
+	public void writeNewMessages(Message m) {
+		
+		try {
+			this.outputStream.writeObject(m);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 	}
 	
 

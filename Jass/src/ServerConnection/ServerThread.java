@@ -20,7 +20,26 @@ public class ServerThread extends Thread{
 	private ObjectInputStream inputStream;
 	private ArrayList<Message> history;
 	private Client client;	
+	private ServerThreadInput serverThreadInput;
+	private ServerThreadOutput serverThreadOutput; 
 	
+	
+	public ServerThreadInput getServerThreadInput() {
+		return serverThreadInput;
+	}
+
+	public void setServerThreadInput(ServerThreadInput serverThreadInput) {
+		this.serverThreadInput = serverThreadInput;
+	}
+
+	public ServerThreadOutput getServerThreadOutput() {
+		return serverThreadOutput;
+	}
+
+	public void setServerThreadOutput(ServerThreadOutput serverThreadOutput) {
+		this.serverThreadOutput = serverThreadOutput;
+	}
+
 	public Client getClient() {
 		return client;
 	}
@@ -42,10 +61,10 @@ public class ServerThread extends Thread{
 				this.inputStream = new ObjectInputStream(socket.getInputStream());
 				this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 								
-				ServerThreadInput serverThreadInput = new ServerThreadInput(this.inputStream, this.history, this.client);
+				this.serverThreadInput = new ServerThreadInput(this.inputStream, this.history, this.client);
 				serverThreadInput.start();
 				
-				ServerThreadOutput serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history, this.client);
+				this.serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history, this.client);
 				serverThreadOutput.start();
 				
 				
