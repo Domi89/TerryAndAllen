@@ -28,9 +28,10 @@ public class JassClientViewCenter extends BorderPane{
 		jcwpc = new JassClientViewPlayerCard();
 		
 		HBox hb = new HBox();
-		hb.setId("tisch0");
-		hb.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
-				
+		hb.setId("tisch2");
+		hb.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
+		
+		
 		this.setCenter(hb);
 		this.setLeft(jcvv);
 		jcvv.setAlignment(Pos.CENTER);
@@ -45,11 +46,11 @@ public class JassClientViewCenter extends BorderPane{
 		
 	}
 
+			
 		
 		
 		
-		
-	}
+}
 
 	
 	
