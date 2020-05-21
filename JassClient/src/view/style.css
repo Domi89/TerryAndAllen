@@ -3,7 +3,8 @@
 		-fx-background-image: url(/images/JassTeppichGruen.jpg);
 		-fx-background-repeat: stretch; 
 		-fx-background-position: center center; 
-		-fx-background-size: 500px;
+		-fx-background-size: 500px;    
+		-fx-background-radius: 10 10 10 10; 
  		 
 }
 
@@ -12,6 +13,8 @@
 		-fx-background-repeat: stretch; 
 		-fx-background-position: center center; 
 		-fx-background-size: 500px;
+		-fx-background-radius: 10 10 10 10;
+
 }
 
 #tisch2{
@@ -19,6 +22,8 @@
 		-fx-background-repeat: stretch; 
 		-fx-background-position: center center; 
 		-fx-background-size: 500px;
+		-fx-background-radius: 10 10 10 10; 
+	
 }
 
 #messageLabel{
@@ -29,12 +34,66 @@
 	-fx-border-radius: 10 10 10 10; 
     -fx-background-radius: 10 10 10 10; 
     -fx-min-width: 270;
-    -fx-min-height:600;
+    -fx-min-height:500;
 	-fx-max-width: 270;
-    -fx-max-height:600;
+    -fx-max-height:500;
     -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
    
 }
+
+
+#scoreLabel{
+	
+	-fx-font-size: 10px ; 
+	-fx-text-fill: black; 
+	-fx-background-color: lightgrey;
+	-fx-border-radius: 10 10 10 10; 
+    -fx-background-radius: 10 10 10 10; 
+    -fx-min-width: 270;
+    -fx-min-height:250;
+	-fx-max-width: 270;
+    -fx-max-height:250;
+    -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+   
+}
+
+#scoreLabelTitel{
+	
+	-fx-font-size: 20px ;
+	-fx-font-type: bold;
+	-fx-font-weight: bold;
+	-fx-text-fill: black; 
+	-fx-background-color: white;
+	-fx-border-radius: 10 10 10 10; 
+    -fx-background-radius: 10 10 10 10; 
+    -fx-min-width: 270;
+    -fx-min-height:50;
+	-fx-max-width: 270;
+    -fx-max-height:50;
+    -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+   
+}
+
+
+
+
+#bottomButton{
+	
+		-fx-min-width: 70;
+    -fx-min-height: 50;
+	-fx-max-width: 70;
+    -fx-max-height: 50;
+	
+}
+#bottomButtonSuit{
+	
+	-fx-min-width: 70;
+    -fx-min-height: 25;
+	-fx-max-width: 70;
+    -fx-max-height: 25;
+	
+}
+
 
 #chatField{
 	-fx-min-width: 200;

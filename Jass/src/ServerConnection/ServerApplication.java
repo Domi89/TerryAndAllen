@@ -10,8 +10,10 @@ import java.util.ArrayList;
 
 import BusinessLayer.Constants;
 import BusinessLayer.Deck;
+import BusinessLayer.Rule;
 import serializedClasses.Card;
 import serializedClasses.Message;
+import serializedClasses.Suit;
 
 public class ServerApplication {
 
@@ -19,18 +21,20 @@ public class ServerApplication {
 	
 	private ArrayList<ServerThread> serverThreads = new ArrayList<ServerThread>();
 	
-	//private ObservableList<ServerThread> serverThreadsObservable = new ObservableList<ServerThread>();
-	//protected ObservableList<ServerThread> serverThreads = FXCollections.;
-	//protected ObservableList<ServerThread> serverThreads = FXCollections.observableArrayList();
 	private ArrayList<Message> history;
+	
+	private Rule rule;
+	private Suit trumpf;
 	
 	//0=no game startet , 1=game in progress
 	private int gameStatus = 0;
 	
 	
+	
 	public ServerApplication() {
 		this.history = new ArrayList<Message>();
-		
+		this.rule = null;
+		this.trumpf = null;
 		
 		
 		// schreibt Messages allen Clients
@@ -67,7 +71,7 @@ public class ServerApplication {
                 Runnable thread4PlayersConnected = new Runnable() {
 
                     public void run() {
-                    	thread4PlayersConnected();
+                    	thread4PlayersConnectedStart();
                     }
                 };
                 while (true) {
@@ -77,11 +81,11 @@ public class ServerApplication {
                     }
 
                     // UI update is run on the Application thread
-                    thread4PlayersConnected();
+                    thread4PlayersConnectedStart();
                 }
             }
 
-			private void thread4PlayersConnected() {
+			private void thread4PlayersConnectedStart() {
 				
 				
 				if (serverThreads.size()==Constants.MAX_PLAYERS && gameStatus == 0) {

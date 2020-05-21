@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.JassClientModel;
 
@@ -26,10 +27,150 @@ public class JassClientView {
 	private JassClientViewMenBar menBar;
 	private JassClientViewChat chat;
 	private JassClientViewCenter center;
+	private JassClientViewScore score;
 	
 	public JassClientModel getModel() {
 		return model;
 	}
+
+	
+	//Instanziieren der Buttons
+	private Button chatButton;
+	private Button trumpfEichle, trumpfSchaele, trumpfRose, trumpSchilte;
+	
+	//Textfields 
+	private TextField chatField;
+	
+	//Labels 
+	private Label messageLabel;
+		
+	public JassClientView(Stage stage, JassClientModel model) {
+		this.model = model;
+		
+		/*
+	 messageLabel = new Label();
+		messageLabel.setPrefSize(300,300);
+	
+		 */
+		this.chatField = new TextField();
+		this.chatButton = new Button("send");
+		
+		
+		//Initial labels and buttons
+		menBar = new JassClientViewMenBar();
+		score = new JassClientViewScore();
+		chat = new JassClientViewChat();
+		center = new JassClientViewCenter();
+		
+		//Draft HBox
+		hbox= new HBox();
+		hbox.getChildren().add(chatField);
+		hbox.getChildren().add(chatButton);
+		
+		
+		
+		//Setzten der Behälter in die BorderPane
+		this.root = new BorderPane();
+		
+		this.score.setPadding(new Insets(10, 10, 10, 10));
+		this.chat.setPadding(new Insets(10, 10, 10, 10));
+
+		VBox rightBox = new VBox();
+		rightBox.getChildren().addAll(this.chat, this.score);
+		
+
+		this.root.setTop(menBar);
+		
+		
+		this.root.setRight(rightBox);
+		this.root.setCenter(center);
+		
+		JassClientViewBottom bottomView = new JassClientViewBottom();
+		
+		
+		this.root.setBottom(bottomView);
+		
+		bottomView.setStyle("-fx-border-color: black;  -fx-border-width: 2px;");
+		
+		//Grösse der root definieren
+		this.root.setMinSize(1280, 800);
+		this.root.setMaxSize(1280, 1200);
+		
+		//Erstellen und anzeigen der Scene
+		this.scene = new Scene(this.root);
+		
+	
+		Image icon = new Image(getClass().getResourceAsStream("../images/Schelle.png"));
+		
+		stage.setTitle("Jass Spiel");
+		stage.getIcons().add(icon);
+		stage.setScene(this.scene);
+		stage.show();
+		
+	}
+
+		
+	public Button getButton() {
+		return chatButton;
+	}
+
+	public void setButton(Button button) {
+		this.chatButton = button;
+	}
+
+	public TextField getTextField() {
+		return chatField;
+	}
+
+	public void setTextField(TextField textField) {
+		this.chatField = textField;
+	}
+
+	public Label getMessageLabel() {
+		return messageLabel;
+	}
+
+	public void setMessageLabel(Label messageLabel) {
+		this.messageLabel = messageLabel;
+	}
+
+	public MenuItem getColourChange() {
+		return menBar.farbeWechseln;
+	}
+	
+
+
+
+
+//Hier mit dem Switch auf den obigen HBOX zugreifen.... 
+	// es liegt am Zugriff an die HBox
+	public void changeTable() {
+		
+		//init
+		JassClientViewFarbeWechseln i = new JassClientViewFarbeWechseln();
+		int in = i.colourChange();
+			
+		switch(in) {
+			case 0:
+				
+				//root.getStylesheets().addAll(this.getClass().getResource("style2.css").toExternalForm());
+				//center.getHbox().setId("tisch2");
+				//center.setTisch();
+				
+				break;
+			case 1:
+				//center.hb.setId("tisch1");
+				
+				break;
+			case 2:
+				// 
+				
+				break;
+			}
+
+			
+	}
+
 
 	public void setModel(JassClientModel model) {
 		this.model = model;
@@ -129,130 +270,6 @@ public class JassClientView {
 
 	public void setChat(JassClientViewChat chat) {
 		this.chat = chat;
-	}
-
-	
-	
-	//Instanziieren der Buttons
-	private Button chatButton;
-	private Button trumpfEichle, trumpfSchaele, trumpfRose, trumpSchilte;
-	
-	//Textfields 
-	private TextField chatField;
-	
-	//Labels 
-	private Label messageLabel;
-		
-	public JassClientView(Stage stage, JassClientModel model) {
-		this.model = model;
-		
-		/*
-	 messageLabel = new Label();
-		messageLabel.setPrefSize(300,300);
-	
-		 */
-		this.chatField = new TextField();
-		this.chatButton = new Button("send");
-		
-		
-		//Initial labels and buttons
-		menBar = new JassClientViewMenBar();
-		chat = new JassClientViewChat();
-		center = new JassClientViewCenter();
-		
-		//Draft HBox
-		hbox= new HBox();
-		hbox.getChildren().add(chatField);
-		hbox.getChildren().add(chatButton);
-		
-		
-		
-		//Setzten der Behälter in die BorderPane
-		this.root = new BorderPane();
-		this.chat.setPadding(new Insets(10, 10, 10, 10));
-
-
-		this.root.setTop(menBar);
-		this.root.setRight(chat);
-		this.root.setCenter(center);
-		
-		//Grösse der root definieren
-		this.root.setMinSize(1280, 800);
-		this.root.setMaxSize(1280, 1200);
-		
-		//Erstellen und anzeigen der Scene
-		this.scene = new Scene(this.root);
-		
-	
-		Image icon = new Image(getClass().getResourceAsStream("../images/Schelle.png"));
-		
-		stage.setTitle("Jass Spiel");
-		stage.getIcons().add(icon);
-		stage.setScene(this.scene);
-		stage.show();
-		
-	}
-
-		
-	public Button getButton() {
-		return chatButton;
-	}
-
-	public void setButton(Button button) {
-		this.chatButton = button;
-	}
-
-	public TextField getTextField() {
-		return chatField;
-	}
-
-	public void setTextField(TextField textField) {
-		this.chatField = textField;
-	}
-
-	public Label getMessageLabel() {
-		return messageLabel;
-	}
-
-	public void setMessageLabel(Label messageLabel) {
-		this.messageLabel = messageLabel;
-	}
-
-	public MenuItem getColourChange() {
-		return menBar.farbeWechseln;
-	}
-	
-
-
-
-
-//Hier mit dem Switch auf den obigen HBOX zugreifen.... 
-	// es liegt am Zugriff an die HBox
-	public void changeTable() {
-		
-		//init
-		JassClientViewFarbeWechseln i = new JassClientViewFarbeWechseln();
-		int in = i.colourChange();
-			
-		switch(in) {
-			case 0:
-				
-				//root.getStylesheets().addAll(this.getClass().getResource("style2.css").toExternalForm());
-				//center.getHbox().setId("tisch2");
-				//center.setTisch();
-				
-				break;
-			case 1:
-				//center.hb.setId("tisch1");
-				
-				break;
-			case 2:
-				// 
-				
-				break;
-			}
-
-			
 	}
 
 	
