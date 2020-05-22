@@ -18,6 +18,7 @@ import model.JassClientModel;
 import serializedClasses.Card;
 import serializedClasses.Message;
 import serializedClasses.Rank;
+import serializedClasses.Rule;
 import serializedClasses.Suit;
 import view.JassClientConnectCenter;
 import view.JassClientView;
@@ -304,13 +305,37 @@ public class JassClientController {
 		
 		ImageView imageView = new ImageView(image);	
 		
-		
+	  	 if(Connection.getChooseMode()) {
+    		 
+    		 view.getBottomView().getObeAbe().setDisable(false);
+    		 view.getBottomView().getUndeUfe().setDisable(false);
+    		 view.getBottomView().getTrumpf().setDisable(false);
+    		 
+    		 
+    		 
+    		 view.getBottomView().getObeAbe().setOnAction(e-> activateObeAbe());
+    		 view.getBottomView().getUndeUfe().setOnAction(e-> activateUndeUfe());
+    		 view.getBottomView().getTrumpf().setOnAction(e-> activateTrumpf());
+    		 
+    	      
+    		 
+    		 Connection.setChooseMode(false);
+    	 }
+    	 
 		
 		
 		imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 		     public void handle(MouseEvent event) {
 		    	
-		    	 if(Connection.yourTurn) {
+		    	 
+		    	 
+
+		    	 
+		    	 
+		    	 
+		    	 
+		    	 
+		    	 if(Connection.yourTurn && !Connection.getChooseMode()) {
 		    		 
 		        	 System.out.println(cardNr);
  
@@ -327,11 +352,91 @@ public class JassClientController {
 		    	 }
 		    	      
 		     }
+
+
 		});
 		
 		
 		this.view.getCenter().getJcwpc().getChildren().addAll(imageView);
 	} 
+	
+	private Object activateUndeUfe() {
+		 view.getBottomView().getObeAbe().setDisable(true);
+		 view.getBottomView().getUndeUfe().setDisable(true);
+		 view.getBottomView().getTrumpf().setDisable(true);
+		 model.getClientThread().getClientThreadOutput().sendRule(Rule.undeUfe);
+		 
+		 
+		return null;
+	}
+
+	private Object activateObeAbe() {
+		 view.getBottomView().getObeAbe().setDisable(true);
+		 view.getBottomView().getUndeUfe().setDisable(true);
+		 view.getBottomView().getTrumpf().setDisable(true);
+		 model.getClientThread().getClientThreadOutput().sendRule(Rule.obeAbe);
+		 
+		return null;
+	}
+
+	private void activateTrumpf() {
+		
+		 view.getBottomView().getObeAbe().setDisable(true);
+		 view.getBottomView().getUndeUfe().setDisable(true);
+		 view.getBottomView().getTrumpf().setDisable(true);
+		 model.getClientThread().getClientThreadOutput().sendRule(Rule.trumpf);
+
+		 
+		 view.getBottomView().getSchaelle().setDisable(false);
+		 view.getBottomView().getEichle().setDisable(false);
+		 view.getBottomView().getSchilte().setDisable(false);
+		 view.getBottomView().getRose().setDisable(false);
+
+		 view.getBottomView().getSchaelle().setOnAction(e-> activateSchaelle());
+		 view.getBottomView().getEichle().setOnAction(e-> activateEichle());
+		 view.getBottomView().getSchilte().setOnAction(e-> activateSchilte());
+		 view.getBottomView().getRose().setOnAction(e-> activateRose());
+		 
+	}
+
+	private void activateSchilte() {
+		 view.getBottomView().getSchaelle().setDisable(true);
+		 view.getBottomView().getEichle().setDisable(true);
+		 view.getBottomView().getSchilte().setDisable(true);
+		 view.getBottomView().getRose().setDisable(true);
+		 
+		 model.getClientThread().getClientThreadOutput().sendColor(Suit.Schilte);
+		 
+	
+	}
+
+	private void activateRose() {
+		 view.getBottomView().getSchaelle().setDisable(true);
+		 view.getBottomView().getEichle().setDisable(true);
+		 view.getBottomView().getSchilte().setDisable(true);
+		 view.getBottomView().getRose().setDisable(true);
+		 
+		 model.getClientThread().getClientThreadOutput().sendColor(Suit.Rose);
+	}
+
+	private void activateEichle() {
+		 view.getBottomView().getSchaelle().setDisable(true);
+		 view.getBottomView().getEichle().setDisable(true);
+		 view.getBottomView().getSchilte().setDisable(true);
+		 view.getBottomView().getRose().setDisable(true);
+		 
+		 model.getClientThread().getClientThreadOutput().sendColor(Suit.Eichle);
+	}
+
+	private void activateSchaelle() {
+		 view.getBottomView().getSchaelle().setDisable(true);
+		 view.getBottomView().getEichle().setDisable(true);
+		 view.getBottomView().getSchilte().setDisable(true);
+		 view.getBottomView().getRose().setDisable(true);
+		 
+		 model.getClientThread().getClientThreadOutput().sendColor(Suit.Schaelle);
+		
+	}
 	
 	
 	public void sendSelectedCard(String cardNr) {

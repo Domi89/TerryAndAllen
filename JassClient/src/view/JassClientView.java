@@ -43,7 +43,17 @@ public class JassClientView {
 		return model;
 	}
 
+	private JassClientViewBottom bottomView ;
 	
+	public JassClientViewBottom getBottomView() {
+		return bottomView;
+	}
+
+
+	public void setBottomView(JassClientViewBottom bottomView) {
+		this.bottomView = bottomView;
+	}
+
 	//Instanziieren der Buttons
 	private Button chatButton;
 	private Button trumpfEichle, trumpfSchaele, trumpfRose, trumpSchilte;
@@ -99,12 +109,12 @@ public class JassClientView {
 		this.root.setRight(rightBox);
 		this.root.setCenter(center);
 		
-		JassClientViewBottom bottomView = new JassClientViewBottom();
+		this.bottomView = new JassClientViewBottom();
 		
 		
 		this.root.setBottom(bottomView);
 		
-		bottomView.setStyle("-fx-border-color: black;  -fx-border-width: 2px;");
+		this.bottomView.setStyle("-fx-border-color: black;  -fx-border-width: 2px;");
 		
 		//Grösse der root definieren
 		this.root.setMinSize(1280, 800);

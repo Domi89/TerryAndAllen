@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.Rule;
+import serializedClasses.Suit;
 
 
 public class ClientThreadOutput extends Thread{
@@ -32,6 +34,24 @@ public class ClientThreadOutput extends Thread{
 			
 		}
 		
+	}
+	
+	public void sendRule(Rule r) {
+		try {
+			this.outputStream.writeObject(r);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+	}
+	
+	public void sendColor(Suit r) {
+		try {
+			this.outputStream.writeObject(r);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
 	}
 	
 	public void sendMessageToServer(Message m) {

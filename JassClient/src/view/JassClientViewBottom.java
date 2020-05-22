@@ -9,6 +9,76 @@ import javafx.scene.layout.VBox;
 public class JassClientViewBottom extends HBox{
 	
 	private Button obeAbe, undeUfe, trumpf;
+	public Button getObeAbe() {
+		return obeAbe;
+	}
+
+
+	public void setObeAbe(Button obeAbe) {
+		this.obeAbe = obeAbe;
+	}
+
+
+	public Button getTrumpf() {
+		return trumpf;
+	}
+
+
+	public void setTrumpf(Button trumpf) {
+		this.trumpf = trumpf;
+	}
+
+
+	public Button getRose() {
+		return rose;
+	}
+
+
+	public void setRose(Button rose) {
+		this.rose = rose;
+	}
+
+
+	public Button getSchilte() {
+		return schilte;
+	}
+
+
+	public void setSchilte(Button schilte) {
+		this.schilte = schilte;
+	}
+
+
+	public Button getEichle() {
+		return eichle;
+	}
+
+
+	public void setEichle(Button eichle) {
+		this.eichle = eichle;
+	}
+
+
+	public Button getSchaelle() {
+		return schaelle;
+	}
+
+
+	public void setSchaelle(Button schaelle) {
+		this.schaelle = schaelle;
+	}
+
+
+	public Button getUndeUfe() {
+		return undeUfe;
+	}
+
+
+	public void setUndeUfe(Button undeUfe) {
+		this.undeUfe = undeUfe;
+	}
+
+
 	private Button rose, schilte, eichle, schaelle;
 	
 	

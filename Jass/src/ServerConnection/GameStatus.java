@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import BusinessLayer.BigRound;
 import BusinessLayer.Constants;
 import BusinessLayer.Game;
-import BusinessLayer.Rule;
 import BusinessLayer.SmallRound;
 import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.Rule;
 import serializedClasses.Suit;
 
 public class GameStatus {
@@ -68,7 +68,6 @@ public class GameStatus {
 		smallRound.getCards().add(card);
 		GameStatus.setLastPlayed(card.getClient());
 		GameStatus.setNewCard(true);
-	
 	}
 	
 	public static Boolean smallRoundFinished() {
@@ -89,8 +88,6 @@ public class GameStatus {
 					c.addPointsBig(points);
 				}
 			}
-			
-			
 			
 		}
 		setLastWinner(winner);		

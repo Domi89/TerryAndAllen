@@ -14,7 +14,9 @@ import javafx.collections.ObservableList;
 import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.Rule;
 import serializedClasses.Score;
+import serializedClasses.Suit;
 
 public class ClientThreadInput extends Thread{
 	
@@ -76,6 +78,17 @@ public class ClientThreadInput extends Thread{
 						this.messageClass(message);
 						break;
 						
+					case "Suit":
+						Suit suit = (Suit) this.inputObject;
+						this.suitClass(suit);
+						break;
+						
+					case "Rule":
+						Rule rule = (Rule) this.inputObject;
+						this.ruleClass(rule);
+						break;
+						
+						
 					case "ArrayList":
 						ArrayList<Object> input = (ArrayList<Object>) this.inputObject;
 						
@@ -117,6 +130,16 @@ public class ClientThreadInput extends Thread{
 
 	}
 
+
+	private void ruleClass(Rule rule) {
+		Connection.setRule(rule);
+		
+	}
+
+	private void suitClass(Suit suit) {
+		Connection.setTrumpf(suit);
+		
+	}
 
 	private void clientsClass(ArrayList<Client> inputClients) {
 		this.clients.addAll(inputClients);
@@ -176,7 +199,9 @@ public class ClientThreadInput extends Thread{
 
 	private void stringClass(String string) {
 		
-		
+		if(string.equals("chooseMode")) {
+			Connection.setChooseMode(true);
+		}
 		
 		if(string.equals("Connected")) {
 			Connection.connected = true;

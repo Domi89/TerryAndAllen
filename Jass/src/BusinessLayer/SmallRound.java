@@ -6,6 +6,7 @@ import java.util.Collections;
 import ServerConnection.GameStatus;
 import serializedClasses.Card;
 import serializedClasses.Client;
+import serializedClasses.Rule;
 import serializedClasses.Suit;
 
 public class SmallRound{
@@ -21,7 +22,15 @@ public class SmallRound{
 		int points = 0;
 		this.rule = GameStatus.getRule();
 		this.trumpf = GameStatus.getTrumpf();
-		points = PointsCalculator.calculatePoints(this.cards, rule, trumpf);
+		
+		
+		if(this.rule.equals(Rule.trumpf)) {
+			points = PointsCalculator.calculatePoints(this.cards, rule, trumpf);
+		} else {
+			points = PointsCalculator.calculatePoints(this.cards, rule);
+		}
+		
+
 		
 		return points;
 	}

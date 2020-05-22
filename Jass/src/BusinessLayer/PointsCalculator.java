@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import serializedClasses.Card;
+import serializedClasses.Rule;
 import serializedClasses.Suit;
 
 public class PointsCalculator {

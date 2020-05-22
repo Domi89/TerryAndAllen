@@ -3,11 +3,12 @@ package ServerConnection;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-
 import serializedClasses.Card;
 import serializedClasses.Client;
 
 import serializedClasses.Message;
+import serializedClasses.Rule;
+import serializedClasses.Suit;
 
 
 public class ServerThreadInput extends Thread{
@@ -66,6 +67,17 @@ public class ServerThreadInput extends Thread{
 							
 							this.messageClass(message);
 							break;
+							
+							
+						case "Suit":
+							Suit suit = (Suit) this.inputObject;
+							this.suitClass(suit);
+							break;
+							
+						case "Rule":
+							Rule rule = (Rule) this.inputObject;
+							this.ruleClass(rule);
+							break;
 														
 						default:
 							System.out.println("Class is not defined in ServerThread!");
@@ -81,6 +93,16 @@ public class ServerThreadInput extends Thread{
 			
 	}
 
+	
+	private void ruleClass(Rule rule) {
+		GameStatus.setRule(rule);
+		
+	}
+
+	private void suitClass(Suit suit) {
+		GameStatus.setTrumpf(suit);
+		
+	}
 
 	private void cardClass(Card receivedCard) {
 		//TODO Abspeichern in ArrayList ArrayList, Senden der erhaltenen Karte an die Restlichen Threads

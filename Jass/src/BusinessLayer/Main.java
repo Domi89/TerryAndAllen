@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import serializedClasses.Card;
 import serializedClasses.Rank;
+import serializedClasses.Rule;
 import serializedClasses.Suit;
 
 public class Main {

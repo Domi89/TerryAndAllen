@@ -1,4 +1,4 @@
-package BusinessLayer;
+package serializedClasses;
 
 public enum Rule {
 	

@@ -11,10 +11,10 @@ import java.util.Iterator;
 
 import BusinessLayer.Constants;
 import BusinessLayer.Deck;
-import BusinessLayer.Rule;
 import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.Rule;
 import serializedClasses.Score;
 import serializedClasses.Suit;
 
@@ -91,6 +91,7 @@ Thread threadAllPlayersConnected = new Thread(new Runnable() {
 						sT.getServerThreadOutput().sendCards(sendCards);
 						
 						if (playerNumber==0) {
+							sT.getServerThreadOutput().sendString("chooseMode");
 							sT.getServerThreadOutput().sendString("yourTurn");
 						}
 						playerNumber++;

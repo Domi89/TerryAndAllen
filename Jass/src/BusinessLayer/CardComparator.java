@@ -3,6 +3,7 @@ package BusinessLayer;
 import java.util.Comparator;
 
 import serializedClasses.Card;
+import serializedClasses.Rule;
 import serializedClasses.Suit;
 
 public class CardComparator implements Comparator<Card> {
