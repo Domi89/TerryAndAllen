@@ -26,13 +26,15 @@ public class ClientThreadInput extends Thread{
 	private ObservableIntegerValue updated;
 	private ObservableList<Integer> updatedCards;
 	private ObservableList<Card> cardsOnBoard;
+	private ObservableList<Client> clients;
 	
 
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards, ObservableList<Client> clients){
 		this.inputStream = inputStream;
 		this.client = client;
 		this.cards = cards;
 		this.updatedCards = updatedCards;
+		this.clients = clients;
 			
 	}
 	
@@ -68,12 +70,24 @@ public class ClientThreadInput extends Thread{
 						break;
 						
 					case "ArrayList":
-						ArrayList<Card> inputCards = (ArrayList<Card>) this.inputObject;
-						if (inputCards.size()==9) {
-							this.newCards(inputCards);
-						} else {
-							System.out.println("Nicht 9 Karten erhalten Grösse:" +inputCards.size());
+						ArrayList<Object> input = (ArrayList<Object>) this.inputObject;
+						String classN = input.getClass().getSimpleName();
+						
+						if(classN == "Card") {
+							ArrayList<Card> inputCards = (ArrayList<Card>) this.inputObject;
+							if (inputCards.size()==9) {
+								this.newCards(inputCards);
+							} else {
+								System.out.println("Nicht 9 Karten erhalten Grösse:" +inputCards.size());
+							}
 						}
+						
+						if(classN == "Client") {
+							ArrayList<Client> inputClients = (ArrayList<Client>) this.inputObject;
+							this.clientsClass(inputClients);				
+							
+						}
+						
 	
 						break;
 						
@@ -93,9 +107,14 @@ public class ClientThreadInput extends Thread{
 	}
 
 
+	private void clientsClass(ArrayList<Client> inputClients) {
+		this.clients.addAll(inputClients);
+	}
+
 	private void cardClass(Card card) {
 		System.out.println("Neue Karte gespielt von: "+card.getClient().getClientName()+" Karte: "+card);
-		
+		Connection.getCardsOnTable().add(card);
+		Connection.setNewCardToShow(true);
 	}
 
 	private void newCards(ArrayList<Card> inputCards) {

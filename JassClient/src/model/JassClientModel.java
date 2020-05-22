@@ -18,6 +18,19 @@ public class JassClientModel {
 	//private ArrayList<Message> history = new ArrayList<Message>();
 	private ObservableList<Card> cards = FXCollections.observableArrayList();
 	private ObservableList<Integer> updatedCards = FXCollections.observableArrayList();
+	private ObservableList<Client> clients = FXCollections.observableArrayList();
+
+	public ObservableList<Client> getClients() {
+		return clients;
+	}
+
+
+
+	public void setClients(ObservableList<Client> clients) {
+		this.clients = clients;
+	}
+
+
 
 	public ObservableList<Integer> getUpdatedCards() {
 		return updatedCards;
@@ -71,7 +84,7 @@ public class JassClientModel {
 	public void connectToServer(String clientName, String ip, int port) {
 		
 		this.client = new Client(clientName);
-		this.clientThread = new ClientThread(this.client, ip, port, this.cards, this.updatedCards);
+		this.clientThread = new ClientThread(this.client, ip, port, this.cards, this.updatedCards, this.clients);
 		this.clientThread.start();
 		
 		
