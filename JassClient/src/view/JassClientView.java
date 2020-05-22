@@ -29,6 +29,16 @@ public class JassClientView {
 	private JassClientViewCenter center;
 	private JassClientViewScore score;
 	
+	public JassClientViewScore getScore() {
+		return score;
+	}
+
+
+	public void setScore(JassClientViewScore score) {
+		this.score = score;
+	}
+
+
 	public JassClientModel getModel() {
 		return model;
 	}

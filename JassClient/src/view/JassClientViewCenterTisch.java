@@ -34,18 +34,6 @@ public class JassClientViewCenterTisch extends GridPane{
 		this.setId("tisch0");
 		this.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
 	
-		/*
-		String cardNr = "/images/Eichle Acht.gif";
-		Image image = new Image(cardNr,100,150,false,false); 
-		ImageView imageView = new ImageView(image);	
-		Image image2 = new Image("/images/Schaelle Acht.gif",100,150,false,false); 
-		Image image3 = new Image("/images/Schilte Acht.gif",100,150,false,false); 
-		Image image4 = new Image("/images/Karte.gif",100,150,false,false); 
-		ImageView imageView2 = new ImageView(image2);	
-		ImageView imageView3 = new ImageView(image3);	
-		ImageView imageView4 = new ImageView(image4);	
-		*/
-		
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
@@ -56,13 +44,6 @@ public class JassClientViewCenterTisch extends GridPane{
 		imageViews.add(new ImageView(images.get(2)));
 		imageViews.add(new ImageView(images.get(3)));
 
-		
-		/*
-		labels.add(new Label("label0"));
-		labels.add(new Label("label1"));
-		labels.add(new Label("label2"));
-		labels.add(new Label("label3"));
-		*/
 		
 		if (Connection.getPlayersCount()==2) {
 			

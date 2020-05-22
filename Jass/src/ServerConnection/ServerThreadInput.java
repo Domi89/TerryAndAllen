@@ -15,7 +15,6 @@ public class ServerThreadInput extends Thread{
 	private ObjectInputStream inputStream;
 	private Object inputObject;
 	private ArrayList<Card> currentSmallRound;
-	private ArrayList<Message> history;
 	private volatile Client client;
 	
 	public Client getClient() {
@@ -25,10 +24,10 @@ public class ServerThreadInput extends Thread{
 	public void setClient(Client client) {
 		this.client = client;
 	}
-
-	public ServerThreadInput(ObjectInputStream inputStream, ArrayList<Message> history, Client client) {
+	public ServerThreadInput(ObjectInputStream inputStream, Client client) {
+	
 		this.inputStream = inputStream;
-		this.history = history;
+
 		this.client = client;
 
 	}
@@ -102,7 +101,7 @@ public class ServerThreadInput extends Thread{
 
 	private void messageClass(Message m) {
 		System.out.println("Message: "+m.getClientName()+" :"+m.getMessage());
-		this.history.add(m);
+		GameStatus.getHistory().add(m);
 
 	}
 

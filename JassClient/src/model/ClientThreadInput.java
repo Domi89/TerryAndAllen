@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.Score;
 
 public class ClientThreadInput extends Thread{
 	
@@ -27,14 +28,15 @@ public class ClientThreadInput extends Thread{
 	private ObservableList<Integer> updatedCards;
 	private ObservableList<Card> cardsOnBoard;
 	private ObservableList<Client> clients;
-	
+	private ObservableList<Score> scores;
 
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards, ObservableList<Client> clients){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards, ObservableList<Client> clients, ObservableList<Score> scores){
 		this.inputStream = inputStream;
 		this.client = client;
 		this.cards = cards;
 		this.updatedCards = updatedCards;
 		this.clients = clients;
+		this.scores = scores;
 			
 	}
 	
@@ -62,6 +64,12 @@ public class ClientThreadInput extends Thread{
 					
 						Card card = (Card) this.inputObject;
 						this.cardClass(card);
+						break;
+						
+					case "Score":
+						
+						Score score = (Score) this.inputObject;
+						this.scoreClass(score);
 						break;
 					
 					case "Message":
@@ -158,8 +166,18 @@ public class ClientThreadInput extends Thread{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private void scoreClass(Score score) {
+		
+		this.scores.add(score);
+		
+		
+	}
 
 	private void stringClass(String string) {
+		
+		
+		
 		if(string.equals("Connected")) {
 			Connection.connected = true;
 		}

@@ -15,33 +15,19 @@ import BusinessLayer.Rule;
 import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.Score;
 import serializedClasses.Suit;
 
 public class ServerApplication {
 
-	//private MessageHistory messageHistory;
-	
 	private ArrayList<ServerThread> serverThreads = new ArrayList<ServerThread>();
-	
-	private ArrayList<Message> history;
-	//
-	
-	
-	private Rule rule;
-	private Suit trumpf;
-	
-	//0=no game startet , 1=game in progress
 	private int gameStatus = 0;
-	
+	private String sentScore ="";
 	
 	
 	public ServerApplication() {
-		this.history = new ArrayList<Message>();
-		this.rule = null;
-		this.trumpf = null;
 		
-		
-		// schreibt Messages allen Clients
+
 	    Thread threadWriteMessages = new Thread(new Runnable() {
      
             public void run() {
@@ -57,7 +43,6 @@ public class ServerApplication {
                     } catch (InterruptedException ex) {
                     }
 
-                    // UI update is run on the Application thread
                     writeNewMessages();
                 }
             }
@@ -84,7 +69,6 @@ public class ServerApplication {
                     } catch (InterruptedException ex) {
                     }
 
-                    // UI update is run on the Application thread
                     threadAllPlayersConnectedStart();
                 }
             }
@@ -164,14 +148,18 @@ public class ServerApplication {
 				if(GameStatus.getNewCard()) {
 					
 					for (ServerThread sT: serverThreads) {
-						Card receivedCard = GameStatus.getCurrentSmallRound().get(GameStatus.getCurrentSmallRound().size()-1);
+						
+						Card receivedCard = GameStatus.getSmallRound().getCards().get(GameStatus.getSmallRound().getCards().size()-1);
 						
 						
 						if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
 							
 							sT.getServerThreadOutput().sendCard(receivedCard);
 						}
-					
+						//TODO DELETE
+						
+						
+						
 					}
 					GameStatus.setNewCard(false);
 				
@@ -185,8 +173,7 @@ public class ServerApplication {
 				}
 				
 				
-		
-				
+	
 				
 			}
 
@@ -194,6 +181,49 @@ public class ServerApplication {
         newCardReceivedFromClient.setDaemon(true);
         newCardReceivedFromClient.start();
 		
+        
+        
+        Thread sendScoreToClients = new Thread(new Runnable() {
+            
+            public void run() {
+                Runnable sendScoreToClients = new Runnable() {
+
+                    public void run() {
+                    	sendScoreToClients();
+                    }
+                };
+                while (true) {
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    sendScoreToClients();
+                }
+            }
+
+    		private void sendScoreToClients() {
+    			
+    			for (ServerThread sT: serverThreads) {
+    				
+    				sT.getServerThreadOutput().sendString(GameStatus.getScore());
+   
+    			}
+    			
+    			
+    		}
+
+        });
+        sendScoreToClients.setDaemon(true);
+        sendScoreToClients.start();
+    	        
+        
+        
+        
+        
+        
+        
         //------------------------
 		
 
@@ -203,12 +233,10 @@ public class ServerApplication {
 			while(true) {
 				
 				Socket socket = serverSocket.accept();
-				//TODO eventuel serialize weil mehrere Threads darauf zugreifen.
 				
-				serverThreads.add(new ServerThread(socket, history));
+				serverThreads.add(new ServerThread(socket));
 				serverThreads.get(serverThreads.size()-1).start();
-
-						
+	
 			}
 			
 		} catch(IOException e){
@@ -260,12 +288,13 @@ public class ServerApplication {
 		 
 	}
 	
+  
 	
 	private void writeNewMessages() {
 		
-		if (this.history!=null) {
+		if (GameStatus.getHistory().size()>=0) {
 			
-			for (Message message: this.history) {
+			for (Message message: GameStatus.getHistory()) {
 				if (message.getSent()) {
 				} else {
 					for (ServerThread sT: this.serverThreads) {

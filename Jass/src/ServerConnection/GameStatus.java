@@ -7,6 +7,7 @@ import BusinessLayer.Rule;
 import BusinessLayer.SmallRound;
 import serializedClasses.Card;
 import serializedClasses.Client;
+import serializedClasses.Message;
 import serializedClasses.Suit;
 
 public class GameStatus {
@@ -14,59 +15,34 @@ public class GameStatus {
 	private static SmallRound smallRound = new SmallRound();
 	private static BigRound bigRound = new BigRound();
 	
+	
 	private static Rule rule = Rule.obeAbe;
 	private static Suit trumpf = null;
 	
 	private static Boolean newCard = false;
 	private static Client lastPlayed = null;
 	private static Boolean currentGameFinished = false;
-	
-	//private static Boolean currentSmallRoundFinished = false;
 
-	//private static Boolean currentBigRoundFinished = false;
-	
-	
-	
-	private static ArrayList<Card> currentSmallRound = new ArrayList<Card>();
-	private static ArrayList<Card> currentBigRound = new ArrayList<Card>();
-	
-	
-	
-	
-	
-	
 	private static ArrayList<Card> currentGame = new ArrayList<Card>();
 	
-
+	private static ArrayList<Message> history = new ArrayList<Message>();
 	
-
-	
-	
-
-	
-
 	
 	
 	public GameStatus() {
 		
 	}
 
-	public static ArrayList<Card> getCurrentSmallRound() {
-		return currentSmallRound;
+	public static String getScore() {
+		String scoreString = "";
+		
+		for (Client c: bigRound.getClients()) {	
+			scoreString+=c.getClientName()+"\t"+bigRound.getPoints(c)+"\n";
+		}
+		
+		return scoreString;
 	}
-
-	public static void setCurrentSmallRound(ArrayList<Card> currentSmallRound) {
-		GameStatus.currentSmallRound = currentSmallRound;
-	}
-
-	public static ArrayList<Card> getCurrentBigRound() {
-		return currentBigRound;
-	}
-
-	public static void setCurrentBigRound(ArrayList<Card> currentBigRound) {
-		GameStatus.currentBigRound = currentBigRound;
-	}
-
+	
 	public static ArrayList<Card> getCurrentGame() {
 		return currentGame;
 	}
@@ -75,8 +51,8 @@ public class GameStatus {
 		GameStatus.currentGame = currentGame;
 	}
 	
-	public static void addCardcurrentBigRound(Card card) {
-		GameStatus.currentBigRound.add(card);
+	public static void addCardsCurrentBigRound(SmallRound cards) {
+		bigRound.getSmallRounds().add(cards);
 	}
 	
 	public static void addcurrentGame(Card card) {
@@ -84,7 +60,7 @@ public class GameStatus {
 	}
 	
 	public static void addcurrentSmallRound(Card card) {
-		GameStatus.currentSmallRound.add(card);
+		smallRound.getCards().add(card);
 		GameStatus.setLastPlayed(card.getClient());
 		GameStatus.setNewCard(true);
 	}
@@ -116,22 +92,6 @@ public class GameStatus {
 		GameStatus.currentGameFinished = currentGameFinished;
 	}
 
-	/*
-	public static Boolean getCurrentBigRoundFinished() {
-		return currentBigRoundFinished;
-	}
-
-	public static void setCurrentBigRoundFinished(Boolean currentBigRoundFinished) {
-		GameStatus.currentBigRoundFinished = currentBigRoundFinished;
-	}
-*/
-	//public static Boolean getCurrentSmallRoundFinished() {
-	//	return currentSmallRoundFinished;
-	//}
-
-	//public static void setCurrentSmallRoundFinished(Boolean currentSmallRoundFinished) {
-	//	GameStatus.currentSmallRoundFinished = currentSmallRoundFinished;
-	//}
 
 	public static Suit getTrumpf() {
 		return trumpf;
@@ -147,5 +107,25 @@ public class GameStatus {
 
 	public static void setRule(Rule rule) {
 		GameStatus.rule = rule;
+	}
+	public static SmallRound getSmallRound() {
+		return smallRound;
+	}
+	public static void setSmallRound(SmallRound smallRound) {
+		GameStatus.smallRound = smallRound;
+	}
+	public static BigRound getBigRound() {
+		return bigRound;
+	}
+	public static void setBigRound(BigRound bigRound) {
+		GameStatus.bigRound = bigRound;
+	}
+
+	public static ArrayList<Message> getHistory() {
+		return history;
+	}
+
+	public static void setHistory(ArrayList<Message> history) {
+		GameStatus.history = history;
 	}
 }

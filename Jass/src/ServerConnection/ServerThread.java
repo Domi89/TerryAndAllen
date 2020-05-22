@@ -20,7 +20,6 @@ public class ServerThread extends Thread{
 	private Object inputObject;
 	private ObjectOutputStream outputStream;
 	private ObjectInputStream inputStream;
-	private ArrayList<Message> history;
 	private volatile Client client = new Client("new Client");	
 	
 
@@ -52,10 +51,10 @@ public class ServerThread extends Thread{
 	public void setClient() {
 		this.client = this.serverThreadInput.getClient();
 	}
-
-	public ServerThread(Socket socket, ArrayList<Message> history) {
+	public ServerThread(Socket socket) {
+	
 		this.socket = socket;
-		this.history = history;
+
 
 	}
 	
@@ -65,11 +64,11 @@ public class ServerThread extends Thread{
 			
 				this.inputStream = new ObjectInputStream(socket.getInputStream());
 				this.outputStream = new ObjectOutputStream(socket.getOutputStream());
-								
-				this.serverThreadInput = new ServerThreadInput(this.inputStream, this.history, this.client);
+				//this.serverThreadInput = new ServerThreadInput(this.inputStream, this.history, this.client);				
+				this.serverThreadInput = new ServerThreadInput(this.inputStream, this.client);
 				serverThreadInput.start();
-				
-				this.serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history, this.client);
+				this.serverThreadOutput = new ServerThreadOutput(this.outputStream, this.client);
+				//this.serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history, this.client);
 				serverThreadOutput.start();
 				
 				setClient();

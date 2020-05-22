@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.Score;
 
 public class JassClientModel {
 	
@@ -19,6 +20,7 @@ public class JassClientModel {
 	private ObservableList<Card> cards = FXCollections.observableArrayList();
 	private ObservableList<Integer> updatedCards = FXCollections.observableArrayList();
 	private ObservableList<Client> clients = FXCollections.observableArrayList();
+	private ObservableList<Score> scores = FXCollections.observableArrayList();
 
 	public ObservableList<Client> getClients() {
 		return clients;
@@ -70,21 +72,15 @@ public class JassClientModel {
 	
 	public JassClientModel() {
 		
-		//clientThread = new ClientThread(this.client, this.history);
-		//clientThread.start();
-		
 	}
 	
 
-	
-	//public ArrayList<Message> getHistory(){
-		//return this.history;
-	//}
+
 	
 	public void connectToServer(String clientName, String ip, int port) {
 		
 		this.client = new Client(clientName);
-		this.clientThread = new ClientThread(this.client, ip, port, this.cards, this.updatedCards, this.clients);
+		this.clientThread = new ClientThread(this.client, ip, port, this.cards, this.updatedCards, this.clients, this.scores);
 		this.clientThread.start();
 		
 		
@@ -100,6 +96,18 @@ public class JassClientModel {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+
+
+	public ObservableList<Score> getScores() {
+		return scores;
+	}
+
+
+
+	public void setScores(ObservableList<Score> scores) {
+		this.scores = scores;
 	}
 	
 	

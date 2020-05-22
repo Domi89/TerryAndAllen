@@ -12,7 +12,7 @@ public class SmallRound{
 
 	private Client winner;
 	private int points;
-	private ArrayList<Card> cards;
+	private ArrayList<Card> cards = new ArrayList<Card>();
 	private boolean finished = false;
 	private Rule rule;
 	private Suit trumpf;

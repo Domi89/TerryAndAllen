@@ -11,10 +11,18 @@ import serializedClasses.Suit;
 
 public class BigRound {
 	
-	private ArrayList<SmallRound> smallRounds;
+	private ArrayList<SmallRound> smallRounds = new ArrayList<SmallRound>();
 	private boolean finished = false;
 	private ArrayList<Client> clients = new ArrayList<Client>();
 	
+	public ArrayList<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(ArrayList<Client> clients) {
+		this.clients = clients;
+	}
+
 	public BigRound() {
 
 	}

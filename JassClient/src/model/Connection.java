@@ -13,11 +13,13 @@ public class Connection {
 	
 	private static ArrayList<Card> cardsOnTable = new ArrayList<Card>();
 	private static Boolean newCardToShow = false;
+	
+
 
 	
 	
 	
-	private static int playersCount = 4;
+	private static int playersCount = 2;
 	
 	public static int getPlayersCount() {
 		return playersCount;
@@ -55,5 +57,6 @@ public class Connection {
 	public static void setNewCardToShow(Boolean newCardToShow) {
 		Connection.newCardToShow = newCardToShow;
 	}
+
 
 }

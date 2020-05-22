@@ -34,10 +34,7 @@ public class JassClientController {
 	public JassClientController(JassClientModel model, JassClientView view) {
 		this.model = model;
 		this.view = view;
-		//this.view.getButton().setOnAction(e -> sendMessageView());
-		
-		
-		
+	
 		//Message Label updater
         Thread threadMessage = new Thread(new Runnable() {
             public void run() {
@@ -131,12 +128,7 @@ public class JassClientController {
         threadClientsUpdater.start(); 
         
         
-        
-        
-        
-        
-        
-        
+
         //events für die MenuBar
         this.view.getColourChange().setOnAction(e-> colChange());
 		
@@ -146,6 +138,8 @@ public class JassClientController {
 
 	}
 	
+	
+	//updates after each Card the cards on Table & the ScoreBoard
 	private void cardUpdater() { 
 		
 		if(this.model.getUpdatedCards().size()>0 && 
@@ -155,14 +149,19 @@ public class JassClientController {
 			if(this.model.getCards().size()>0) {
 				
 				newDeckReceived(this.model.getCards());
-				//this.view.getCenter().getJcwpc().newDeckReceived(this.model.getCards());
-			
+						
 			}
-			//
+		
 			this.model.getUpdatedCards().set(this.model.getUpdatedCards().size()-1, 1);
-	
 		}
 		
+		if(this.model.getScores().size()>0&&!this.model.getScores().get(this.model.getScores().size()-1).isShowed()) {
+			
+			String scoreString = this.model.getScores().get(this.model.getScores().size()-1).toString();
+			this.view.getScore().getScoreLabel().setText(scoreString);
+		
+			this.model.getScores().get(this.model.getScores().size()-1).setShowed(true);
+		}
 		
 	}
 	
@@ -314,8 +313,7 @@ public class JassClientController {
 		    	 if(Connection.yourTurn) {
 		    		 
 		        	 System.out.println(cardNr);
-			    	 //sendCard(event.getSource().getClass().getName());
-			    	 
+ 
 			       System.out.println("Tile pressed ");
 			       event.consume();
 			     
@@ -323,8 +321,7 @@ public class JassClientController {
 			       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
 			       
 			       view.getCenter().getTisch().addCard(0, cardNr);
-			       
-			     //  view.getCenter().getTisch().setBottom(imageView);
+		
 			       sendSelectedCard(cardNr); 
 			       Connection.setYourTurn(false);
 		    	 }
@@ -354,7 +351,6 @@ public class JassClientController {
 		
 		System.out.println("suit "+suit);
 		System.out.println("rank "+rank);
-		//       /images/Eichle Sibe.gif
 		
 	}
 	

@@ -11,8 +11,6 @@ public class ConnectCenterController {
 	private JassClientConnectCenter view;
 	private JassClientApplicationConnection start = new JassClientApplicationConnection();
 	
-	// Supplier ()->
-	
 	private Boolean benutzerNameValidate = false;
 	private Boolean ipValidate = false;
 	private Boolean portValidate = false;

@@ -13,6 +13,20 @@ public class JassClientViewScore extends VBox{
 	
 	//private ScrollPane labelChat = new ScrollPane();
 	private Label scoreLabel = new Label();
+	
+	
+	public Label getScoreLabel() {
+		return scoreLabel;
+	}
+
+
+	public void setScoreLabel(Label scoreLabel) {
+		this.scoreLabel = scoreLabel;
+	}
+	
+	
+
+
 	private Label titelLabel = new Label("SCORE TAFEL");
 
 

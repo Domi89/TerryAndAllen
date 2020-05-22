@@ -7,17 +7,15 @@ import java.util.ArrayList;
 import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
+import serializedClasses.Score;
 
 public class ServerThreadOutput extends Thread{
 	
 	private ObjectOutputStream outputStream;
-	private ArrayList<Message> history;
 	private Client client;
-	
-	
-	public ServerThreadOutput(ObjectOutputStream outputStream, ArrayList<Message> history, Client client) {
+	public ServerThreadOutput(ObjectOutputStream outputStream, Client client) {
+
 		this.outputStream = outputStream;
-		this.history = history;
 		this.client = client;
 
 	}
@@ -50,7 +48,7 @@ public class ServerThreadOutput extends Thread{
 
 	private void writeNewMessages() {
 		
-		for (Message message: history) {
+		for (Message message: GameStatus.getHistory()) {
 			if (message.getSent()) {
 			} else {
 				try {
@@ -108,6 +106,14 @@ public class ServerThreadOutput extends Thread{
 		}
 	}
 	
+	public void sendScore(Score s) {
+		try {
+			this.outputStream.writeObject(s);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void sendCards(ArrayList<Card> send) {
 		
