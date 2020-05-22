@@ -71,9 +71,12 @@ public class ClientThreadInput extends Thread{
 						
 					case "ArrayList":
 						ArrayList<Object> input = (ArrayList<Object>) this.inputObject;
-						String classN = input.getClass().getSimpleName();
 						
-						if(classN == "Card") {
+						String classN = input.get(0).getClass().getSimpleName();
+						
+						
+						if(classN.equals("Card")) {
+							System.out.println("classN "+classN);
 							ArrayList<Card> inputCards = (ArrayList<Card>) this.inputObject;
 							if (inputCards.size()==9) {
 								this.newCards(inputCards);
@@ -82,7 +85,8 @@ public class ClientThreadInput extends Thread{
 							}
 						}
 						
-						if(classN == "Client") {
+						if(classN.equals("Client")) {
+							System.out.println("classN "+classN);
 							ArrayList<Client> inputClients = (ArrayList<Client>) this.inputObject;
 							this.clientsClass(inputClients);				
 							
@@ -109,10 +113,12 @@ public class ClientThreadInput extends Thread{
 
 	private void clientsClass(ArrayList<Client> inputClients) {
 		this.clients.addAll(inputClients);
+		System.out.println("Clients: "+inputClients);
 	}
 
 	private void cardClass(Card card) {
 		System.out.println("Neue Karte gespielt von: "+card.getClient().getClientName()+" Karte: "+card);
+		
 		Connection.getCardsOnTable().add(card);
 		Connection.setNewCardToShow(true);
 	}

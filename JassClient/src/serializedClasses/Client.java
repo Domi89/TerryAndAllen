@@ -30,5 +30,7 @@ public class Client implements Serializable{
 	public void setPostition(int postition) {
 		this.postition = postition;
 	}
+	
+	
 
 }

@@ -65,6 +65,15 @@ public class Card implements Comparable<Card>, Serializable {
 		}
 		return i;
 	}
+	
+	public String getCardNr() {
+		
+		String suit = this.getSuit().name();
+		String rank = this.getRank().name();
+		
+		String cardNr ="/images/"+suit+" "+rank+".gif";
+		return cardNr;
+	}
 
 	public Boolean getSentToClient() {
 		return sentToClient;

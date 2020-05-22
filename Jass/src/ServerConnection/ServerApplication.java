@@ -89,9 +89,10 @@ public class ServerApplication {
                 }
             }
 
+            
+            
+            // überprüft ob alle Spieler verbunden sind
 			private void thread4PlayersConnectedStart() {
-				
-				
 				if (serverThreads.size()==Constants.MAX_PLAYERS && gameStatus == 0) {
 					Deck deck = new Deck();
 					int playerNumber = 0;
@@ -101,8 +102,6 @@ public class ServerApplication {
 					}
 					
 					for (ServerThread sT: serverThreads) {
-					
-						
 						ArrayList<Card> sendCards = new ArrayList<Card>();
 						
 						for(int i = 0; i<9; i++) {
@@ -118,6 +117,7 @@ public class ServerApplication {
 					}
 					gameStatus=1;
 					
+									
 					ArrayList<Client> clients = new ArrayList<Client>();
 					
 					for (ServerThread sT: serverThreads) {
@@ -168,9 +168,6 @@ public class ServerApplication {
 						
 						
 						if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
-							
-							
-							
 							
 							sT.getServerThreadOutput().sendCard(receivedCard);
 						}

@@ -16,7 +16,7 @@ public class JassClientViewCenterTisch extends GridPane{
 	private ArrayList<Image> images = new ArrayList<Image>();
 	private ArrayList<ImageView> imageViews = new ArrayList<ImageView>();
 	private ArrayList<Label> playerNames = new ArrayList<Label>();
-	
+	private VBox vBox0, vBox1, vBox2,vBox3;
 	
 	
 	public ArrayList<Label> getPlayerNames() {
@@ -74,14 +74,14 @@ public class JassClientViewCenterTisch extends GridPane{
 				playerNames.add(new Label("Player "+i));
 			}
 			
-			VBox vBox0 = new VBox();
-			VBox vBox2 = new VBox();
+			this.vBox0 = new VBox();
+			this.vBox2 = new VBox();
 			
-			vBox0.getChildren().addAll(imageViews.get(0), playerNames.get(0));
-			vBox2.getChildren().addAll(imageViews.get(2), playerNames.get(1));
+			this.vBox0.getChildren().addAll(imageViews.get(0), playerNames.get(0));
+			this.vBox2.getChildren().addAll(imageViews.get(2), playerNames.get(1));
 			
-			vBox0.setAlignment(Pos.CENTER);
-			vBox2.setAlignment(Pos.CENTER);
+			this.vBox0.setAlignment(Pos.CENTER);
+			this.vBox2.setAlignment(Pos.CENTER);
 			
 			this.add(vBox0, 1, 2);
 			this.add(vBox2, 1, 0);
@@ -96,26 +96,26 @@ public class JassClientViewCenterTisch extends GridPane{
 				
 			
 
-			VBox vBox2 = new VBox();
-			VBox vBox3 = new VBox();
-			VBox vBox0 = new VBox();
-			VBox vBox1 = new VBox();
+			this.vBox2 = new VBox();
+			this.vBox3 = new VBox();
+			this.vBox0 = new VBox();
+			this.vBox1 = new VBox();
 			
 			for(int i = 0; i<Connection.getPlayersCount(); i++) {
 				playerNames.add(new Label("Player "+i));
 			}
 			
-			vBox0.getChildren().addAll(imageViews.get(0), playerNames.get(0));
-			vBox1.getChildren().addAll(imageViews.get(1), playerNames.get(1));
-			vBox2.getChildren().addAll(imageViews.get(2), playerNames.get(2));
-			vBox3.getChildren().addAll(imageViews.get(3), playerNames.get(3));
+			this.vBox0.getChildren().addAll(imageViews.get(0), playerNames.get(0));
+			this.vBox1.getChildren().addAll(imageViews.get(1), playerNames.get(1));
+			this.vBox2.getChildren().addAll(imageViews.get(2), playerNames.get(2));
+			this.vBox3.getChildren().addAll(imageViews.get(3), playerNames.get(3));
 			
 			
 			
-			vBox0.setAlignment(Pos.CENTER);
-			vBox1.setAlignment(Pos.CENTER);
-			vBox2.setAlignment(Pos.CENTER);
-			vBox3.setAlignment(Pos.CENTER);
+			this.vBox0.setAlignment(Pos.CENTER);
+			this.vBox1.setAlignment(Pos.CENTER);
+			this.vBox2.setAlignment(Pos.CENTER);
+			this.vBox3.setAlignment(Pos.CENTER);
 			
 			
 			this.add(vBox2, 1, 0);
@@ -137,12 +137,14 @@ public class JassClientViewCenterTisch extends GridPane{
 	public void addCard(int position, String cardNr) {
 		Image image = new Image(cardNr,100,150,false,false); 
 		ImageView imageView = new ImageView(image);	
-		imageViews.set(position, imageView);
+	
 		
+		imageViews.set(position, imageView);
 		
 		if (Connection.getPlayersCount()==4) {
 			switch (position) {
-			case 0: 
+			case 0:
+
 				this.add(imageViews.get(position), 1, 2);
 				break;
 				
@@ -165,16 +167,22 @@ public class JassClientViewCenterTisch extends GridPane{
 		if (Connection.getPlayersCount()==2) {
 			switch (position) {
 			case 0: 
-				this.add(imageViews.get(position), 1, 2);
+				this.vBox0.getChildren().remove(0);
+				this.vBox0.getChildren().add(0, imageViews.get(position));
+		
+				
+			//	this.add(imageViews.get(position), 1, 2);
 				break;
 				
 			case 1: 
-
-				this.add(imageViews.get(position), 1, 0);
+				this.vBox2.getChildren().remove(0);
+				this.vBox2.getChildren().add(0, imageViews.get(position));
+				//this.add(imageViews.get(position), 1, 0);
 				break;
 			}
 			
 		}
+			
 				
 	}
 	
@@ -221,6 +229,17 @@ public class JassClientViewCenterTisch extends GridPane{
 			
 		}
 				
+	}
+	
+	public int getPosition(String clientName) {
+		int position = -1;
+		
+		for (int i = 0; i<playerNames.size();i++) {
+			if(playerNames.get(i).getText().equals(clientName)) {
+				position = i;
+			}
+		}
+		return position;
 	}
 	
 	

@@ -111,6 +111,11 @@
 
 }
 
+#background{
+
+	-fx-background-image: url(/images/backgroundLogin.jpg);
+
+}
 
 
 

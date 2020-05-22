@@ -189,7 +189,15 @@ public class JassClientController {
 	
 	
 	private void threadTischUpdater() { 
-		
+		if(Connection.getNewCardToShow()) {
+			Card playedCard = Connection.getCardsOnTable().get(Connection.getCardsOnTable().size()-1);
+			String cardPlayedFrom = playedCard.getClient().getClientName();
+			int positionToUpdate = this.view.getCenter().getTisch().getPosition(cardPlayedFrom);
+			
+			this.view.getCenter().getTisch().addCard(positionToUpdate, playedCard.getCardNr());
+
+			Connection.setNewCardToShow(false);
+		}
 
 		
 		
@@ -273,7 +281,7 @@ public class JassClientController {
 			       ImageView imageView = (ImageView) event.getSource();
 			       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
 			       
-			       view.getCenter().getTisch().addCard(0, imageView);
+			       view.getCenter().getTisch().addCard(0, cardNr);
 			       
 			     //  view.getCenter().getTisch().setBottom(imageView);
 			       sendSelectedCard(cardNr); 

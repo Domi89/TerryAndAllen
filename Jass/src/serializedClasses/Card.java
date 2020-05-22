@@ -6,11 +6,12 @@ public class Card implements Comparable<Card>, Serializable {
 	// h
 	private Suit suit;
 	private Rank rank;
-	private int position;
+	
 	//if Card is played, Client will added to the played card
 	private Client client = null;
 	private Boolean sentToClient = null;
 	private Boolean showedOnTable = false;
+	private int position;
 	
 	public Client getClient() {
 		return client;
@@ -63,6 +64,15 @@ public class Card implements Comparable<Card>, Serializable {
 			i=-1;
 		}
 		return i;
+	}
+	
+	public String getCardNr() {
+		
+		String suit = this.getSuit().name();
+		String rank = this.getRank().name();
+		
+		String cardNr ="/images/"+suit+" "+rank+".gif";
+		return cardNr;
 	}
 
 	public Boolean getSentToClient() {

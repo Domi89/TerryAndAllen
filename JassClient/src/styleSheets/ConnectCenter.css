@@ -2,10 +2,33 @@
 
 #invalid{
 	-fx-text-fill: red;
+	
+		-fx-font-size:15px;
+	-fx-padding: 15px;
+	-fx-border-color: darkgrey;
+	-fx-border-width: 1px;
+	-fx-border-style: solid;
+	-fx-alignment: center;
+	-fx-text-alignment: Left;
+	-fx-background-color:oldlace;
+	-fx-min-width: 250px;
+	-fx-max-width: 250px;
 }
 
 #normal{
-	-fx-text-fill: White;
+	-fx-text-fill: black;
+	
+	
+		-fx-font-size:15px;
+	-fx-padding: 15px;
+	-fx-border-color: darkgrey;
+	-fx-border-width: 1px;
+	-fx-border-style: solid;
+	-fx-alignment: center;
+	-fx-text-alignment: Left;
+	-fx-background-color:oldlace;
+	-fx-min-width: 250px;
+	-fx-max-width: 250px;
 }
 
 #conBut {

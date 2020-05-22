@@ -62,12 +62,14 @@ public class JassClientView {
 		chat = new JassClientViewChat();
 		center = new JassClientViewCenter();
 		
+		
+		
 		//Draft HBox
 		hbox= new HBox();
 		hbox.getChildren().add(chatField);
 		hbox.getChildren().add(chatButton);
 		
-		
+	
 		
 		//Setzten der Behälter in die BorderPane
 		this.root = new BorderPane();
@@ -78,7 +80,9 @@ public class JassClientView {
 		VBox rightBox = new VBox();
 		rightBox.getChildren().addAll(this.chat, this.score);
 		
-
+		this.root.setId("background");
+		this.root.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
+		
 		this.root.setTop(menBar);
 		
 		

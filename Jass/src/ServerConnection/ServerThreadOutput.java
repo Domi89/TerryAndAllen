@@ -124,7 +124,6 @@ public class ServerThreadOutput extends Thread{
 		
 		try {
 			this.outputStream.writeObject(send);
-			System.out.println("Gesendete Karten: "+send);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
