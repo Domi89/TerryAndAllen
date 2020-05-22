@@ -22,6 +22,7 @@ public class GameStatus {
 	
 	private static Rule rule = Rule.trumpf;
 	private static Suit trumpf = Suit.Eichle;
+	private static Client lastWinner = null;
 	
 	private static Boolean newCard = false;
 	private static Client lastPlayed = null;
@@ -41,7 +42,7 @@ public class GameStatus {
 		String scoreString = "";
 		
 		for (Client c: clients) {	
-			scoreString+=c.getClientName()+"\t"+c.getPointsBig()+"\n";
+			scoreString+="   "+c.getClientName()+"\t"+c.getPointsBig()+"\n";
 		}
 		
 		return scoreString;
@@ -72,16 +73,17 @@ public class GameStatus {
 	
 	public static Boolean smallRoundFinished() {
 		Boolean finished = false;
+		Client winner = null;
 		if (smallRound.getCards().size()==Constants.MAX_PLAYERS) {
 			int points = smallRound.calculatePoints();
-			Client winner = smallRound.calculateWinner();
+			winner = smallRound.calculateWinner();
 			bigRound.addSmallRounds(smallRound);
 			smallRound = new SmallRound();
 			finished = true;
 			
 			for(Client c: clients) {
 				if(c.getClientName().equals(winner.getClientName())) {
-					System.out.println("WIXENDE HURE: ClientNAME"+c.getClientName()+"POINTS"+points);
+					System.out.println("ClientNAME"+c.getClientName()+"POINTS"+points);
 					
 					c.addPointsSmall(points);
 					c.addPointsBig(points);
@@ -89,7 +91,10 @@ public class GameStatus {
 			}
 			
 			
+			
 		}
+		setLastWinner(winner);		
+		
 		return finished;
 	}
 
@@ -163,5 +168,13 @@ public class GameStatus {
 
 	public static void setClients(ArrayList<Client> clients) {
 		GameStatus.clients = clients;
+	}
+
+	public static Client getLastWinner() {
+		return lastWinner;
+	}
+
+	public static void setLastWinner(Client lastWinner) {
+		GameStatus.lastWinner = lastWinner;
 	}
 }

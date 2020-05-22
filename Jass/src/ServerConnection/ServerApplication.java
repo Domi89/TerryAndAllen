@@ -48,13 +48,9 @@ public class ServerApplication {
             }
 
         });
-        threadWriteMessages.setDaemon(true);
-        threadWriteMessages.start();
-		
-		
-        
-        
-        Thread threadAllPlayersConnected = new Thread(new Runnable() {
+	    
+	    
+Thread threadAllPlayersConnected = new Thread(new Runnable() {
             
             public void run() {
                 Runnable threadAllPlayersConnected = new Runnable() {
@@ -116,105 +112,109 @@ public class ServerApplication {
 				}
 			}
         });
-        threadAllPlayersConnected.setDaemon(true);
-        threadAllPlayersConnected.start();
-		
-        
-        //------------------------
-        
-        
-        Thread newCardReceivedFromClient = new Thread(new Runnable() {
-            
+
+
+
+
+Thread newCardReceivedFromClient = new Thread(new Runnable() {
+    
+    public void run() {
+        Runnable newCardReceivedFromClient = new Runnable() {
+
             public void run() {
-                Runnable newCardReceivedFromClient = new Runnable() {
-
-                    public void run() {
-                    	newCardReceivedFromClient();
-                    }
-                };
-                while (true) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                    }
-
-                    // UI update is run on the Application thread
-                    newCardReceivedFromClient();
-                }
+            	newCardReceivedFromClient();
+            }
+        };
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
             }
 
-			private void newCardReceivedFromClient() {
-				
-				if(GameStatus.getNewCard()) {
-					
-					for (ServerThread sT: serverThreads) {
-						if(GameStatus.getSmallRound().getCards().size()>0) {
-							Card receivedCard = GameStatus.getSmallRound().getCards().get(GameStatus.getSmallRound().getCards().size()-1);
-							if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
-								sT.getServerThreadOutput().sendCard(receivedCard);
-							}
-						}
-				
-						//TODO DELETE
-					}
-					GameStatus.setNewCard(false);
-					
-					Boolean finished = GameStatus.smallRoundFinished();
-				
-					
-					
-					// send Message to Next Player				
+            // UI update is run on the Application thread
+            newCardReceivedFromClient();
+        }
+    }
+
+	private void newCardReceivedFromClient() {
+		
+		if(GameStatus.getNewCard()) {
 			
-					sendYourTurnToNextPlayer();
-					
-
+			for (ServerThread sT: serverThreads) {
+				if(GameStatus.getSmallRound().getCards().size()>0) {
+					Card receivedCard = GameStatus.getSmallRound().getCards().get(GameStatus.getSmallRound().getCards().size()-1);
+					if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
+						sT.getServerThreadOutput().sendCard(receivedCard);
+					}
 				}
-				
-				
-	
-				
-			}
-
-        });
-        newCardReceivedFromClient.setDaemon(true);
-        newCardReceivedFromClient.start();
 		
-        
-        
-        Thread sendScoreToClients = new Thread(new Runnable() {
-            
-            public void run() {
-                Runnable sendScoreToClients = new Runnable() {
+				//TODO DELETE
+			}
+			GameStatus.setNewCard(false);
+			
+			Boolean finished = GameStatus.smallRoundFinished();
+		
+			
+			
+			// send Message to Next Player				
+	
+			sendYourTurnToNextPlayer();
+			
 
-                    public void run() {
-                    	sendScoreToClients();
-                    }
-                };
-                while (true) {
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException ex) {
-                    }
+		}
+		
+		
 
-                    // UI update is run on the Application thread
-                    sendScoreToClients();
-                }
-            }
+		
+	}
 
-    		private void sendScoreToClients() {
-    			
-    			for (ServerThread sT: serverThreads) {
-    				Score score = new Score(GameStatus.getScore());
-    				sT.getServerThreadOutput().sendScore(score);
-   
-    			}
-    			
-    			
-    		}
+	});
 
-        });
-        sendScoreToClients.setDaemon(true);
-        sendScoreToClients.start();
+
+
+
+	Thread sendScoreToClients = new Thread(new Runnable() {
+	    
+	    public void run() {
+	        Runnable sendScoreToClients = new Runnable() {
+	
+	            public void run() {
+	            	sendScoreToClients();
+	            }
+	        };
+	        while (true) {
+	            try {
+	                Thread.sleep(5000);
+	            } catch (InterruptedException ex) {
+	            }
+	
+	            // UI update is run on the Application thread
+	            
+	            
+	            sendScoreToClients();
+	        }
+	    }
+	
+		private void sendScoreToClients() {
+			
+			for (ServerThread sT: serverThreads) {
+				Score score = new Score(GameStatus.getScore());
+				sT.getServerThreadOutput().sendScore(score);
+	
+			}
+			
+			
+		}
+	
+	});
+	    
+	    
+
+	    threadWriteMessages.setDaemon(true);
+        threadWriteMessages.start();
+		
+		
+
     	        
         
         
@@ -228,7 +228,7 @@ public class ServerApplication {
 		
 		try(ServerSocket serverSocket = new ServerSocket(45138)){
 			
-			while(true) {
+			while(serverThreads.size()<Constants.MAX_PLAYERS) {
 				
 				Socket socket = serverSocket.accept();
 				
@@ -236,6 +236,22 @@ public class ServerApplication {
 				serverThreads.get(serverThreads.size()-1).start();
 	
 			}
+			
+	        threadAllPlayersConnected.setDaemon(true);
+	        threadAllPlayersConnected.start();
+	        
+	        
+	    	newCardReceivedFromClient.setDaemon(true);
+	    	newCardReceivedFromClient.start();
+	        
+	  
+	        sendScoreToClients.setDaemon(true);
+	        sendScoreToClients.start();
+			
+			
+			
+			
+			
 			
 		} catch(IOException e){
 			System.out.println("Serverexception: "+e.getMessage());			
@@ -250,21 +266,34 @@ public class ServerApplication {
 	
 	public void sendYourTurnToNextPlayer() {
 		
-		Iterator<ServerThread> iti = serverThreads.iterator();
-		
-		Client nextPlayer = null;
-		
-		while (iti.hasNext()) {
-			if(iti.next().getClient().getClientName().equals(GameStatus.getLastPlayed().getClientName())) {
-				if(iti.hasNext()) {
-					nextPlayer = iti.next().getClient();
-				} else {
-					nextPlayer = serverThreads.get(0).getClient();
+		if(GameStatus.getLastWinner()!=null) {
+			
+			Client nextPlayer = GameStatus.getLastWinner();
+
+			getServerThreadByClientName(nextPlayer.getClientName()).getServerThreadOutput().sendString("yourTurn");
+			
+			GameStatus.setLastWinner(null);
+			
+		} else {
+			Iterator<ServerThread> iti = serverThreads.iterator();
+			
+			Client nextPlayer = null;
+			
+			while (iti.hasNext()) {
+				if(iti.next().getClient().getClientName().equals(GameStatus.getLastPlayed().getClientName())) {
+					if(iti.hasNext()) {
+						nextPlayer = iti.next().getClient();
+					} else {
+						nextPlayer = serverThreads.get(0).getClient();
+					}
 				}
 			}
+			
+			getServerThreadByClientName(nextPlayer.getClientName()).getServerThreadOutput().sendString("yourTurn");
 		}
 		
-		getServerThreadByClientName(nextPlayer.getClientName()).getServerThreadOutput().sendString("yourTurn");
+		
+	
 		
 		
 	}
