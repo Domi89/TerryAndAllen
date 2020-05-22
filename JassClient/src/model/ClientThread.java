@@ -30,14 +30,16 @@ public class ClientThread extends Thread{
 	private int port;
 	private ObservableList<Card> cards;
 	private ObservableList<Integer> updatedCards;
+	private ObservableList<Client> clients;
 	
 	
-	public ClientThread (Client client, String ip, int port, ObservableList<Card> cards, ObservableList<Integer> updatedCards) {
+	public ClientThread (Client client, String ip, int port, ObservableList<Card> cards, ObservableList<Integer> updatedCards, ObservableList<Client> clients) {
 		this.client = client;
 		this.ip = ip;
 		this.port = port;
 		this.cards = cards;
 		this.updatedCards = updatedCards;
+		this.clients = clients;
 	}
 	
 	
@@ -56,7 +58,7 @@ public class ClientThread extends Thread{
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 
-					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.cards, this.updatedCards);
+					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.cards, this.updatedCards, this.clients);
 					this.clientThreadInput.start();
 					
 					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client);

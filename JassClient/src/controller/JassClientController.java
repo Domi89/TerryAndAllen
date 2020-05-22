@@ -87,6 +87,50 @@ public class JassClientController {
         
         
         
+        Thread threadTischUpdater = new Thread(new Runnable() {
+            public void run() {
+                Runnable threadTischUpdater = new Runnable() {
+                    public void run() {
+                    	threadTischUpdater();
+                    }
+                };
+                while (true) {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    Platform.runLater(threadTischUpdater);
+                }
+            }
+        });
+        threadTischUpdater.setDaemon(true);
+        threadTischUpdater.start(); 
+        
+        
+        Thread threadClientsUpdater = new Thread(new Runnable() {
+            public void run() {
+                Runnable threadClientsUpdater = new Runnable() {
+                    public void run() {
+                    	threadClientsUpdater();
+                    }
+                };
+                while (true) {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    Platform.runLater(threadClientsUpdater);
+                }
+            }
+        });
+        threadClientsUpdater.setDaemon(true);
+        threadClientsUpdater.start(); 
+        
+        
         
         
         
@@ -122,6 +166,34 @@ public class JassClientController {
 		
 	}
 	
+	
+	private void threadClientsUpdater() { 
+		
+		if (this.model.getClients().size()>0) {
+			if (Connection.getPlayersCount()==2) {
+				
+				if(this.model.getClient().getClientName().equals(this.model.getClients().get(0).getClientName())){
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(0).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(1).getClientName());
+				} else {
+					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(0).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(1).getClientName());
+				}
+				
+				
+			}
+		}
+		
+		
+	}
+	
+	
+	private void threadTischUpdater() { 
+		
+
+		
+		
+	}
 	
 	
 
@@ -200,7 +272,10 @@ public class JassClientController {
 			     
 			       ImageView imageView = (ImageView) event.getSource();
 			       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
-			       view.getCenter().getTisch().setBottom(imageView);
+			       
+			       view.getCenter().getTisch().addCard(0, imageView);
+			       
+			     //  view.getCenter().getTisch().setBottom(imageView);
 			       sendSelectedCard(cardNr); 
 			       Connection.setYourTurn(false);
 		    	 }

@@ -14,10 +14,12 @@ public class ServerThreadOutput extends Thread{
 	private ArrayList<Message> history;
 	private Client client;
 	
+	
 	public ServerThreadOutput(ObjectOutputStream outputStream, ArrayList<Message> history, Client client) {
 		this.outputStream = outputStream;
 		this.history = history;
 		this.client = client;
+
 	}
 	
 	public void run() {
@@ -84,6 +86,19 @@ public class ServerThreadOutput extends Thread{
 			
 	}
 	
+	
+	public void sendClient(Client c) {
+		
+		try {
+			this.outputStream.writeObject(c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+	}
+	
+	
 	public void sendString(String s) {
 		try {
 			this.outputStream.writeObject(s);
@@ -95,6 +110,17 @@ public class ServerThreadOutput extends Thread{
 	
 
 	public void sendCards(ArrayList<Card> send) {
+		
+		try {
+			this.outputStream.writeObject(send);
+			System.out.println("Gesendete Karten: "+send);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+	}
+	public void sendClients(ArrayList<Client> send) {
 		
 		try {
 			this.outputStream.writeObject(send);

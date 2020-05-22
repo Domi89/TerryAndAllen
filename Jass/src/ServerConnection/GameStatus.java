@@ -17,6 +17,11 @@ public class GameStatus {
 	
 	private static Client lastPlayed = null;
 	
+	private static Boolean currentSmallRoundFinished = false;
+	private static Boolean currentBigRoundFinished = false;
+	private static Boolean currentGameFinished = false;
+	
+	
 	public GameStatus() {
 		
 	}
@@ -55,7 +60,7 @@ public class GameStatus {
 	
 	public static void addcurrentSmallRound(Card card) {
 		GameStatus.currentSmallRound.add(card);
-		GameStatus.lastPlayed = card.getClient();
+		GameStatus.setLastPlayed(card.getClient());
 		GameStatus.setNewCard(true);
 	}
 
@@ -68,5 +73,37 @@ public class GameStatus {
 
 	
 	
+	}
+
+	public static Client getLastPlayed() {
+		return lastPlayed;
+	}
+
+	public static void setLastPlayed(Client lastPlayed) {
+		GameStatus.lastPlayed = lastPlayed;
+	}
+
+	public static Boolean getCurrentGameFinished() {
+		return currentGameFinished;
+	}
+
+	public static void setCurrentGameFinished(Boolean currentGameFinished) {
+		GameStatus.currentGameFinished = currentGameFinished;
+	}
+
+	public static Boolean getCurrentBigRoundFinished() {
+		return currentBigRoundFinished;
+	}
+
+	public static void setCurrentBigRoundFinished(Boolean currentBigRoundFinished) {
+		GameStatus.currentBigRoundFinished = currentBigRoundFinished;
+	}
+
+	public static Boolean getCurrentSmallRoundFinished() {
+		return currentSmallRoundFinished;
+	}
+
+	public static void setCurrentSmallRoundFinished(Boolean currentSmallRoundFinished) {
+		GameStatus.currentSmallRoundFinished = currentSmallRoundFinished;
 	}
 }

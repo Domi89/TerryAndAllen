@@ -15,10 +15,17 @@ public class ServerThreadInput extends Thread{
 	private ObjectInputStream inputStream;
 	private Object inputObject;
 	private ArrayList<Card> currentSmallRound;
-
 	private ArrayList<Message> history;
-	private Client client;
+	private volatile Client client;
 	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public ServerThreadInput(ObjectInputStream inputStream, ArrayList<Message> history, Client client) {
 		this.inputStream = inputStream;
 		this.history = history;
@@ -81,6 +88,7 @@ public class ServerThreadInput extends Thread{
 		
 		receivedCard.setClient(this.client);
 		GameStatus.addcurrentSmallRound(receivedCard);
+		GameStatus.setLastPlayed(this.client);
 		
 		System.out.println("Received Card from Client: "+receivedCard);
 		

@@ -7,11 +7,13 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import BusinessLayer.Constants;
 import BusinessLayer.Deck;
 import BusinessLayer.Rule;
 import serializedClasses.Card;
+import serializedClasses.Client;
 import serializedClasses.Message;
 import serializedClasses.Suit;
 
@@ -94,6 +96,9 @@ public class ServerApplication {
 					Deck deck = new Deck();
 					int playerNumber = 0;
 					
+					for (ServerThread sT: serverThreads) {
+						sT.setClient();
+					}
 					
 					for (ServerThread sT: serverThreads) {
 					
@@ -109,16 +114,23 @@ public class ServerApplication {
 						if (playerNumber==0) {
 							sT.getServerThreadOutput().sendString("yourTurn");
 						}
-						
 						playerNumber++;
-						
+					}
+					gameStatus=1;
+					
+					ArrayList<Client> clients = new ArrayList<Client>();
+					
+					for (ServerThread sT: serverThreads) {
+						clients.add(sT.getClient());
+					}
+					for (ServerThread sT: serverThreads) {
+						sT.getServerThreadOutput().sendClients(clients);
 					}
 					
-					gameStatus = 1;
+					
+					
 				}
-				
 			}
-
         });
         thread4PlayersConnected.setDaemon(true);
         thread4PlayersConnected.start();
@@ -154,16 +166,29 @@ public class ServerApplication {
 					for (ServerThread sT: serverThreads) {
 						Card receivedCard = GameStatus.getCurrentSmallRound().get(GameStatus.getCurrentSmallRound().size()-1);
 						
-						System.out.println("KARTE VON: "+receivedCard.getClient().getClientName());
-						System.out.println("KARTE VON: "+sT.getClient().getClientName());
 						
-						//if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
-						//	sT.getServerThreadOutput().sendCard(receivedCard);
-						//}
+						if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
+							
+							
+							
+							
+							sT.getServerThreadOutput().sendCard(receivedCard);
+						}
 					
 					}
 					GameStatus.setNewCard(false);
+				
+					
+					// send Message to Next Player				
+			
+					sendYourTurnToNextPlayer();
+					
+
 				}
+				
+				
+		
+				
 				
 			}
 
@@ -198,6 +223,27 @@ public class ServerApplication {
 	public ArrayList<ServerThread> getServerThreads() {
 		return serverThreads;
 	}
+	
+	public void sendYourTurnToNextPlayer() {
+		
+		Iterator<ServerThread> iti = serverThreads.iterator();
+		
+		Client nextPlayer = null;
+		
+		while (iti.hasNext()) {
+			if(iti.next().getClient().getClientName().equals(GameStatus.getLastPlayed().getClientName())) {
+				if(iti.hasNext()) {
+					nextPlayer = iti.next().getClient();
+				} else {
+					nextPlayer = serverThreads.get(0).getClient();
+				}
+			}
+		}
+		
+		getServerThreadByClientName(nextPlayer.getClientName()).getServerThreadOutput().sendString("yourTurn");
+		
+		
+	}
 
 	public void setServerThreads(ArrayList<ServerThread> serverThreads) {
 		this.serverThreads = serverThreads;
@@ -213,7 +259,7 @@ public class ServerApplication {
 			}
 		} 
 		return returnThread;
-		
+		 
 	}
 	
 	
@@ -235,6 +281,7 @@ public class ServerApplication {
 	
 		
 	}
+
 
 	
 	
