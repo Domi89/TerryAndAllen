@@ -30,7 +30,7 @@ public class JassClientConnectCenter {
 
 	
 	public JassClientConnectCenter(Stage stage, JassClientModel model) {
-		//comment
+		//commen
 		this.model = model;
 		
 		getClass().getResource("../styleSheets/ConnectCenter.css").toExternalForm();
