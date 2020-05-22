@@ -1,6 +1,8 @@
 package view;
 
 import application.JassClientApplicationGameNewStage;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,23 +15,26 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.JassClientModel;
 
 public class JassClientConnectCenter {
                
     private JassClientModel model;
     private Scene scene;
-	private Label benutzer, iP, port;
+	private Label welcome1, welcome2, benutzer, iP, port;
 	private TextField benutzerText, ipText, portText;
 	private Button connect;
 	private BorderPane root;
 	private Stage stage;
+
 	
 	public JassClientConnectCenter(Stage stage, JassClientModel model) {
 		
 		this.model = model;
-
-
+		
+		getClass().getResource("../styleSheets/ConnectCenter.css").toExternalForm();
+		
         //Create the fields for the Connection 
         this.benutzer = new Label("Username: ");
        	this.iP = new Label ("IP: ");
@@ -42,8 +47,11 @@ public class JassClientConnectCenter {
         this.portText = new TextField();
         this.portText.setText("45138");
         //Connection BUtton
-        this.connect = new Button ("Verbinden");
-       
+         this.connect = new Button ("Verbinden");
+
+      
+        this.welcome1 = new Label("Grüezi und Wilkommen zu ");
+        this.welcome2 = new Label("Terry & Alans Online Jass");
         
         //TODO wieder auf TRUE setzen
         this.connect.setDisable(false);
@@ -51,11 +59,30 @@ public class JassClientConnectCenter {
         
         VBox labelBox = new VBox();
         VBox textBox = new VBox();
+       
+        this.connect.setId("conBut");
+        hBox.setId("window");
+        this.benutzer.setId("labels");
+        this.iP.setId("labels");
+        this.port.setId("labels");
+        this.benutzerText.setId("textField");
+        this.portText.setId("textField"); 
+        this.ipText.setId("textField");
+        this.welcome1.setId("welcometext");
+        this.welcome2.setId("welcometext");
+        
+        
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), welcome1);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.5);
+        fadeTransition.setCycleCount(Animation.INDEFINITE);
+        fadeTransition.play();
+        
         
         //Adding IP label and field
-        labelBox.getChildren().addAll(benutzer,iP,port);
+        labelBox.getChildren().addAll(welcome1, benutzer,iP,port);
         //adding port label and field
-        textBox.getChildren().addAll(benutzerText, ipText, portText, connect);
+        textBox.getChildren().addAll(welcome2, benutzerText, ipText, portText, connect);
     
         hBox.getChildren().addAll(labelBox, textBox);
         
@@ -68,6 +95,7 @@ public class JassClientConnectCenter {
         
         this.scene = new Scene(this.root);
         this.scene.getStylesheets().add(getClass().getResource("../styleSheets/ConnectCenter.css").toExternalForm());
+        this.connect.setId("conBut");
         
         Image icon = new Image(getClass().getResourceAsStream("../images/Schelle.png"));
         
