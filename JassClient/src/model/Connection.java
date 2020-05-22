@@ -17,7 +17,7 @@ public class Connection {
 	
 	
 	
-	private static int playersCount = 2;
+	private static int playersCount = 4;
 	
 	public static int getPlayersCount() {
 		return playersCount;

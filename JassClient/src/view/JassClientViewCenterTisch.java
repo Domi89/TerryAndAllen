@@ -46,10 +46,6 @@ public class JassClientViewCenterTisch extends GridPane{
 		ImageView imageView4 = new ImageView(image4);	
 		*/
 		
-		
-	
-		
-		
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
@@ -144,21 +140,22 @@ public class JassClientViewCenterTisch extends GridPane{
 		if (Connection.getPlayersCount()==4) {
 			switch (position) {
 			case 0:
-
-				this.add(imageViews.get(position), 1, 2);
+				this.vBox0.getChildren().remove(0);
+				this.vBox0.getChildren().add(0, imageViews.get(position));
 				break;
 				
 			case 1: 
-
-				this.add(imageViews.get(position), 2, 1);
+				this.vBox1.getChildren().remove(0);
+				this.vBox1.getChildren().add(0, imageViews.get(position));
 				break;	
 			case 2: 
-
-				this.add(imageViews.get(position), 1, 0);
+				this.vBox2.getChildren().remove(0);
+				this.vBox2.getChildren().add(0, imageViews.get(position));
 				break;
 			case 3: 
 
-				this.add(imageViews.get(position), 0, 1);
+				this.vBox3.getChildren().remove(0);
+				this.vBox3.getChildren().add(0, imageViews.get(position));
 				break;
 			}
 			

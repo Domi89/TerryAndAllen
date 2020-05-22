@@ -69,13 +69,13 @@ public class ServerApplication {
 		
         
         
-        Thread thread4PlayersConnected = new Thread(new Runnable() {
+        Thread threadAllPlayersConnected = new Thread(new Runnable() {
             
             public void run() {
-                Runnable thread4PlayersConnected = new Runnable() {
+                Runnable threadAllPlayersConnected = new Runnable() {
 
                     public void run() {
-                    	thread4PlayersConnectedStart();
+                    	threadAllPlayersConnectedStart();
                     }
                 };
                 while (true) {
@@ -85,14 +85,14 @@ public class ServerApplication {
                     }
 
                     // UI update is run on the Application thread
-                    thread4PlayersConnectedStart();
+                    threadAllPlayersConnectedStart();
                 }
             }
 
             
             
             // überprüft ob alle Spieler verbunden sind
-			private void thread4PlayersConnectedStart() {
+			private void threadAllPlayersConnectedStart() {
 				if (serverThreads.size()==Constants.MAX_PLAYERS && gameStatus == 0) {
 					Deck deck = new Deck();
 					int playerNumber = 0;
@@ -132,8 +132,8 @@ public class ServerApplication {
 				}
 			}
         });
-        thread4PlayersConnected.setDaemon(true);
-        thread4PlayersConnected.start();
+        threadAllPlayersConnected.setDaemon(true);
+        threadAllPlayersConnected.start();
 		
         
         //------------------------

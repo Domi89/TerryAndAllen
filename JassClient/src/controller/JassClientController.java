@@ -171,7 +171,6 @@ public class JassClientController {
 		
 		if (this.model.getClients().size()>0) {
 			if (Connection.getPlayersCount()==2) {
-				
 				if(this.model.getClient().getClientName().equals(this.model.getClients().get(0).getClientName())){
 					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(0).getClientName());
 					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(1).getClientName());
@@ -179,9 +178,51 @@ public class JassClientController {
 					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(0).getClientName());
 					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(1).getClientName());
 				}
-				
-				
 			}
+			if (Connection.getPlayersCount()==4) {
+				if(this.model.getClient().getClientName().equals(this.model.getClients().get(0).getClientName())){
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(0).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(1).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(2).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(3).setText(this.model.getClients().get(3).getClientName());
+				} 
+				if(this.model.getClient().getClientName().equals(this.model.getClients().get(1).getClientName())){
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(1).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(2).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(3).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(3).setText(this.model.getClients().get(0).getClientName());
+				} 
+				if(this.model.getClient().getClientName().equals(this.model.getClients().get(2).getClientName())){
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(2).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(3).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(0).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(3).setText(this.model.getClients().get(1).getClientName());
+				} 
+				if(this.model.getClient().getClientName().equals(this.model.getClients().get(3).getClientName())){
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(3).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(0).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(1).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(3).setText(this.model.getClients().get(2).getClientName());
+				} 
+			}
+			if (Connection.getPlayersCount()==3) {
+				if(this.model.getClient().getClientName().equals(this.model.getClients().get(0).getClientName())){
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(0).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(1).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(2).getClientName());
+				} 
+				if(this.model.getClient().getClientName().equals(this.model.getClients().get(1).getClientName())){
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(1).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(2).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(3).setText(this.model.getClients().get(0).getClientName());
+				} 
+				if(this.model.getClient().getClientName().equals(this.model.getClients().get(2).getClientName())){
+					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(2).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(0).getClientName());
+					this.view.getCenter().getTisch().getPlayerNames().get(3).setText(this.model.getClients().get(1).getClientName());
+				} 
+			}
+			
 		}
 		
 		
