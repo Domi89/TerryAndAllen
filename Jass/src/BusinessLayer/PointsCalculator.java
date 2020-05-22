@@ -1,5 +1,6 @@
 package BusinessLayer;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 import serializedClasses.Card;
@@ -29,6 +30,15 @@ public class PointsCalculator {
 		return points;
 	}
 	
+	public static int calculatePoints(ArrayList<Card> cards, Rule rule, Suit trumpf) {
+		Stack<Card> copy = new Stack<Card>();
+		for(Card c: cards) {
+			copy.push(c);
+		}
+		return calculatePoints(copy, rule, trumpf);
+		
+	}
+	
 	public static int calculatePoints(Stack<Card> cards, Rule rule) {
 		int points = 0;
 		
@@ -47,6 +57,15 @@ public class PointsCalculator {
 				System.out.println("Sth went wrong within PointsCalculator");
 		}
 		return points;
+	}
+	
+	
+	public static int calculatePoints(ArrayList<Card> cards, Rule rule) {
+		Stack<Card> copy = new Stack<Card>();
+		for(Card c: cards) {
+			copy.push(c);
+		}
+		return calculatePoints(copy, rule);
 	}
 	
 	

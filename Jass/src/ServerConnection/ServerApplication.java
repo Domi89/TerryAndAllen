@@ -25,7 +25,7 @@ public class ServerApplication {
 	
 	private ArrayList<Message> history;
 	//
-
+	
 	
 	private Rule rule;
 	private Suit trumpf;
@@ -175,6 +175,7 @@ public class ServerApplication {
 					}
 					GameStatus.setNewCard(false);
 				
+					
 					
 					// send Message to Next Player				
 			

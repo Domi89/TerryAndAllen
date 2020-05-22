@@ -3,23 +3,29 @@ package BusinessLayer;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import serializedClasses.Card;
+import serializedClasses.Rank;
+import serializedClasses.Suit;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
 		Deck deck = new Deck();
 		//System.out.println(deck);
+		
+		/*
 		System.out.println("-------------------");
 		
 		int i = PointsCalculator.calculatePoints(deck.getCards(), Rule.undeUfe);
 		System.out.println(i);
 		
 		System.out.println("-------------------");
+		*/
 		
 		
 		
 		
-		/*
 		// SORTING TEST SUCCESS
 		
 		Card c = new Card(Suit.Rose, Rank.Ass);
@@ -38,7 +44,7 @@ public class Main {
 		Collections.sort(cards, new CardComparator(Rule.obeAbe, Suit.Eichle, Suit.Eichle));
 		System.out.println("----------------");
 		System.out.println(cards);
-		*/
+		
 		
 	
 		

@@ -2,24 +2,49 @@ package ServerConnection;
 
 import java.util.ArrayList;
 
+import BusinessLayer.BigRound;
+import BusinessLayer.Rule;
+import BusinessLayer.SmallRound;
 import serializedClasses.Card;
 import serializedClasses.Client;
+import serializedClasses.Suit;
 
 public class GameStatus {
 	
-	private static ArrayList<Card> currentSmallRound = new ArrayList<Card>();
+	private static SmallRound smallRound = new SmallRound();
+	private static BigRound bigRound = new BigRound();
 	
+	private static Rule rule = Rule.obeAbe;
+	private static Suit trumpf = null;
+	
+	private static Boolean newCard = false;
+	private static Client lastPlayed = null;
+	private static Boolean currentGameFinished = false;
+	
+	//private static Boolean currentSmallRoundFinished = false;
+
+	//private static Boolean currentBigRoundFinished = false;
+	
+	
+	
+	private static ArrayList<Card> currentSmallRound = new ArrayList<Card>();
 	private static ArrayList<Card> currentBigRound = new ArrayList<Card>();
+	
+	
+	
+	
+	
 	
 	private static ArrayList<Card> currentGame = new ArrayList<Card>();
 	
-	private static Boolean newCard = false;
+
 	
-	private static Client lastPlayed = null;
+
 	
-	private static Boolean currentSmallRoundFinished = false;
-	private static Boolean currentBigRoundFinished = false;
-	private static Boolean currentGameFinished = false;
+	
+
+	
+
 	
 	
 	public GameStatus() {
@@ -91,6 +116,7 @@ public class GameStatus {
 		GameStatus.currentGameFinished = currentGameFinished;
 	}
 
+	/*
 	public static Boolean getCurrentBigRoundFinished() {
 		return currentBigRoundFinished;
 	}
@@ -98,12 +124,28 @@ public class GameStatus {
 	public static void setCurrentBigRoundFinished(Boolean currentBigRoundFinished) {
 		GameStatus.currentBigRoundFinished = currentBigRoundFinished;
 	}
+*/
+	//public static Boolean getCurrentSmallRoundFinished() {
+	//	return currentSmallRoundFinished;
+	//}
 
-	public static Boolean getCurrentSmallRoundFinished() {
-		return currentSmallRoundFinished;
+	//public static void setCurrentSmallRoundFinished(Boolean currentSmallRoundFinished) {
+	//	GameStatus.currentSmallRoundFinished = currentSmallRoundFinished;
+	//}
+
+	public static Suit getTrumpf() {
+		return trumpf;
 	}
 
-	public static void setCurrentSmallRoundFinished(Boolean currentSmallRoundFinished) {
-		GameStatus.currentSmallRoundFinished = currentSmallRoundFinished;
+	public static void setTrumpf(Suit trumpf) {
+		GameStatus.trumpf = trumpf;
+	}
+
+	public static Rule getRule() {
+		return rule;
+	}
+
+	public static void setRule(Rule rule) {
+		GameStatus.rule = rule;
 	}
 }
