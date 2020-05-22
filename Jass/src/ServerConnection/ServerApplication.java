@@ -148,20 +148,18 @@ public class ServerApplication {
 				if(GameStatus.getNewCard()) {
 					
 					for (ServerThread sT: serverThreads) {
-						
-						Card receivedCard = GameStatus.getSmallRound().getCards().get(GameStatus.getSmallRound().getCards().size()-1);
-						
-						
-						if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
-							
-							sT.getServerThreadOutput().sendCard(receivedCard);
+						if(GameStatus.getSmallRound().getCards().size()>0) {
+							Card receivedCard = GameStatus.getSmallRound().getCards().get(GameStatus.getSmallRound().getCards().size()-1);
+							if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
+								sT.getServerThreadOutput().sendCard(receivedCard);
+							}
 						}
+				
 						//TODO DELETE
-						
-						
-						
 					}
 					GameStatus.setNewCard(false);
+					
+					Boolean finished = GameStatus.smallRoundFinished();
 				
 					
 					
@@ -206,8 +204,8 @@ public class ServerApplication {
     		private void sendScoreToClients() {
     			
     			for (ServerThread sT: serverThreads) {
-    				
-    				sT.getServerThreadOutput().sendString(GameStatus.getScore());
+    				Score score = new Score(GameStatus.getScore());
+    				sT.getServerThreadOutput().sendScore(score);
    
     			}
     			

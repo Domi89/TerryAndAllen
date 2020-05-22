@@ -13,6 +13,7 @@ public class BigRound {
 	
 	private ArrayList<SmallRound> smallRounds = new ArrayList<SmallRound>();
 	private boolean finished = false;
+	
 	private ArrayList<Client> clients = new ArrayList<Client>();
 	
 	public ArrayList<Client> getClients() {
@@ -66,7 +67,33 @@ public class BigRound {
 		for(Card c: sm.getCards()) {
 			this.clients.add(c.getClient());
 		}
+		
+		
+		
+		if(Constants.MAX_PLAYERS==2) {
+			int cardsPlayed = this.smallRounds.size()*2;
+			if(cardsPlayed==18) {
+				bigRoundFinished();
+			}
+		}
+		if(Constants.MAX_PLAYERS==3) {
+			int cardsPlayed3 = this.smallRounds.size()*3;
+			if(cardsPlayed3==27) {
+				bigRoundFinished();
+			}
+		}
+		if(Constants.MAX_PLAYERS==4) {
+			int cardsPlayed4 = this.smallRounds.size()*4;
+			if(cardsPlayed4==36) {
+				bigRoundFinished();
+			}
+		}
+	}
 	
+	public void bigRoundFinished() {
+		
+		
+		
 	}
 	
 	

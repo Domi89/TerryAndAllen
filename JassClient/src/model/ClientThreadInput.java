@@ -61,7 +61,6 @@ public class ClientThreadInput extends Thread{
 						break;
 						
 					case "Card":
-					
 						Card card = (Card) this.inputObject;
 						this.cardClass(card);
 						break;
@@ -169,6 +168,7 @@ public class ClientThreadInput extends Thread{
 	
 	private void scoreClass(Score score) {
 		
+		System.out.println("Score inputStream "+score);
 		this.scores.add(score);
 		
 		

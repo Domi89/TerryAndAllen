@@ -22,6 +22,7 @@ public class SmallRound{
 		this.rule = GameStatus.getRule();
 		this.trumpf = GameStatus.getTrumpf();
 		points = PointsCalculator.calculatePoints(this.cards, rule, trumpf);
+		
 		return points;
 	}
 	
@@ -36,7 +37,7 @@ public class SmallRound{
 		Card firstPlayed = cards.get(0);
 		ArrayList<Card> sortedCards = this.cards;
 		Collections.sort(sortedCards, new CardComparator(this.rule, firstPlayed.getSuit(), this.trumpf));
-		this.winner = sortedCards.get(0).getClient();
+		this.winner = sortedCards.get(sortedCards.size()-1).getClient();
 		return this.winner;
 	}
 	

@@ -2,11 +2,13 @@ package serializedClasses;
 
 import java.io.Serializable;
 
+
 public class Client implements Serializable{
 	
 	private volatile String clientName;
 	private int postition;
-	private int pointsSmall, pointsBig;
+	private int pointsSmall = 0;
+	private int pointsBig = 0;
 	
 	public int getPointsBig() {
 		return pointsBig;
@@ -15,7 +17,14 @@ public class Client implements Serializable{
 	public void setPointsBig(int pointsBig) {
 		this.pointsBig = pointsBig;
 	}
-
+	
+	public void addPointsSmall(int i) {
+		pointsSmall+=i;
+	}
+	public void addPointsBig(int i) {
+		pointsBig+=i;
+	}
+	
 	public Client (String clientName) {
 		this.clientName = clientName;
 	}

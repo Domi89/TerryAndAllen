@@ -3,6 +3,8 @@ package ServerConnection;
 import java.util.ArrayList;
 
 import BusinessLayer.BigRound;
+import BusinessLayer.Constants;
+import BusinessLayer.Game;
 import BusinessLayer.Rule;
 import BusinessLayer.SmallRound;
 import serializedClasses.Card;
@@ -14,10 +16,12 @@ public class GameStatus {
 	
 	private static SmallRound smallRound = new SmallRound();
 	private static BigRound bigRound = new BigRound();
+	private static Game game = new Game();
 	
+	private static ArrayList<Client> clients = new ArrayList<Client>();
 	
-	private static Rule rule = Rule.obeAbe;
-	private static Suit trumpf = null;
+	private static Rule rule = Rule.trumpf;
+	private static Suit trumpf = Suit.Eichle;
 	
 	private static Boolean newCard = false;
 	private static Client lastPlayed = null;
@@ -36,8 +40,8 @@ public class GameStatus {
 	public static String getScore() {
 		String scoreString = "";
 		
-		for (Client c: bigRound.getClients()) {	
-			scoreString+=c.getClientName()+"\t"+bigRound.getPoints(c)+"\n";
+		for (Client c: clients) {	
+			scoreString+=c.getClientName()+"\t"+c.getPointsBig()+"\n";
 		}
 		
 		return scoreString;
@@ -63,6 +67,30 @@ public class GameStatus {
 		smallRound.getCards().add(card);
 		GameStatus.setLastPlayed(card.getClient());
 		GameStatus.setNewCard(true);
+	
+	}
+	
+	public static Boolean smallRoundFinished() {
+		Boolean finished = false;
+		if (smallRound.getCards().size()==Constants.MAX_PLAYERS) {
+			int points = smallRound.calculatePoints();
+			Client winner = smallRound.calculateWinner();
+			bigRound.addSmallRounds(smallRound);
+			smallRound = new SmallRound();
+			finished = true;
+			
+			for(Client c: clients) {
+				if(c.getClientName().equals(winner.getClientName())) {
+					System.out.println("WIXENDE HURE: ClientNAME"+c.getClientName()+"POINTS"+points);
+					
+					c.addPointsSmall(points);
+					c.addPointsBig(points);
+				}
+			}
+			
+			
+		}
+		return finished;
 	}
 
 	public static Boolean getNewCard() {
@@ -127,5 +155,13 @@ public class GameStatus {
 
 	public static void setHistory(ArrayList<Message> history) {
 		GameStatus.history = history;
+	}
+
+	public static ArrayList<Client> getClients() {
+		return clients;
+	}
+
+	public static void setClients(ArrayList<Client> clients) {
+		GameStatus.clients = clients;
 	}
 }

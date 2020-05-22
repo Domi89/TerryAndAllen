@@ -52,6 +52,7 @@ public class ServerThreadInput extends Thread{
 						case "Client":
 							Client receivedClient = (Client) this.inputObject;
 							this.clientClass(receivedClient);
+							GameStatus.getClients().add(receivedClient);
 							break;
 							
 						case "Card":
@@ -87,7 +88,7 @@ public class ServerThreadInput extends Thread{
 		
 		receivedCard.setClient(this.client);
 		GameStatus.addcurrentSmallRound(receivedCard);
-		GameStatus.setLastPlayed(this.client);
+		//GameStatus.setLastPlayed(this.client);
 		
 		System.out.println("Received Card from Client: "+receivedCard);
 		

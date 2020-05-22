@@ -109,6 +109,7 @@ public class ServerThreadOutput extends Thread{
 	public void sendScore(Score s) {
 		try {
 			this.outputStream.writeObject(s);
+			System.out.println("Score outputStream "+s);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
