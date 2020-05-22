@@ -7,6 +7,18 @@ public class Card implements Comparable<Card>, Serializable {
 	private Suit suit;
 	private Rank rank;
 	
+	//if Card is played, Client will added to the played card
+	private Client client = null;
+	private Boolean sentToClient = null;
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public Card(Suit suit, Rank rank) {
 		this.suit = suit;
 		this.rank = rank;
@@ -50,6 +62,14 @@ public class Card implements Comparable<Card>, Serializable {
 			i=-1;
 		}
 		return i;
+	}
+
+	public Boolean getSentToClient() {
+		return sentToClient;
+	}
+
+	public void setSentToClient(Boolean sentToClient) {
+		this.sentToClient = sentToClient;
 	}
 	
 }

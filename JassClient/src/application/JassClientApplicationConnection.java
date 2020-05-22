@@ -41,7 +41,6 @@ public class JassClientApplicationConnection extends Application{
 		view = new JassClientView(primaryStage, model);
 		controller = new JassClientController(model, view);
 		
-		
 	}
 	
 }

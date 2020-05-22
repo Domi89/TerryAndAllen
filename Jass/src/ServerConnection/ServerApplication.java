@@ -22,6 +22,8 @@ public class ServerApplication {
 	private ArrayList<ServerThread> serverThreads = new ArrayList<ServerThread>();
 	
 	private ArrayList<Message> history;
+	//
+
 	
 	private Rule rule;
 	private Suit trumpf;
@@ -104,6 +106,12 @@ public class ServerApplication {
 						
 						sT.getServerThreadOutput().sendCards(sendCards);
 						
+						if (playerNumber==0) {
+							sT.getServerThreadOutput().sendString("yourTurn");
+						}
+						
+						playerNumber++;
+						
 					}
 					
 					gameStatus = 1;
@@ -115,9 +123,55 @@ public class ServerApplication {
         thread4PlayersConnected.setDaemon(true);
         thread4PlayersConnected.start();
 		
+        
+        //------------------------
+        
+        
+        Thread newCardReceivedFromClient = new Thread(new Runnable() {
+            
+            public void run() {
+                Runnable newCardReceivedFromClient = new Runnable() {
+
+                    public void run() {
+                    	newCardReceivedFromClient();
+                    }
+                };
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    newCardReceivedFromClient();
+                }
+            }
+
+			private void newCardReceivedFromClient() {
+				
+				if(GameStatus.getNewCard()) {
+					
+					for (ServerThread sT: serverThreads) {
+						Card receivedCard = GameStatus.getCurrentSmallRound().get(GameStatus.getCurrentSmallRound().size()-1);
+						
+						System.out.println("KARTE VON: "+receivedCard.getClient().getClientName());
+						System.out.println("KARTE VON: "+sT.getClient().getClientName());
+						
+						//if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
+						//	sT.getServerThreadOutput().sendCard(receivedCard);
+						//}
+					
+					}
+					GameStatus.setNewCard(false);
+				}
+				
+			}
+
+        });
+        newCardReceivedFromClient.setDaemon(true);
+        newCardReceivedFromClient.start();
 		
-		
-		
+        //------------------------
 		
 
 		

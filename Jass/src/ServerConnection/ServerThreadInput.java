@@ -14,6 +14,7 @@ public class ServerThreadInput extends Thread{
 	
 	private ObjectInputStream inputStream;
 	private Object inputObject;
+	private ArrayList<Card> currentSmallRound;
 
 	private ArrayList<Message> history;
 	private Client client;
@@ -22,6 +23,7 @@ public class ServerThreadInput extends Thread{
 		this.inputStream = inputStream;
 		this.history = history;
 		this.client = client;
+
 	}
 	
 	public void run() {
@@ -76,6 +78,10 @@ public class ServerThreadInput extends Thread{
 	private void cardClass(Card receivedCard) {
 		//TODO Abspeichern in ArrayList ArrayList, Senden der erhaltenen Karte an die Restlichen Threads
 		// Überprüfen, wenn 4 Karten erhalten, auswerten wer gewonnen und punkte nachtragen
+		
+		receivedCard.setClient(this.client);
+		GameStatus.addcurrentSmallRound(receivedCard);
+		
 		System.out.println("Received Card from Client: "+receivedCard);
 		
 	}

@@ -11,7 +11,6 @@ import serializedClasses.Message;
 public class ServerThreadOutput extends Thread{
 	
 	private ObjectOutputStream outputStream;
-
 	private ArrayList<Message> history;
 	private Client client;
 	
@@ -83,6 +82,15 @@ public class ServerThreadOutput extends Thread{
 			e.printStackTrace();
 		}
 			
+	}
+	
+	public void sendString(String s) {
+		try {
+			this.outputStream.writeObject(s);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 

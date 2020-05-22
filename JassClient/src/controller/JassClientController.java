@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import model.Connection;
 import model.JassClientModel;
 import serializedClasses.Card;
 import serializedClasses.Message;
@@ -188,17 +189,22 @@ public class JassClientController {
 		
 		imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 		     public void handle(MouseEvent event) {
-		    	System.out.println(cardNr);
-		    	 //sendCard(event.getSource().getClass().getName());
-		    	 
-		       System.out.println("Tile pressed ");
-		       event.consume();
-		     
-		       ImageView imageView = (ImageView) event.getSource();
-		       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
-		       view.getCenter().getTisch().setBottom(imageView);
-		       sendSelectedCard(cardNr); 		                  
-		         
+		    	
+		    	 if(Connection.yourTurn) {
+		    		 
+		        	 System.out.println(cardNr);
+			    	 //sendCard(event.getSource().getClass().getName());
+			    	 
+			       System.out.println("Tile pressed ");
+			       event.consume();
+			     
+			       ImageView imageView = (ImageView) event.getSource();
+			       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+			       view.getCenter().getTisch().setBottom(imageView);
+			       sendSelectedCard(cardNr); 
+			       Connection.setYourTurn(false);
+		    	 }
+		    	      
 		     }
 		});
 		

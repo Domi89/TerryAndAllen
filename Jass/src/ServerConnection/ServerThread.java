@@ -8,7 +8,9 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Observable;
 
+import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.Message;
 
@@ -22,7 +24,7 @@ public class ServerThread extends Thread{
 	private Client client;	
 	private ServerThreadInput serverThreadInput;
 	private ServerThreadOutput serverThreadOutput; 
-	
+
 	
 	public ServerThreadInput getServerThreadInput() {
 		return serverThreadInput;
@@ -51,7 +53,7 @@ public class ServerThread extends Thread{
 	public ServerThread(Socket socket, ArrayList<Message> history) {
 		this.socket = socket;
 		this.history = history;
-		
+
 	}
 	
 	public void run() {
@@ -66,8 +68,6 @@ public class ServerThread extends Thread{
 				
 				this.serverThreadOutput = new ServerThreadOutput(this.outputStream, this.history, this.client);
 				serverThreadOutput.start();
-				
-				
 				
 				while(true) {
 					

@@ -4,21 +4,21 @@ import java.io.Serializable;
 
 public class Client implements Serializable{
 	
-	private String clientName;
+	private volatile String clientName;
 	
 	public Client (String clientName) {
 		this.clientName = clientName;
 	}
 
-	public String getClientName() {
+	public synchronized String getClientName() {
 		return clientName;
 	}
 
-	public void setClientName(String clientName) {
+	public synchronized void setClientName(String clientName) {
 		this.clientName = clientName;
 	}
 
-	public String toString() {
+	public synchronized String toString() {
 		return "Client [clientName=" + clientName + "]";
 	}
 

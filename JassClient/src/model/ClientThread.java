@@ -62,6 +62,8 @@ public class ClientThread extends Thread{
 					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client);
 					this.clientThreadOutput.start();
 					
+					this.clientThreadOutput.sendClientToServer(this.client);
+					
 					while(true) {
 						
 					}

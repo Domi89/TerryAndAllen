@@ -90,11 +90,14 @@ public class ConnectCenterController {
 	
 	private void buttonValidate() {
 		
+		//TODO wieder freigeben
+		/*
 		if(this.benutzerNameValidate&&this.ipValidate&&this.portValidate) {
 			this.view.getConnect().setDisable(false);
 		} else {
 			this.view.getConnect().setDisable(true);
 		}
+		*/
 	}
 
 

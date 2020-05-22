@@ -44,7 +44,9 @@ public class JassClientConnectCenter {
         //Connection BUtton
         this.connect = new Button ("Verbinden");
        
-        this.connect.setDisable(true);
+        
+        //TODO wieder auf TRUE setzen
+        this.connect.setDisable(false);
        	HBox hBox = new HBox();
         
         VBox labelBox = new VBox();

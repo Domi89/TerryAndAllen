@@ -25,6 +25,8 @@ public class ClientThreadInput extends Thread{
 	private ObservableList<Card> cards;
 	private ObservableIntegerValue updated;
 	private ObservableList<Integer> updatedCards;
+	private ObservableList<Card> cardsOnBoard;
+	
 
 	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards){
 		this.inputStream = inputStream;
@@ -52,6 +54,12 @@ public class ClientThreadInput extends Thread{
 				
 					case "Client":
 						this.clientClass();
+						break;
+						
+					case "Card":
+					
+						Card card = (Card) this.inputObject;
+						this.cardClass(card);
 						break;
 					
 					case "Message":
@@ -84,6 +92,11 @@ public class ClientThreadInput extends Thread{
 
 	}
 
+
+	private void cardClass(Card card) {
+		System.out.println("Neue Karte gespielt von: "+card.getClient().getClientName()+" Karte: "+card);
+		
+	}
 
 	private void newCards(ArrayList<Card> inputCards) {
 		
@@ -123,10 +136,12 @@ public class ClientThreadInput extends Thread{
 
 	private void stringClass(String string) {
 		if(string.equals("Connected")) {
-			
 			Connection.connected = true;
-			
 		}
+		if(string.contentEquals("yourTurn")) {
+			Connection.setYourTurn(true);
+		}
+		
 	}
 
 
