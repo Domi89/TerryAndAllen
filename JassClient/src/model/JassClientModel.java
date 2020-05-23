@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import serializedClasses.Card;
 import serializedClasses.Client;
+import serializedClasses.GameFinished;
 import serializedClasses.Message;
 import serializedClasses.Score;
 
@@ -21,6 +22,19 @@ public class JassClientModel {
 	private ObservableList<Integer> updatedCards = FXCollections.observableArrayList();
 	private ObservableList<Client> clients = FXCollections.observableArrayList();
 	private ObservableList<Score> scores = FXCollections.observableArrayList();
+	private ObservableList<GameFinished> gameFinished = FXCollections.observableArrayList();
+
+	public ObservableList<GameFinished> getGameFinished() {
+		return gameFinished;
+	}
+
+
+
+	public void setGameFinished(ObservableList<GameFinished> gameFinished) {
+		this.gameFinished = gameFinished;
+	}
+
+
 
 	public ObservableList<Client> getClients() {
 		return clients;
@@ -80,7 +94,7 @@ public class JassClientModel {
 	public void connectToServer(String clientName, String ip, int port) {
 		
 		this.client = new Client(clientName);
-		this.clientThread = new ClientThread(this.client, ip, port, this.cards, this.updatedCards, this.clients, this.scores);
+		this.clientThread = new ClientThread(this.client, ip, port, this.cards, this.updatedCards, this.clients, this.scores, this.gameFinished);
 		this.clientThread.start();
 		
 		

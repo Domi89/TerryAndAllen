@@ -14,6 +14,7 @@ import java.util.function.Supplier;
 import javafx.collections.ObservableList;
 import serializedClasses.Card;
 import serializedClasses.Client;
+import serializedClasses.GameFinished;
 import serializedClasses.Message;
 import serializedClasses.Score;
 
@@ -33,9 +34,10 @@ public class ClientThread extends Thread{
 	private ObservableList<Integer> updatedCards;
 	private ObservableList<Client> clients;
 	private ObservableList<Score> scores;
+	private ObservableList<GameFinished> gameFinished;
 	
-	
-	public ClientThread (Client client, String ip, int port, ObservableList<Card> cards, ObservableList<Integer> updatedCards, ObservableList<Client> clients, ObservableList<Score> scores) {
+	public ClientThread (Client client, String ip, int port, ObservableList<Card> cards, ObservableList<Integer> updatedCards, 
+			ObservableList<Client> clients, ObservableList<Score> scores, ObservableList<GameFinished> gameFinished) {
 		this.client = client;
 		this.ip = ip;
 		this.port = port;
@@ -43,6 +45,7 @@ public class ClientThread extends Thread{
 		this.updatedCards = updatedCards;
 		this.clients = clients;
 		this.scores = scores;
+		this.gameFinished = gameFinished;
 	}
 	
 	
@@ -61,7 +64,8 @@ public class ClientThread extends Thread{
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 
-					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.cards, this.updatedCards, this.clients, this.scores);
+					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.cards, 
+							this.updatedCards, this.clients, this.scores, this.gameFinished);
 					this.clientThreadInput.start();
 					
 					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client);

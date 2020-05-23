@@ -13,7 +13,7 @@ import model.Connection;
 
 public class JassClientViewCenterTischName extends VBox{
 	
-	Label gameMode = new Label("GAME MODE");
+	Label gameMode = new Label("WINNER wird sein...");
 	
 	public Label getGameMode() {
 		return gameMode;

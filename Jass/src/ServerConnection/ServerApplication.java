@@ -14,6 +14,7 @@ import BusinessLayer.Constants;
 import BusinessLayer.Deck;
 import serializedClasses.Card;
 import serializedClasses.Client;
+import serializedClasses.GameFinished;
 import serializedClasses.Message;
 import serializedClasses.Rule;
 import serializedClasses.Score;
@@ -145,42 +146,56 @@ public class ServerApplication {
 					lastRound = GameStatus.getBigRound();	
 					GameStatus.addBigRoundToGame();
 					
-					Deck deck = new Deck();
-				
 					
-					
-					
-					for (ServerThread sT: serverThreads) {
-						ArrayList<Card> sendCards = new ArrayList<Card>();
+					if(GameStatus.calculateMaxPoints()>=Constants.POINTS_TO_WIN) {
 						
-						for(int i = 0; i<9; i++) {
-							sendCards.add(deck.getCards().pop());
+						GameFinished gf = new GameFinished();
+						gf.setClients(GameStatus.getClients());
+						gf.setMaxPoints(GameStatus.calculateMaxPoints());
+						gf.setWinner(GameStatus.calculateWinner());
+						
+						for (ServerThread sT: serverThreads) {
+							
+							sT.getServerThreadOutput().sendGame(gf);
 						}
-						
-						sT.getServerThreadOutput().sendCards(sendCards);
-					
-						Client firstPlayer = lastRound.getSmallRounds().get(0).getCards().get(0).getClient();
-						
-						
-						if (sT.getClient().getClientName().equals(firstPlayer.getClientName())) {
-							sT.getServerThreadOutput().sendString("chooseMode");
-							sT.getServerThreadOutput().sendString("yourTurn");
-						}
-				
-					}	
+					} else {
 
+						//lastRound = GameStatus.getBigRound();	
+						//GameStatus.addBigRoundToGame();
+						
+						Deck deck = new Deck();
 					
-					gameStatus=1;
+						
+						
+						
+						for (ServerThread sT: serverThreads) {
+							ArrayList<Card> sendCards = new ArrayList<Card>();
+							
+							for(int i = 0; i<9; i++) {
+								sendCards.add(deck.getCards().pop());
+							}
+							
+							sT.getServerThreadOutput().sendCards(sendCards);
+						
+							Client firstPlayer = lastRound.getSmallRounds().get(0).getCards().get(0).getClient();
+							
+							
+							if (sT.getClient().getClientName().equals(firstPlayer.getClientName())) {
+								sT.getServerThreadOutput().sendString("chooseMode");
+								sT.getServerThreadOutput().sendString("yourTurn");
+							}
+					
+						}	
+
+						
+						gameStatus=1;
+						
+						
+						
+					}
+					
 				}
-					//TODO GAME NOT FINISHED
-					
 		
-				
-				
-				
-				
-				//TISCH MITTE Säubern
-				
 			}
 
 	    });

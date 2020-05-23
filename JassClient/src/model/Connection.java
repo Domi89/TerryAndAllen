@@ -21,6 +21,8 @@ public class Connection {
 	private static Rule rule = Rule.trumpf;
 	private static Suit trumpf = Suit.Eichle;
 	
+	private static Boolean gameFinished = false;
+	
 	
 	
 	private static int playersCount = 2;
@@ -84,6 +86,14 @@ public class Connection {
 
 	public static void setRule(Rule rule) {
 		Connection.rule = rule;
+	}
+
+	public static Boolean getGameFinished() {
+		return gameFinished;
+	}
+
+	public static void setGameFinished(Boolean gameFinished) {
+		Connection.gameFinished = gameFinished;
 	}
 
 

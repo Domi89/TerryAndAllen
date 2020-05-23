@@ -1,14 +1,12 @@
 package BusinessLayer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import ServerConnection.GameStatus;
-import serializedClasses.Card;
-import serializedClasses.Client;
-import serializedClasses.Suit;
 
-public class Game{
+public class Game implements Serializable{
 
 	private int maxPoints;
 	private ArrayList<BigRound> bigRound = new ArrayList<BigRound>();
