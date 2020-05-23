@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.JassClientModel;
@@ -70,19 +71,8 @@ public class JassClientConnectCenter {
         this.ipText.setId("textField");
         this.welcome1.setId("welcometext");
         this.welcome2.setId("welcometext");
-        
-        
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), welcome1);
-        fadeTransition.setFromValue(1.0);
-        fadeTransition.setToValue(0.5);
-        fadeTransition.setCycleCount(Animation.INDEFINITE);
-        fadeTransition.play();
-        FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(0.5), welcome2);
-        fadeTransition1.setFromValue(1.0);
-        fadeTransition1.setToValue(0.5);
-        fadeTransition1.setCycleCount(Animation.INDEFINITE);
-        fadeTransition1.play();
-        
+                
+          
         //Adding IP label and field
         labelBox.getChildren().addAll(welcome1, benutzer,iP,port);
         //adding port label and field

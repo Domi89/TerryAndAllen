@@ -65,7 +65,7 @@
 }
 
 #labels{
-	-fx-font-size:15px "Broadway";
+	-fx-font-size:17px "Broadway";
 	-fx-text-fill: White;
 	-fx-font-weight: bold;
 	-fx-padding: 15px;
@@ -74,13 +74,15 @@
 	-fx-text-alignment: center;
 	-fx-min-width: 150px;
 	-fx-max-width: 150px;
+	
+    -fx-background-insets: 5;
    
 }
 
 #textField{
 	-fx-font-size: 15px;
 	-fx-padding: 15px;
-	-fx-border-color: darkgrey;
+	-fx-border-color: transparent;
 	-fx-border-width: 1px;
 	-fx-border-style: solid;
 	-fx-alignment: center;
@@ -88,6 +90,7 @@
 	-fx-background-color:oldlace;
 	-fx-min-width: 250px;
 	-fx-max-width: 250px;
+    -fx-background-insets: 5;
 
 }
 
@@ -102,6 +105,8 @@
 	-fx-min-height: 50px;
 	-fx-max-height: 50px;
 	-fx-alignment: center;
+	
+	-fx-background-radius: 10;
 	
   
 	

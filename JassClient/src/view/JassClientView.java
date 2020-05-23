@@ -166,7 +166,7 @@ public class JassClientView {
 
 
 
-//Hier mit dem Switch auf den obigen HBOX zugreifen.... 
+	//Hier mit dem Switch auf den obigen HBOX zugreifen.... 
 	// es liegt am Zugriff an die HBox
 	public void changeTable() {
 		
@@ -176,18 +176,17 @@ public class JassClientView {
 			
 		switch(in) {
 			case 0:
-				
-				//root.getStylesheets().addAll(this.getClass().getResource("style2.css").toExternalForm());
-				//center.getHbox().setId("tisch2");
-				//center.setTisch();
+				//root.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+				this.center.getTisch().setId("tisch0");
+				//this.center.setTisch();
 				
 				break;
 			case 1:
-				//center.hb.setId("tisch1");
+				this.center.getTisch().setId("tisch1");
 				
 				break;
 			case 2:
-				// 
+				this.center.getTisch().setId("tisch2");
 				
 				break;
 			}

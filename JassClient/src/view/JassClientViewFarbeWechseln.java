@@ -23,11 +23,13 @@ public class JassClientViewFarbeWechseln {
 		Stage settingsStage = new Stage();
 		
 		settingsStage.initModality(Modality.APPLICATION_MODAL);
-		settingsStage.setTitle("Farbe Einstellen");
+		settingsStage.setTitle("Teppich Farbe Wählen");
 		settingsStage.setMinWidth(250);
 		
 		Label colourLabel = new Label("Wähle dein JassTeppich!");
-		colourLabel.setStyle("-fx-font-size: 20px ; -fx-font-weight: bold;"
+		colourLabel.setStyle(
+				"-fx-font-size: 20px ; "
+				+ "-fx-font-weight: bold;"
 				+ " -fx-text-fill: white");
 		
 			
