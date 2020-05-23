@@ -13,7 +13,7 @@ import model.Connection;
 
 public class JassClientViewCenterTischName extends VBox{
 	
-	Label gameMode = new Label("WINNER wird sein...");
+	Label gameMode = new Label("De Gwünner isch...");
 	
 	public Label getGameMode() {
 		return gameMode;
@@ -22,13 +22,17 @@ public class JassClientViewCenterTischName extends VBox{
 	public void setGameMode(Label gameMode) {
 		this.gameMode = gameMode;
 	}
+	
+	
 
 	JassClientViewCenterTischName(){
+		
 		
 		this.getChildren().add(gameMode);
 		
 		this.setAlignment(Pos.CENTER);
-				
+		this.gameMode.setId("gwuenner");
+		this.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());		
 	}
 	
 
