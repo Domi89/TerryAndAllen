@@ -27,23 +27,24 @@ public class ClientThreadInput extends Thread{
 	private Client client;
 	//private ArrayList<Message> history = new ArrayList<Message>();
 	private ObservableList<Message> history = FXCollections.observableArrayList();
-	private ObservableList<Card> cards;
+	private ObservableList<Card> cardsOnHand;
 	private ObservableIntegerValue updated;
 	private ObservableList<Integer> updatedCards;
 	private ObservableList<Card> cardsOnBoard;
+	private ObservableList<Card> cardsOnTable;
 	private ObservableList<Client> clients;
 	private ObservableList<Score> scores;
 	private ObservableList<GameFinished> gameFinished;
 
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards, ObservableList<Client> clients, ObservableList<Score> scores,ObservableList<GameFinished> gameFinished){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cardsOnHand, ObservableList<Integer> updatedCards, ObservableList<Client> clients, ObservableList<Score> scores,ObservableList<GameFinished> gameFinished, ObservableList<Card> cardsOnTable){
 		this.inputStream = inputStream;
 		this.client = client;
-		this.cards = cards;
+		this.cardsOnHand = cardsOnHand;
 		this.updatedCards = updatedCards;
 		this.clients = clients;
 		this.scores = scores;
 		this.gameFinished= gameFinished;
-			
+		this.cardsOnBoard =cardsOnBoard;
 	}
 	
 	public void run() {
@@ -173,8 +174,8 @@ public class ClientThreadInput extends Thread{
 		this.updatedCards.add(0);
 		
 		System.out.println(inputCards);
-		this.cards.clear();
-		this.cards.addAll(inputCards);
+		this.cardsOnHand.clear();
+		this.cardsOnHand.addAll(inputCards);
 		
 		
 	}
@@ -226,6 +227,14 @@ public class ClientThreadInput extends Thread{
 			Connection.setYourTurn(true);
 		}
 		
+	}
+
+	public ObservableList<Card> getCardsOnTable() {
+		return cardsOnTable;
+	}
+
+	public void setCardsOnTable(ObservableList<Card> cardsOnTable) {
+		this.cardsOnTable = cardsOnTable;
 	}
 
 

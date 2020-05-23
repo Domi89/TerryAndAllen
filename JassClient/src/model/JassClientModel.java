@@ -18,7 +18,8 @@ public class JassClientModel {
 	private ClientThread clientThread;
 	private Client client;
 	//private ArrayList<Message> history = new ArrayList<Message>();
-	private ObservableList<Card> cards = FXCollections.observableArrayList();
+	private ObservableList<Card> cardsOnHand = FXCollections.observableArrayList();
+	private ObservableList<Card> cardsOnTable = FXCollections.observableArrayList();
 	private ObservableList<Integer> updatedCards = FXCollections.observableArrayList();
 	private ObservableList<Client> clients = FXCollections.observableArrayList();
 	private ObservableList<Score> scores = FXCollections.observableArrayList();
@@ -33,8 +34,7 @@ public class JassClientModel {
 	public void setGameFinished(ObservableList<GameFinished> gameFinished) {
 		this.gameFinished = gameFinished;
 	}
-
-
+	
 
 	public ObservableList<Client> getClients() {
 		return clients;
@@ -61,13 +61,13 @@ public class JassClientModel {
 
 
 	public ObservableList<Card> getCards() {
-		return cards;
+		return cardsOnHand;
 	}
 
 
 
 	public void setCards(ObservableList<Card> cards) {
-		this.cards = cards;
+		this.cardsOnHand = cards;
 	}
 
 
@@ -94,7 +94,7 @@ public class JassClientModel {
 	public void connectToServer(String clientName, String ip, int port) {
 		
 		this.client = new Client(clientName);
-		this.clientThread = new ClientThread(this.client, ip, port, this.cards, this.updatedCards, this.clients, this.scores, this.gameFinished);
+		this.clientThread = new ClientThread(this.client, ip, port, this.cardsOnHand, this.updatedCards, this.clients, this.scores, this.gameFinished, this.cardsOnTable);
 		this.clientThread.start();
 		
 		

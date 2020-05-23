@@ -30,22 +30,24 @@ public class ClientThread extends Thread{
 	private ClientThreadOutput clientThreadOutput;
 	private String ip;
 	private int port;
-	private ObservableList<Card> cards;
+	private ObservableList<Card> cardsOnHand;
+	private ObservableList<Card> cardsOnTable;
 	private ObservableList<Integer> updatedCards;
 	private ObservableList<Client> clients;
 	private ObservableList<Score> scores;
 	private ObservableList<GameFinished> gameFinished;
 	
-	public ClientThread (Client client, String ip, int port, ObservableList<Card> cards, ObservableList<Integer> updatedCards, 
-			ObservableList<Client> clients, ObservableList<Score> scores, ObservableList<GameFinished> gameFinished) {
+	public ClientThread (Client client, String ip, int port, ObservableList<Card> cardsOnHand, ObservableList<Integer> updatedCards, 
+			ObservableList<Client> clients, ObservableList<Score> scores, ObservableList<GameFinished> gameFinished, ObservableList<Card> cardsOnTable) {
 		this.client = client;
 		this.ip = ip;
 		this.port = port;
-		this.cards = cards;
+		this.cardsOnHand = cardsOnHand;
 		this.updatedCards = updatedCards;
 		this.clients = clients;
 		this.scores = scores;
 		this.gameFinished = gameFinished;
+		this.cardsOnTable=cardsOnTable;
 	}
 	
 	
@@ -64,8 +66,8 @@ public class ClientThread extends Thread{
 					this.outputStream = new ObjectOutputStream(socket.getOutputStream());
 					this.inputStream = new ObjectInputStream(socket.getInputStream());
 
-					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.cards, 
-							this.updatedCards, this.clients, this.scores, this.gameFinished);
+					this.clientThreadInput = new ClientThreadInput(this.inputStream, this.client, this.cardsOnHand, 
+							this.updatedCards, this.clients, this.scores, this.gameFinished, this.cardsOnTable);
 					this.clientThreadInput.start();
 					
 					this.clientThreadOutput = new ClientThreadOutput(this.outputStream, this.client);
@@ -94,6 +96,18 @@ public class ClientThread extends Thread{
 
 	public ClientThreadOutput getClientThreadOutput() {
 		return clientThreadOutput;
+	}
+
+
+
+	public ObservableList<Card> getCardsOnTable() {
+		return cardsOnTable;
+	}
+
+
+
+	public void setCardsOnTable(ObservableList<Card> cardsOnTable) {
+		this.cardsOnTable = cardsOnTable;
 	}
 
 	

@@ -39,7 +39,7 @@ public class JassClientViewCenterTisch extends GridPane{
 	}
 
 
-	JassClientViewCenterTisch(){
+	public JassClientViewCenterTisch(){
 		
 		this.setId("tisch0");
 		this.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
