@@ -20,7 +20,7 @@ public class JassClientViewHBoxCard extends HBox{
 
 		
 		private void createCard(String cardNr) {
-			cardNr = "/images/backOfCard.jpg";
+			cardNr = "/images/backOfCardVert.jpg";
 			Image image = new Image(cardNr,100,150,false,false); 
 			//Image image = new Image(cardNr); 
 			ImageView imageView = new ImageView(image);	

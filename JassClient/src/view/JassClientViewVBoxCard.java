@@ -16,10 +16,12 @@ public class JassClientViewVBoxCard extends VBox{
 		}
 
 		private void createCard(String cardNr) {
-			cardNr = "/images/backOfCard.jpg";
-			Image image = new Image(cardNr, 100, 150, false, true); 
+			cardNr = "/images/backOfCardVertikal.jpg";
+			Image image = new Image(cardNr,100,150,false,false); 
 			ImageView imageView = new ImageView(image);	
 			this.getChildren().addAll(imageView);
+			
+			
 		} 
 	
 
