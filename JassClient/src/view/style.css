@@ -4,7 +4,8 @@
 		-fx-background-repeat: stretch; 
 		-fx-background-position: center center; 
 		-fx-background-size: 500px;    
-		 -fx-background-radius: 0 0 18 18;
+		-fx-background-radius: 50px;
+		
 
 }
 
@@ -38,7 +39,6 @@
 	-fx-max-width: 270;
     -fx-max-height:500;
     -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
-   
 }
 
 
@@ -71,10 +71,7 @@
 	-fx-max-width: 270;
     -fx-max-height:50;
     -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
-   
 }
-
-
 
 
 #bottomButton{
@@ -85,15 +82,14 @@
     -fx-max-height: 50;
 	
 }
+
 #bottomButtonSuit{
 	
 	-fx-min-width: 70;
     -fx-min-height: 25;
 	-fx-max-width: 70;
     -fx-max-height: 25;
-	
 }
-
 
 #chatField{
 	-fx-min-width: 200;
@@ -112,9 +108,7 @@
 }
 
 #background{
-
 	-fx-background-image: url(/images/backgroundLogin.jpg);
-
 }
 
 #gwuenner{
@@ -130,4 +124,6 @@
     -fx-min-height:20;
     -fx-opacity: 0.5
 }
+
+
 
