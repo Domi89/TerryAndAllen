@@ -18,8 +18,8 @@ import serializedClasses.Message;
 public class ServerThread extends Thread{
 	private Socket socket;
 	private Object inputObject;
-	private ObjectOutputStream outputStream;
-	private ObjectInputStream inputStream;
+	private volatile ObjectOutputStream outputStream;
+	private volatile ObjectInputStream inputStream;
 	private volatile Client client = new Client("new Client");	
 	
 

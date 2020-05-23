@@ -13,9 +13,9 @@ import serializedClasses.Suit;
 
 public class ServerThreadInput extends Thread{
 	
-	private ObjectInputStream inputStream;
-	private Object inputObject;
-	private ArrayList<Card> currentSmallRound;
+	private volatile ObjectInputStream inputStream;
+	private volatile Object inputObject;
+	private volatile ArrayList<Card> currentSmallRound;
 	private volatile Client client;
 	
 	public Client getClient() {

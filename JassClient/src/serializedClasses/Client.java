@@ -3,7 +3,7 @@ package serializedClasses;
 import java.io.Serializable;
 
 
-public class Client implements Serializable{
+public class Client implements Serializable, Comparable<Client>{
 	
 	private volatile String clientName;
 	private int postition;
@@ -56,5 +56,16 @@ public class Client implements Serializable{
 	public void setPointsSmall(int pointsSmall) {
 		this.pointsSmall = pointsSmall;
 	}
+
+	public int compareTo(Client c) {
+		int i=0;
+		if(this.pointsBig>c.getPointsBig()) {
+			i=1;
+		} if(this.pointsBig<c.getPointsBig()) {
+			i=-1;
+		}
+		return i;
+	}
+
 
 }

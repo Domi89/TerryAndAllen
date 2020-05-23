@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import BusinessLayer.BigRound;
 import BusinessLayer.Constants;
 import BusinessLayer.Deck;
 import serializedClasses.Card;
@@ -50,7 +51,7 @@ public class ServerApplication {
         });
 	    
 	    
-Thread threadAllPlayersConnected = new Thread(new Runnable() {
+	    Thread threadAllPlayersConnected = new Thread(new Runnable() {
             
             public void run() {
                 Runnable threadAllPlayersConnected = new Runnable() {
@@ -114,10 +115,81 @@ Thread threadAllPlayersConnected = new Thread(new Runnable() {
 			}
         });
 
+	    Thread newCardsToSend = new Thread(new Runnable() {
+            
+            public void run() {
+                Runnable newCardsToSend = new Runnable() {
+
+                    public void run() {
+                    	newCardsToSend();
+                    }
+                };
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    newCardsToSend();
+                }
+            }
+
+            
+            
+            // überprüft ob alle Spieler verbunden sind
+			private void newCardsToSend() {
+				
+				BigRound lastRound = null;
+				if(GameStatus.bigRoundFinished()) {
+					
+					lastRound = GameStatus.getBigRound();	
+					GameStatus.addBigRoundToGame();
+					
+					Deck deck = new Deck();
+				
+					
+					
+					
+					for (ServerThread sT: serverThreads) {
+						ArrayList<Card> sendCards = new ArrayList<Card>();
+						
+						for(int i = 0; i<9; i++) {
+							sendCards.add(deck.getCards().pop());
+						}
+						
+						sT.getServerThreadOutput().sendCards(sendCards);
+						System.out.println("HURENSOHN"+sT.getClient().getClientName());
+						
+						Client firstPlayer = lastRound.getSmallRounds().get(0).getCards().get(0).getClient();
+						
+						
+						if (sT.getClient().getClientName().equals(firstPlayer.getClientName())) {
+							sT.getServerThreadOutput().sendString("chooseMode");
+							sT.getServerThreadOutput().sendString("yourTurn");
+						}
+				
+					}	
+
+					
+					gameStatus=1;
+				}
+					//TODO GAME NOT FINISHED
+					
+		
+				
+				
+				
+				
+				//TISCH MITTE Säubern
+				
+			}
+
+	    });
 
 
+	
 
-Thread newCardReceivedFromClient = new Thread(new Runnable() {
+	Thread newCardReceivedFromClient = new Thread(new Runnable() {
     
     public void run() {
         Runnable newCardReceivedFromClient = new Runnable() {
@@ -148,8 +220,7 @@ Thread newCardReceivedFromClient = new Thread(new Runnable() {
 						sT.getServerThreadOutput().sendCard(receivedCard);
 					}
 				}
-		
-				//TODO DELETE
+
 			}
 			GameStatus.setNewCard(false);
 			
@@ -163,10 +234,7 @@ Thread newCardReceivedFromClient = new Thread(new Runnable() {
 			
 
 		}
-		
-		
 
-		
 	}
 
 	});
@@ -216,12 +284,7 @@ Thread newCardReceivedFromClient = new Thread(new Runnable() {
 		
 		
 
-    	        
-        
-        
-        
-        
-        
+
         
         //------------------------
 		
@@ -249,7 +312,8 @@ Thread newCardReceivedFromClient = new Thread(new Runnable() {
 	        sendScoreToClients.setDaemon(true);
 	        sendScoreToClients.start();
 			
-			
+	        newCardsToSend.setDaemon(true);
+	        newCardsToSend.start();
 			
 			
 			

@@ -30,8 +30,6 @@ public class SmallRound{
 			points = PointsCalculator.calculatePoints(this.cards, rule);
 		}
 		
-
-		
 		return points;
 	}
 	

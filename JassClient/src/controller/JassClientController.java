@@ -116,7 +116,7 @@ public class JassClientController {
                 };
                 while (true) {
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                     }
 
@@ -319,7 +319,7 @@ public class JassClientController {
     		 
     	      
     		 
-    		 Connection.setChooseMode(false);
+
     	 }
     	 
 		
@@ -365,7 +365,7 @@ public class JassClientController {
 		 view.getBottomView().getUndeUfe().setDisable(true);
 		 view.getBottomView().getTrumpf().setDisable(true);
 		 model.getClientThread().getClientThreadOutput().sendRule(Rule.undeUfe);
-		 
+		 Connection.setChooseMode(false);
 		 
 		return null;
 	}
@@ -375,7 +375,7 @@ public class JassClientController {
 		 view.getBottomView().getUndeUfe().setDisable(true);
 		 view.getBottomView().getTrumpf().setDisable(true);
 		 model.getClientThread().getClientThreadOutput().sendRule(Rule.obeAbe);
-		 
+		 Connection.setChooseMode(false);
 		return null;
 	}
 
@@ -406,7 +406,7 @@ public class JassClientController {
 		 view.getBottomView().getRose().setDisable(true);
 		 
 		 model.getClientThread().getClientThreadOutput().sendColor(Suit.Schilte);
-		 
+		 Connection.setChooseMode(false);
 	
 	}
 
@@ -417,6 +417,7 @@ public class JassClientController {
 		 view.getBottomView().getRose().setDisable(true);
 		 
 		 model.getClientThread().getClientThreadOutput().sendColor(Suit.Rose);
+		 Connection.setChooseMode(false);
 	}
 
 	private void activateEichle() {
@@ -426,6 +427,7 @@ public class JassClientController {
 		 view.getBottomView().getRose().setDisable(true);
 		 
 		 model.getClientThread().getClientThreadOutput().sendColor(Suit.Eichle);
+		 Connection.setChooseMode(false);
 	}
 
 	private void activateSchaelle() {
@@ -435,6 +437,7 @@ public class JassClientController {
 		 view.getBottomView().getRose().setDisable(true);
 		 
 		 model.getClientThread().getClientThreadOutput().sendColor(Suit.Schaelle);
+		 Connection.setChooseMode(false);
 		
 	}
 	

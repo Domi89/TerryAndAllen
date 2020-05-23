@@ -1,6 +1,7 @@
 package ServerConnection;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import BusinessLayer.BigRound;
 import BusinessLayer.Constants;
@@ -14,29 +15,43 @@ import serializedClasses.Suit;
 
 public class GameStatus {
 	
-	private static SmallRound smallRound = new SmallRound();
-	private static BigRound bigRound = new BigRound();
-	private static Game game = new Game();
+	private  static SmallRound smallRound = new SmallRound();
+	private  static BigRound bigRound = new BigRound();
+	private  static Game game = new Game();
 	
-	private static ArrayList<Client> clients = new ArrayList<Client>();
+	private  static int maxPoints = 0;
 	
-	private static Rule rule = Rule.trumpf;
-	private static Suit trumpf = Suit.Eichle;
-	private static Client lastWinner = null;
+	private  static ArrayList<Client> clients = new ArrayList<Client>();
 	
-	private static Boolean newCard = false;
-	private static Client lastPlayed = null;
-	private static Boolean currentGameFinished = false;
+	private  static Rule rule = Rule.trumpf;
+	private  static Suit trumpf = Suit.Eichle;
+	private  static Client lastWinner = null;
+	
+	private  static Boolean newCard = false;
+	private  static Client lastPlayed = null;
+	private  static Boolean currentGameFinished = false;
 
-	private static ArrayList<Card> currentGame = new ArrayList<Card>();
+	private  static ArrayList<Card> currentGame = new ArrayList<Card>();
 	
-	private static ArrayList<Message> history = new ArrayList<Message>();
+	private  static ArrayList<Message> history = new ArrayList<Message>();
 	
 	
 	
 	public GameStatus() {
 		
 	}
+	
+	public static int calculateMaxPoints() {
+		
+		ArrayList<Client> copy = new ArrayList<Client>();
+		
+		Collections.sort(copy);
+		maxPoints = copy.get(Constants.MAX_PLAYERS-1).getPointsBig();
+			
+		return maxPoints;
+	}
+	
+	
 
 	public static String getScore() {
 		String scoreString = "";
@@ -90,10 +105,39 @@ public class GameStatus {
 			}
 			
 		}
-		setLastWinner(winner);		
-		
+		setLastWinner(winner);	
+
 		return finished;
+		
+		
+		
 	}
+
+	public static boolean bigRoundFinished() {
+		
+		int playedCards = 0;
+		int cardsToPlay = 0;
+		boolean isFinished = false;
+		cardsToPlay = Constants.MAX_PLAYERS * 9;
+		for (SmallRound sR: bigRound.getSmallRounds()) {
+			for(Card cards: sR.getCards()) {
+				playedCards++;
+			}
+		}
+		if(playedCards == cardsToPlay) {
+			isFinished = true;
+			bigRound.setFinished(true);
+		}
+		bigRound.setFinished(true);
+		return isFinished;
+	}
+	
+	public static void addBigRoundToGame() {
+		BigRound copy = bigRound;
+		game.getBigRound().add(copy);
+		bigRound = new BigRound();
+	}
+	
 
 	public static Boolean getNewCard() {
 		return newCard;

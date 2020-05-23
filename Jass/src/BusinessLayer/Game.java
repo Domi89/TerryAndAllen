@@ -25,6 +25,14 @@ public class Game{
 	public void setMaxPoints(int maxPoints) {
 		this.maxPoints = maxPoints;
 	}
+
+	public ArrayList<BigRound> getBigRound() {
+		return bigRound;
+	}
+
+	public void setBigRound(ArrayList<BigRound> bigRound) {
+		this.bigRound = bigRound;
+	}
 	
 	
 	

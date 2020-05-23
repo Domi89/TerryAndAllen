@@ -29,7 +29,6 @@ public class JassClientApplicationGame extends Application{
 		controller = new JassClientController(model, view);
 		this.primaryStage = primaryStage;
 		
-	
 	}
 	
 }

@@ -158,6 +158,7 @@ public class ClientThreadInput extends Thread{
 		this.updatedCards.add(0);
 		
 		System.out.println(inputCards);
+		this.cards.clear();
 		this.cards.addAll(inputCards);
 		
 		
