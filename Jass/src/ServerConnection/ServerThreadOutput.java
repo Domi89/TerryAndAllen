@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import BusinessLayer.Game;
 import serializedClasses.Card;
 import serializedClasses.Client;
+import serializedClasses.GameFinished;
 import serializedClasses.Message;
 import serializedClasses.Score;
 
@@ -89,6 +91,17 @@ public class ServerThreadOutput extends Thread{
 		
 		try {
 			this.outputStream.writeObject(c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void sendGame(GameFinished g) {
+		
+		try {
+			this.outputStream.writeObject(g);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

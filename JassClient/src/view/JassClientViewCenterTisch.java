@@ -17,8 +17,18 @@ public class JassClientViewCenterTisch extends GridPane{
 	private ArrayList<ImageView> imageViews = new ArrayList<ImageView>();
 	private ArrayList<Label> playerNames = new ArrayList<Label>();
 	private VBox vBox0, vBox1, vBox2,vBox3;
+	private JassClientViewCenterTischName centerTisch = new JassClientViewCenterTischName();
 	
-	
+	public JassClientViewCenterTischName getCenterTisch() {
+		return centerTisch;
+	}
+
+
+	public void setCenterTisch(JassClientViewCenterTischName centerTisch) {
+		this.centerTisch = centerTisch;
+	}
+
+
 	public ArrayList<Label> getPlayerNames() {
 		return playerNames;
 	}
@@ -107,8 +117,8 @@ public class JassClientViewCenterTisch extends GridPane{
 			this.setAlignment(Pos.CENTER);
 			
 		}
-		JassClientViewCenterTischName playerNames = new JassClientViewCenterTischName();
-		this.add(playerNames, 1, 1);
+		
+		this.add(this.centerTisch, 1, 1);
 		
 	}
 	

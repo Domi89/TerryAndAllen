@@ -239,6 +239,18 @@ public class JassClientController {
 
 			Connection.setNewCardToShow(false);
 		}
+		
+		if (Connection.getGameFinished()) {
+			String winner = "";
+			winner+="WINNER: ";
+			winner+= this.model.getGameFinished().get(0).getWinner().getClientName();
+			winner+=" Pünkt: ";
+			winner+= this.model.getGameFinished().get(0).getMaxPoints();
+		
+			this.view.getCenter().getTisch().getCenterTisch().getGameMode().setText(winner);
+			this.view.getCenter().getTisch().getCenterTisch().getGameMode().setVisible(true);;
+			
+		}
 
 		
 		
@@ -326,14 +338,6 @@ public class JassClientController {
 		
 		imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 		     public void handle(MouseEvent event) {
-		    	
-		    	 
-		    	 
-
-		    	 
-		    	 
-		    	 
-		    	 
 		    	 
 		    	 if(Connection.yourTurn && !Connection.getChooseMode()) {
 		    		 

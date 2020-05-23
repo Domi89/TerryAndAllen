@@ -3,7 +3,7 @@ package model;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Observable;
+
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -13,6 +13,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import serializedClasses.Card;
 import serializedClasses.Client;
+
+import serializedClasses.GameFinished;
 import serializedClasses.Message;
 import serializedClasses.Rule;
 import serializedClasses.Score;
@@ -31,14 +33,16 @@ public class ClientThreadInput extends Thread{
 	private ObservableList<Card> cardsOnBoard;
 	private ObservableList<Client> clients;
 	private ObservableList<Score> scores;
+	private ObservableList<GameFinished> gameFinished;
 
-	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards, ObservableList<Client> clients, ObservableList<Score> scores){
+	public ClientThreadInput(ObjectInputStream inputStream, Client client, ObservableList<Card> cards, ObservableList<Integer> updatedCards, ObservableList<Client> clients, ObservableList<Score> scores,ObservableList<GameFinished> gameFinished){
 		this.inputStream = inputStream;
 		this.client = client;
 		this.cards = cards;
 		this.updatedCards = updatedCards;
 		this.clients = clients;
 		this.scores = scores;
+		this.gameFinished= gameFinished;
 			
 	}
 	
@@ -88,6 +92,11 @@ public class ClientThreadInput extends Thread{
 						this.ruleClass(rule);
 						break;
 						
+					case "GameFinished":
+						GameFinished game = (GameFinished) this.inputObject;
+						this.gameFinishedClass(game);
+						break;
+						
 						
 					case "ArrayList":
 						ArrayList<Object> input = (ArrayList<Object>) this.inputObject;
@@ -130,6 +139,12 @@ public class ClientThreadInput extends Thread{
 
 	}
 
+
+	private void gameFinishedClass(GameFinished game) {
+		System.out.println("WINNER: "+game.getWinner().getClientName()+" Points: "+game.getMaxPoints());
+		Connection.setGameFinished(true);
+		this.gameFinished.add(game);
+	}
 
 	private void ruleClass(Rule rule) {
 		Connection.setRule(rule);

@@ -19,6 +19,14 @@ public class GameStatus {
 	private  static BigRound bigRound = new BigRound();
 	private  static Game game = new Game();
 	
+	public static Game getGame() {
+		return game;
+	}
+
+	public static void setGame(Game game) {
+		GameStatus.game = game;
+	}
+
 	private  static int maxPoints = 0;
 	
 	private  static ArrayList<Client> clients = new ArrayList<Client>();
@@ -43,7 +51,7 @@ public class GameStatus {
 	
 	public static int calculateMaxPoints() {
 		
-		ArrayList<Client> copy = new ArrayList<Client>();
+		ArrayList<Client> copy = clients;
 		
 		Collections.sort(copy);
 		maxPoints = copy.get(Constants.MAX_PLAYERS-1).getPointsBig();
@@ -51,6 +59,15 @@ public class GameStatus {
 		return maxPoints;
 	}
 	
+	public static Client calculateWinner() {
+		
+		ArrayList<Client> copy = clients;
+		
+		Collections.sort(copy);
+		Client c = copy.get(Constants.MAX_PLAYERS-1);
+			
+		return c;
+	}
 	
 
 	public static String getScore() {
