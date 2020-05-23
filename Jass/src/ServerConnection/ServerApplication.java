@@ -158,8 +158,7 @@ public class ServerApplication {
 						}
 						
 						sT.getServerThreadOutput().sendCards(sendCards);
-						System.out.println("HURENSOHN"+sT.getClient().getClientName());
-						
+					
 						Client firstPlayer = lastRound.getSmallRounds().get(0).getCards().get(0).getClient();
 						
 						
