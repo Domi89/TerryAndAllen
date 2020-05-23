@@ -163,11 +163,6 @@ public class JassClientView {
 	}
 	
 
-
-
-
-	//Hier mit dem Switch auf den obigen HBOX zugreifen.... 
-	// es liegt am Zugriff an die HBox
 	public void changeTable() {
 		
 		//init
