@@ -248,7 +248,7 @@ public class JassClientController {
 			winner+= this.model.getGameFinished().get(0).getMaxPoints();
 		
 			this.view.getCenter().getTisch().getCenterTisch().getGameMode().setText(winner);
-		
+			this.view.getCenter().getTisch().getCenterTisch().getGameMode().setVisible(true);;
 			
 		}
 

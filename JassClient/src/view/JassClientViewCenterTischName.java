@@ -32,6 +32,7 @@ public class JassClientViewCenterTischName extends VBox{
 		
 		this.setAlignment(Pos.CENTER);
 		this.gameMode.setId("gwuenner");
+		this.gameMode.setVisible(false);
 		this.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());		
 	}
 	
