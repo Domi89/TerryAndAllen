@@ -33,7 +33,8 @@ public class JassClientViewCenterTisch extends GridPane{
 		
 		this.setId("tisch0");
 		this.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());	
-	
+		this.setStyle("-fx-border-radius: 8px;");
+		
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
 		images.add(new Image("/images/backOfCard0.jpg",100,150,false,false)); 
@@ -60,6 +61,7 @@ public class JassClientViewCenterTisch extends GridPane{
 			this.vBox0.setAlignment(Pos.CENTER);
 			this.vBox2.setAlignment(Pos.CENTER);
 			
+
 			this.add(vBox0, 1, 2);
 			this.add(vBox2, 1, 0);
 			this.setVgap(70);

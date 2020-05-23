@@ -4,8 +4,8 @@
 		-fx-background-repeat: stretch; 
 		-fx-background-position: center center; 
 		-fx-background-size: 500px;    
-		-fx-background-radius: 10 10 10 10; 
- 		 
+		 -fx-background-radius: 0 0 18 18;
+
 }
 
 #tisch1{
@@ -15,7 +15,7 @@
 		-fx-background-size: 500px;
 		-fx-background-radius: 10 10 10 10;
 
-}
+}  
 
 #tisch2{
 		-fx-background-image: url(/images/JassTeppichPanda.jpg);

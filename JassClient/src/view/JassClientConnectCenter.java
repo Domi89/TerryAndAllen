@@ -77,7 +77,11 @@ public class JassClientConnectCenter {
         fadeTransition.setToValue(0.5);
         fadeTransition.setCycleCount(Animation.INDEFINITE);
         fadeTransition.play();
-        
+        FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(0.5), welcome2);
+        fadeTransition1.setFromValue(1.0);
+        fadeTransition1.setToValue(0.5);
+        fadeTransition1.setCycleCount(Animation.INDEFINITE);
+        fadeTransition1.play();
         
         //Adding IP label and field
         labelBox.getChildren().addAll(welcome1, benutzer,iP,port);

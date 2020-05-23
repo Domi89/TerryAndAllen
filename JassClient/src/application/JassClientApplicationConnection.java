@@ -10,7 +10,7 @@ import view.JassClientConnectCenter;
 import view.JassClientView;
 
 // since it is JavaFX SDK 14, Run as -> VM arguments module path add controls and javafx.fxml
-// additionally there must be added the JAVA FX 14 Library
+// additionaly there must be added the JAVA FX 14 Library
 
 public class JassClientApplicationConnection extends Application{
 	
