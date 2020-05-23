@@ -13,10 +13,6 @@ public class JassClientViewFarbeWechseln {
 
 	public static int colourChoice = 0;
 	
-	//Button butGreen, butRed, butPanda;
-	//Label colourLabel;
-	
-
 	
 	public static int colourChange() {
 		

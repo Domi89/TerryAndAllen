@@ -28,6 +28,7 @@ public class JassClientView {
 	private JassClientViewChat chat;
 	private JassClientViewCenter center;
 	private JassClientViewScore score;
+	private JassClientViewMenuHelp help;
 	
 	public JassClientViewScore getScore() {
 		return score;
@@ -162,6 +163,10 @@ public class JassClientView {
 		return menBar.farbeWechseln;
 	}
 	
+	public MenuItem gethelpMenu() {
+		return menBar.regeln;
+	}
+	
 
 	public void changeTable() {
 		
@@ -188,8 +193,11 @@ public class JassClientView {
 
 			
 	}
-
-
+	
+	public void viewHelpMenu() {
+		help.helpMenu();
+	}
+	
 	public void setModel(JassClientModel model) {
 		this.model = model;
 	}
@@ -290,6 +298,16 @@ public class JassClientView {
 		this.chat = chat;
 	}
 
+
+	public JassClientViewMenuHelp getHelp() {
+		return help;
+	}
+
+
+	public void setHelp(JassClientViewMenuHelp help) {
+		this.help = help;
+	}
+	
 	
 
 }

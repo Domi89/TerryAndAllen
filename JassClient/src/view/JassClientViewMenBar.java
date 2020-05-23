@@ -11,7 +11,7 @@ public class JassClientViewMenBar extends MenuBar{
 	
 	 protected Menu datei, ansicht, hilfe;
      protected MenuItem neustart, verlassen, farbeWechseln, regeln;
-     
+     JassClientViewMenuHelp help;
 
      //Erstellen des Konstruktors     
      public JassClientViewMenBar() {
@@ -30,10 +30,7 @@ public class JassClientViewMenBar extends MenuBar{
      //Fenster schliessen befehl
      verlassen.setOnAction((ActionEvent e) -> closeBox());
      
-     //Farbe Wechseln Befehl
-    // farbeWechseln.setOnAction((ActionEvent e) -> changeColour());
-     
-     
+       
      //Zuordnen der Items
      datei.getItems().addAll(neustart, verlassen);
      ansicht.getItems().add(farbeWechseln);
@@ -43,7 +40,6 @@ public class JassClientViewMenBar extends MenuBar{
      
      }
 
-     
 	public void closeBox() {
           Platform.exit();
      }

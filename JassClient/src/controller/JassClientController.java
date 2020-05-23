@@ -132,6 +132,7 @@ public class JassClientController {
 
         //events für die MenuBar
         this.view.getColourChange().setOnAction(e-> colChange());
+        this.view.gethelpMenu().setOnAction(e-> controllerHelp());
 		
 		this.view.getChat().getSendButton().setOnAction(e -> sendMessageToServer());
 		
@@ -140,6 +141,11 @@ public class JassClientController {
 	}
 	
 	
+	private void controllerHelp() {
+		this.view.viewHelpMenu();	
+	}
+
+
 	//updates after each Card the cards on Table & the ScoreBoard
 	private void cardUpdater() { 
 		
