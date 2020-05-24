@@ -24,15 +24,11 @@ public class GameStatus {
 	public static Game getGame() {
 		return game;
 	}
-
 	public static void setGame(Game game) {
 		GameStatus.game = game;
 	}
-
 	private  static int maxPoints = 0;
-	
 	private  static ArrayList<Client> clients = new ArrayList<Client>();
-	
 	private  static Rule rule = Rule.trumpf;
 	private  static Suit trumpf = Suit.Eichle;
 	private  static Client lastWinner = null;
@@ -76,7 +72,7 @@ public class GameStatus {
 		String scoreString = "";
 		
 		for (Client c: clients) {	
-			scoreString+="   "+c.getClientName()+"\t"+c.getPointsBig()+"\n";
+			scoreString+="Spieler:   "+c.getClientName()+"\t Punkte: "+c.getPointsBig()+"\n";
 		}
 		
 		return scoreString;

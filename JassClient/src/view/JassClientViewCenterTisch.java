@@ -78,7 +78,36 @@ public class JassClientViewCenterTisch extends GridPane{
 			this.setAlignment(Pos.CENTER);
 		}
 		
+		if (Connection.getPlayersCount()==3) {
+				
+			
 
+			this.vBox2 = new VBox();
+
+			this.vBox0 = new VBox();
+			this.vBox1 = new VBox();
+			
+			for(int i = 0; i<Connection.getPlayersCount(); i++) {
+				playerNames.add(new Label("Player "+i));
+			}
+			
+			this.vBox0.getChildren().addAll(imageViews.get(0), playerNames.get(0));
+			this.vBox1.getChildren().addAll(imageViews.get(1), playerNames.get(1));
+			this.vBox2.getChildren().addAll(imageViews.get(2), playerNames.get(2));
+
+			this.vBox0.setAlignment(Pos.CENTER);
+			this.vBox1.setAlignment(Pos.CENTER);
+			this.vBox2.setAlignment(Pos.CENTER);
+
+			
+			this.add(vBox2, 1, 0);
+			this.add(vBox0, 1, 2);
+			this.add(vBox1, 2, 1);
+			
+			this.setHgap(60);
+			this.setAlignment(Pos.CENTER);
+			
+		}
 		
 		
 		if (Connection.getPlayersCount()==4) {
@@ -146,6 +175,26 @@ public class JassClientViewCenterTisch extends GridPane{
 				this.vBox3.getChildren().remove(0);
 				this.vBox3.getChildren().add(0, imageViews.get(position));
 				break;
+			}
+			
+		}
+		
+		if (Connection.getPlayersCount()==3) {
+			switch (position) {
+			case 0:
+				this.vBox0.getChildren().remove(0);
+				this.vBox0.getChildren().add(0, imageViews.get(position));
+				break;
+				
+			case 1: 
+				this.vBox1.getChildren().remove(0);
+				this.vBox1.getChildren().add(0, imageViews.get(position));
+				break;	
+			case 2: 
+				this.vBox2.getChildren().remove(0);
+				this.vBox2.getChildren().add(0, imageViews.get(position));
+				break;
+
 			}
 			
 		}
