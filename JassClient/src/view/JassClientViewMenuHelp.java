@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -10,6 +11,8 @@ import javafx.stage.Stage;
 
 public class JassClientViewMenuHelp {
 	
+		Stage settingsStage;
+	
 		
 	public static void helpMenu() {
 		
@@ -18,10 +21,7 @@ public class JassClientViewMenuHelp {
 	
 		settingsStage.initModality(Modality.APPLICATION_MODAL);
 		settingsStage.setTitle("Jass Regeln");
-		settingsStage.setMinWidth(250);
 
-		
-		Button close = new Button("Ah Ok, Schliessen!");
 		
 		
 		Label topLabel = new Label("Hier findest du die Jass-Regeln:");
@@ -36,11 +36,13 @@ public class JassClientViewMenuHelp {
 
 			
 		VBox vBox = new VBox();
+
 		vBox.getChildren().addAll(topLabel, link, close);
+
 		vBox.setStyle("-fx-min-width: 400;"
-		+"-fx-min-height: 200;"
+		+"-fx-min-height: 150;"
 		+"-fx-max-width: 400;"
-		+"-fx-max-height: 200;"
+		+"-fx-max-height: 150;"
 		+"-fx-background-image: url(/images/backgroundLogin.jpg)");
 		Scene scene = new Scene (vBox);
 	

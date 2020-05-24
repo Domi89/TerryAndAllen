@@ -24,11 +24,13 @@ public class JassClientViewHBoxCard extends HBox{
 		}
 
 		
+
 	private void createCard(String cardNr) {
 		cardNr = "/images/backOfCardKlein.jpg";
 		Image image = new Image(cardNr, 50, 150, false, true); 
 		ImageView imageView = new ImageView(image);	
 		this.getChildren().addAll(imageView);
+
 		} 
 	
 		
