@@ -71,7 +71,11 @@ public class GameStatus {
 	public static String getScore() {
 		String scoreString = "";
 		
+		scoreString+="Max Punkte zu erreichen: "+GameStatus.maxPoints+"\n\n\n";
+		
 		for (Client c: clients) {	
+			
+		
 			scoreString+="Spieler:   "+c.getClientName()+"\t Punkte: "+c.getPointsBig()+"\n";
 		}
 		

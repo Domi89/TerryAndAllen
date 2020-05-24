@@ -9,7 +9,9 @@ import serializedClasses.Card;
 import serializedClasses.Client;
 import serializedClasses.GameFinished;
 import serializedClasses.Message;
+import serializedClasses.Rule;
 import serializedClasses.Score;
+import serializedClasses.Suit;
 
 public class ServerThreadOutput extends Thread{
 	
@@ -85,6 +87,31 @@ public class ServerThreadOutput extends Thread{
 		}
 			
 	}
+	
+	
+	public void sendTrumpf(Suit suit) {
+		
+		try {
+			this.outputStream.writeObject(suit);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+	}	
+	
+	public void sendRule(Rule rule) {
+		
+		try {
+			this.outputStream.writeObject(rule);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+	}
+	
+	
 	
 	
 	public void sendClient(Client c) {

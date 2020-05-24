@@ -249,6 +249,8 @@ public class ServerApplication {
 					Card receivedCard = GameStatus.getSmallRound().getCards().get(GameStatus.getSmallRound().getCards().size()-1);
 					if (!sT.getClient().getClientName().equals(receivedCard.getClient().getClientName())) {
 						sT.getServerThreadOutput().sendCard(receivedCard);
+						sT.getServerThreadOutput().sendTrumpf(GameStatus.getTrumpf());
+						sT.getServerThreadOutput().sendRule(GameStatus.getRule());
 					}
 				}
 
