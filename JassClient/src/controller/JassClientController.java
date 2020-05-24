@@ -345,8 +345,9 @@ public class JassClientController {
 		imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 		     public void handle(MouseEvent event) {
 		    	 
-		    	 ArrayList<Card> cardsOnHand = new ArrayList<Card>();
-		    	 cardsOnHand = (ArrayList<Card>) model.getCards();
+		    	 //TODO 
+		    	 //ArrayList<Card> cardsOnHand = new ArrayList<Card>();
+		    	 //cardsOnHand = (ArrayList<Card>) model.getCards();
 		    	 
 		    	 
 		    	 if(Connection.yourTurn && !Connection.getChooseMode()) {
