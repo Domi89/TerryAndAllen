@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import model.Connection;
 
 public class JassClientViewCenter extends BorderPane{
 
@@ -46,7 +47,38 @@ public class JassClientViewCenter extends BorderPane{
 		jcwpc = new JassClientViewPlayerCard();
 		tisch= new JassClientViewCenterTisch();
 		
+		this.setCenter(tisch);
 	
+				
+		int i = Connection.getPlayersCount();
+		
+		switch(i) {
+		
+		case(2):
+			this.setTop(jcvh);
+			jcvh.setAlignment(Pos.CENTER);
+			break;
+		
+		
+		case(3):
+			this.setTop(jcvh);
+			jcvh.setAlignment(Pos.CENTER);
+			this.setLeft(jcvv);
+			jcvv.setAlignment(Pos.CENTER);
+			break;
+			
+			
+		case(4):	
+			this.setTop(jcvh);
+			jcvh.setAlignment(Pos.CENTER);
+			this.setLeft(jcvv);
+			jcvv.setAlignment(Pos.CENTER);
+			this.setRight(jcvv2);
+			jcvv2.setAlignment(Pos.CENTER);
+			break;
+			
+		}
+		
 		
 		jcwpc.setMinSize(900, 150);
 		jcwpc.setMaxSize(900, 150);
@@ -58,18 +90,8 @@ public class JassClientViewCenter extends BorderPane{
 		jcvv2.setMinSize(150, 600);
 		jcvv2.setMaxSize(150, 600);
 		
-				
-		this.setCenter(tisch);
-		this.setLeft(jcvv);
-		jcvv.setAlignment(Pos.CENTER);
-		this.setRight(jcvv2);
-		jcvv2.setAlignment(Pos.CENTER);
-		this.setTop(jcvh);
-		jcvh.setAlignment(Pos.CENTER);
 		this.setBottom(jcwpc);
 		jcwpc.setAlignment(Pos.CENTER);		
-		
-		
 		
 	}
 
@@ -78,7 +100,6 @@ public class JassClientViewCenter extends BorderPane{
 		}
 		
 		public void setTisch() {
-			//hb.setBackground(background.);
 			hb.setBackground(Background.EMPTY);
 			
 		}

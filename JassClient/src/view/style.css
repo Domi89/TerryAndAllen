@@ -29,7 +29,7 @@
 
 #messageLabel{
 	
-	-fx-font-size: 10px ; 
+	-fx-font-size: 12px;
 	-fx-text-fill: black; 
 	-fx-background-color: lightblue;
 	-fx-border-radius: 10 10 10 10; 
