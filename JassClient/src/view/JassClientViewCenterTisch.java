@@ -99,19 +99,15 @@ public class JassClientViewCenterTisch extends GridPane{
 			this.vBox2.getChildren().addAll(imageViews.get(2), playerNames.get(2));
 			this.vBox3.getChildren().addAll(imageViews.get(3), playerNames.get(3));
 			
-			
-			
 			this.vBox0.setAlignment(Pos.CENTER);
 			this.vBox1.setAlignment(Pos.CENTER);
 			this.vBox2.setAlignment(Pos.CENTER);
 			this.vBox3.setAlignment(Pos.CENTER);
 			
-			
 			this.add(vBox2, 1, 0);
 			this.add(vBox3, 0, 1);
 			this.add(vBox0, 1, 2);
 			this.add(vBox1, 2, 1);
-			
 			
 			this.setHgap(60);
 			this.setAlignment(Pos.CENTER);
