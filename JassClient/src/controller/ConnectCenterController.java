@@ -74,6 +74,7 @@ public class ConnectCenterController {
 				this.ipValidate = false;
 			}
 		}
+		 
 		
 		buttonValidate();
 		
