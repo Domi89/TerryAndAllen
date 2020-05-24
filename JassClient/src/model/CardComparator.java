@@ -31,7 +31,7 @@ public class CardComparator implements Comparator<Card> {
 		
 	//}
 	
-	public static boolean haveSuitOnHand(ArrayList<Card> cardsOnHand, ArrayList<Card> cardsOnTable) {
+	public static boolean haveSuitOnHand(ArrayList<Card> cardsOnHand, ArrayList<Card> cardsOnTable, Card playedCard) {
 		boolean suitOnHand = false;
 		if (cardsOnTable!=null) {
 			for (Card c: cardsOnHand) {

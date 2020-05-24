@@ -19,6 +19,8 @@ public class GameStatus {
 	private  static BigRound bigRound = new BigRound();
 	private  static Game game = new Game();
 	
+	private static boolean smallRoundFinished = false;
+	
 	public static Game getGame() {
 		return game;
 	}
@@ -110,6 +112,7 @@ public class GameStatus {
 			winner = smallRound.calculateWinner();
 			bigRound.addSmallRounds(smallRound);
 			smallRound = new SmallRound();
+			GameStatus.setSmallRoundFinished(true);
 			finished = true;
 			
 			for(Client c: clients) {
@@ -234,5 +237,13 @@ public class GameStatus {
 
 	public static void setLastWinner(Client lastWinner) {
 		GameStatus.lastWinner = lastWinner;
+	}
+
+	public static boolean isSmallRoundFinished() {
+		return smallRoundFinished;
+	}
+
+	public static void setSmallRoundFinished(boolean smallRoundFinished) {
+		GameStatus.smallRoundFinished = smallRoundFinished;
 	}
 }

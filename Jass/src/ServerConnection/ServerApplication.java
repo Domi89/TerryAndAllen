@@ -31,10 +31,8 @@ public class ServerApplication {
 		
 
 	    Thread threadWriteMessages = new Thread(new Runnable() {
-     
             public void run() {
                 Runnable writeNewMessages = new Runnable() {
-
                     public void run() {
                         writeNewMessages();
                     }
@@ -220,8 +218,19 @@ public class ServerApplication {
 
             // UI update is run on the Application thread
             newCardReceivedFromClient();
+ 
+		
         }
     }
+
+	private void sendSmallroundFinished() {
+		for (ServerThread sT: serverThreads) {
+			
+			sT.getServerThreadOutput().sendString("smallRoundFinished");
+			
+		}
+		
+	}
 
 	private void newCardReceivedFromClient() {
 		
@@ -238,14 +247,12 @@ public class ServerApplication {
 			}
 			GameStatus.setNewCard(false);
 			
+        	
+			
 			Boolean finished = GameStatus.smallRoundFinished();
 		
 			
-			
-			// send Message to Next Player				
-	
 			sendYourTurnToNextPlayer();
-			
 
 		}
 
@@ -345,11 +352,29 @@ public class ServerApplication {
 	
 	public void sendYourTurnToNextPlayer() {
 		
+		if(GameStatus.isSmallRoundFinished()) {
+			GameStatus.setSmallRoundFinished(false);
+			for (ServerThread sT : serverThreads) {
+				sT.getServerThreadOutput().sendString("smallRoundFinished");
+			}
+			
+		
+		}
+		
+		
+		
+		
 		if(GameStatus.getLastWinner()!=null) {
 			
 			Client nextPlayer = GameStatus.getLastWinner();
 
+			
+			
+			
+			
 			getServerThreadByClientName(nextPlayer.getClientName()).getServerThreadOutput().sendString("yourTurn");
+			
+			
 			
 			GameStatus.setLastWinner(null);
 			

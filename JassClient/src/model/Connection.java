@@ -14,6 +14,9 @@ public class Connection {
 	//public static Boolean newCard = false;
 	
 	private static ArrayList<Card> cardsOnTable = new ArrayList<Card>();
+	
+	private static Boolean smallRoundFinished = false;
+	
 	private static Boolean newCardToShow = false;
 	
 	private static Boolean chooseMode = false;
@@ -94,6 +97,14 @@ public class Connection {
 
 	public static void setGameFinished(Boolean gameFinished) {
 		Connection.gameFinished = gameFinished;
+	}
+
+	public static Boolean getSmallRoundFinished() {
+		return smallRoundFinished;
+	}
+
+	public static void setSmallRoundFinished(Boolean smallRoundFinished) {
+		Connection.smallRoundFinished = smallRoundFinished;
 	}
 
 

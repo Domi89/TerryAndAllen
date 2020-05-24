@@ -227,6 +227,12 @@ public class ClientThreadInput extends Thread{
 			Connection.setYourTurn(true);
 		}
 		
+		if(string.contentEquals("smallRoundFinished")) {
+			System.out.println("smallRoundFinished");
+			// KARTEN auf Tisch löschen
+			Connection.setSmallRoundFinished(true);
+		}
+		
 	}
 
 	public ObservableList<Card> getCardsOnTable() {

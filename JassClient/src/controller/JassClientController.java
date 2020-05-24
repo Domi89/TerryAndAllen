@@ -92,14 +92,20 @@ public class JassClientController {
                     	threadTischUpdater();
                     }
                 };
-                while (true) {
-                    try {
-                        Thread.sleep(5000);
+                while (true) {    
+                	try {
+                        Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                     }
 
-                    // UI update is run on the Application thread
+                	//threadTischUpdater();
                     Platform.runLater(threadTischUpdater);
+                    
+                    // wenn smallround finished tisch reseten
+                    
+                    
+                    
+                    
                 }
             }
         });
@@ -236,31 +242,36 @@ public class JassClientController {
 	
 	
 	private void threadTischUpdater() { 
-		if(Connection.getNewCardToShow()) {
-			Card playedCard = Connection.getCardsOnTable().get(Connection.getCardsOnTable().size()-1);
-			String cardPlayedFrom = playedCard.getClient().getClientName();
-			int positionToUpdate = this.view.getCenter().getTisch().getPosition(cardPlayedFrom);
 			
-			this.view.getCenter().getTisch().addCard(positionToUpdate, playedCard.getCardNr());
+			
+			if(Connection.getNewCardToShow()) {
+				Card playedCard = Connection.getCardsOnTable().get(Connection.getCardsOnTable().size()-1);
+				String cardPlayedFrom = playedCard.getClient().getClientName();
+				int positionToUpdate = this.view.getCenter().getTisch().getPosition(cardPlayedFrom);
+				
+				this.view.getCenter().getTisch().addCard(positionToUpdate, playedCard.getCardNr());
 
-			Connection.setNewCardToShow(false);
+				Connection.setNewCardToShow(false);
+			}
+			
+			if (Connection.getGameFinished()) {
+				String winner = "";
+				winner+="WINNER: ";
+				winner+= this.model.getGameFinished().get(0).getWinner().getClientName();
+				winner+=" Pünkt: ";
+				winner+= this.model.getGameFinished().get(0).getMaxPoints();
+			
+				this.view.getCenter().getTisch().getCenterTisch().getGameMode().setText(winner);
+				this.view.getCenter().getTisch().getCenterTisch().getGameMode().setVisible(true);;
+				
+			
+
 		}
-		
-		if (Connection.getGameFinished()) {
-			String winner = "";
-			winner+="WINNER: ";
-			winner+= this.model.getGameFinished().get(0).getWinner().getClientName();
-			winner+=" Pünkt: ";
-			winner+= this.model.getGameFinished().get(0).getMaxPoints();
-		
-			this.view.getCenter().getTisch().getCenterTisch().getGameMode().setText(winner);
-			this.view.getCenter().getTisch().getCenterTisch().getGameMode().setVisible(true);;
+			
+			
 			
 		}
 
-		
-		
-	}
 	
 	
 
@@ -350,7 +361,7 @@ public class JassClientController {
 		    	 //cardsOnHand = (ArrayList<Card>) model.getCards();
 		    	 
 		    	 
-		    	 if(Connection.yourTurn && !Connection.getChooseMode()) {
+		    	 if(Connection.yourTurn && !Connection.getChooseMode() && !Connection.getSmallRoundFinished()) {
 		    		 
 		    		 System.out.println(cardNr);
  
