@@ -55,7 +55,7 @@ public class JassClientConnectCenter {
         this.welcome2 = new Label("Terry & Alans Online Jass");
         
         //TODO wieder auf TRUE setzen
-        this.connect.setDisable(false);
+        this.connect.setDisable(true);
        	HBox hBox = new HBox();
         
         VBox labelBox = new VBox();
