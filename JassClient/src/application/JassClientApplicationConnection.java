@@ -1,4 +1,4 @@
-sadfpackage application;
+package application;
 
 import controller.ConnectCenterController;
 import controller.JassClientController;
