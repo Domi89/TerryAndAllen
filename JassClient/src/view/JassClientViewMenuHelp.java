@@ -22,7 +22,7 @@ public class JassClientViewMenuHelp {
 		settingsStage.initModality(Modality.APPLICATION_MODAL);
 		settingsStage.setTitle("Jass Regeln");
 
-		
+		Button close = new Button("Ah Ok, Schliessen!");
 		
 		Label topLabel = new Label("Hier findest du die Jass-Regeln:");
 		topLabel.setStyle(
