@@ -176,6 +176,25 @@ public class JassClientViewCenterTisch extends GridPane{
 				
 	}
 	
+	public void reset() {
+		if (Connection.getPlayersCount()==2) {
+			addCard(0, "/images/backOfCard0.jpg");
+			addCard(1, "/images/backOfCard0.jpg");
+		}
+		if (Connection.getPlayersCount()==3) {
+			addCard(0, "/images/backOfCard0.jpg");
+			addCard(1, "/images/backOfCard0.jpg");
+			addCard(2, "/images/backOfCard0.jpg");
+		}
+		if (Connection.getPlayersCount()==4) {
+			addCard(0, "/images/backOfCard0.jpg");
+			addCard(1, "/images/backOfCard0.jpg");
+			addCard(2, "/images/backOfCard0.jpg");
+			addCard(3, "/images/backOfCard0.jpg");
+		}
+	
+	}
+	
 	
 	public void addCard(int position, ImageView imageView) {
 
@@ -231,6 +250,23 @@ public class JassClientViewCenterTisch extends GridPane{
 		}
 		return position;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public void resetTisch() {

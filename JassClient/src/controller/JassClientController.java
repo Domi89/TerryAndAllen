@@ -103,9 +103,7 @@ public class JassClientController {
                     
                     // wenn smallround finished tisch reseten
                     
-                    
-                    
-                    
+                       
                 }
             }
         });
@@ -144,9 +142,73 @@ public class JassClientController {
 		
 		//historyListener.add(new Message("test","test"));
 
+	
+	
+	
+        
+        Thread resetTable = new Thread(new Runnable() {
+            public void run() {
+                Runnable resetTable = new Runnable() {
+                    public void run() {
+                    	resetTable();
+                    }
+                };
+                while (true) {    
+                	try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                	
+                	if(Connection.getSmallRoundFinished()) {
+                		Platform.runLater(resetTable);
+                	}
+                	//threadTischUpdater();
+                    
+                    
+                    // wenn smallround finished tisch reseten
+                    
+                       
+                }
+            }
+        });
+        resetTable.setDaemon(true);
+        resetTable.start(); 
+        
+	
+	
+	
+	
+	
+	
+	
 	}
 	
+
 	
+	
+	
+	
+	
+	
+	
+	
+	protected void resetTable() {
+		
+		
+		this.view.getCenter().getTisch().reset();	
+		
+		
+
+		
+		
+		System.out.println("Reset Table lilkululululuiluil");
+		
+		Connection.setSmallRoundFinished(false);
+		
+	}
+
+
 	private void controllerHelp() {
 		this.view.viewHelpMenu();	
 	}
