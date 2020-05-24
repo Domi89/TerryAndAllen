@@ -21,14 +21,14 @@ public class Connection {
 	
 	private static Boolean chooseMode = false;
 
-	private static Rule rule = Rule.trumpf;
-	private static Suit trumpf = Suit.Eichle;
+	private static Rule rule = null;
+	private static Suit trumpf = null;
 	
 	private static Boolean gameFinished = false;
 	
 	
 	
-	private static int playersCount = 4;
+	private static int playersCount = 2;
 	
 	public static int getPlayersCount() {
 		return playersCount;

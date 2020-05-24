@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import serializedClasses.Card;
@@ -31,6 +32,32 @@ public class ClientThread extends Thread{
 	private String ip;
 	private int port;
 	private ObservableList<Card> cardsOnHand;
+	public ObservableList<Card> getCardsOnHand() {
+		return cardsOnHand;
+	}
+
+
+
+	public void setCardsOnHand(ObservableList<Card> cardsOnHand) {
+		this.cardsOnHand = cardsOnHand;
+	}
+	
+	
+	public ArrayList<Card> getCardOnHandArray() {
+		
+		ArrayList<Card> cards = (ArrayList<Card>) this.cardsOnHand.stream().collect(Collectors.toList());
+		return cards;		
+	}
+
+	
+	public ArrayList<Card> getCardOnTableArray() {
+		
+		ArrayList<Card> cards = (ArrayList<Card>) this.cardsOnTable.stream().collect(Collectors.toList());
+			return cards;	
+	}
+
+
+
 	private ObservableList<Card> cardsOnTable;
 	private ObservableList<Integer> updatedCards;
 	private ObservableList<Client> clients;
@@ -48,6 +75,20 @@ public class ClientThread extends Thread{
 		this.scores = scores;
 		this.gameFinished = gameFinished;
 		this.cardsOnTable=cardsOnTable;
+		
+	}
+	
+	
+	public void removeCard(Card card) {
+		
+		for(int i = 0; i<cardsOnHand.size(); i++) {
+			
+			if(cardsOnHand.get(i).getSuit().equals(card.getSuit()) && cardsOnHand.get(i).getRank().equals(card.getRank())) {
+				cardsOnHand.remove(i);
+			}
+		
+		}
+		
 	}
 	
 	

@@ -44,7 +44,7 @@ public class ClientThreadInput extends Thread{
 		this.clients = clients;
 		this.scores = scores;
 		this.gameFinished= gameFinished;
-		this.cardsOnBoard =cardsOnBoard;
+		this.cardsOnTable =cardsOnTable;
 	}
 	
 	public void run() {
@@ -148,7 +148,13 @@ public class ClientThreadInput extends Thread{
 	}
 
 	private void ruleClass(Rule rule) {
+		
+		
 		Connection.setRule(rule);
+		
+		if(Connection.getRule()==Rule.obeAbe ||Connection.getRule()==Rule.undeUfe ) {
+			Connection.setTrumpf(null);
+		}
 		
 	}
 
@@ -164,7 +170,7 @@ public class ClientThreadInput extends Thread{
 
 	private void cardClass(Card card) {
 		System.out.println("Neue Karte gespielt von: "+card.getClient().getClientName()+" Karte: "+card);
-		
+		this.cardsOnTable.add(card);
 		Connection.getCardsOnTable().add(card);
 		Connection.setNewCardToShow(true);
 	}
@@ -230,6 +236,7 @@ public class ClientThreadInput extends Thread{
 		if(string.contentEquals("smallRoundFinished")) {
 			System.out.println("smallRoundFinished");
 			// KARTEN auf Tisch löschen
+			this.cardsOnTable.clear();
 			Connection.setSmallRoundFinished(true);
 		}
 		

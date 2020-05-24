@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import model.CardComparator;
 import model.Connection;
 import model.JassClientModel;
 import serializedClasses.Card;
@@ -198,12 +199,6 @@ public class JassClientController {
 		
 		this.view.getCenter().getTisch().reset();	
 		
-		
-
-		
-		
-		System.out.println("Reset Table lilkululululuiluil");
-		
 		Connection.setSmallRoundFinished(false);
 		
 	}
@@ -279,23 +274,7 @@ public class JassClientController {
 					this.view.getCenter().getTisch().getPlayerNames().get(3).setText(this.model.getClients().get(2).getClientName());
 				} 
 			}
-			if (Connection.getPlayersCount()==3) {
-				if(this.model.getClient().getClientName().equals(this.model.getClients().get(0).getClientName())){
-					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(0).getClientName());
-					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(1).getClientName());
-					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(2).getClientName());
-				} 
-				if(this.model.getClient().getClientName().equals(this.model.getClients().get(1).getClientName())){
-					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(1).getClientName());
-					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(2).getClientName());
-					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(0).getClientName());
-				} 
-				if(this.model.getClient().getClientName().equals(this.model.getClients().get(2).getClientName())){
-					this.view.getCenter().getTisch().getPlayerNames().get(0).setText(this.model.getClients().get(2).getClientName());
-					this.view.getCenter().getTisch().getPlayerNames().get(1).setText(this.model.getClients().get(0).getClientName());
-					this.view.getCenter().getTisch().getPlayerNames().get(2).setText(this.model.getClients().get(1).getClientName());
-				} 
-			}
+
 			
 		}
 		
@@ -425,19 +404,203 @@ public class JassClientController {
 		    	 
 		    	 if(Connection.yourTurn && !Connection.getChooseMode() && !Connection.getSmallRoundFinished()) {
 		    		 
-		    		 System.out.println(cardNr);
+		    		System.out.println(cardNr);
  
 			       System.out.println("Tile pressed ");
 			       event.consume();
 			     
 			       ImageView imageView = (ImageView) event.getSource();
-			       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+			       
+			       
+		   			String[] splitStr = cardNr.split("\\s+");
+					
+		   			String suit = splitStr[0];
+		   			String rank = splitStr[1];
+				
+					suit = suit.replace("/images/", "");
+					rank = rank.replace(".gif", "");
+				
+			
+					Card card = new Card(Suit.valueOf(suit), Rank.valueOf(rank));
+			       
+			       
+			       
+			       if(model.getClientThread().getCardsOnTable().size()==0) {
+			    	   
+				       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+				       
+				       view.getCenter().getTisch().addCard(0, cardNr);
+			
+				       sendSelectedCard(cardNr);
+				       
+				       model.getClientThread().removeCard(card);
+				       
+				       
+				       Connection.setYourTurn(false);
+			    	   
+			       } else {
+			    	     if(card.getSuit().equals(Connection.getTrumpf())) {
+				    		   
+						       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+						       
+						       view.getCenter().getTisch().addCard(0, cardNr);
+					
+						       sendSelectedCard(cardNr); 
+						       model.getClientThread().removeCard(card);
+						       Connection.setYourTurn(false);
+						       
+				    	 } else {
+				    		   
+				    		   ArrayList<Card> cardOnHand = model.getClientThread().getCardOnHandArray();
+					    	   ArrayList<Card> cardOnTable = model.getClientThread().getCardOnTableArray();
+					    	   
+					    	   
+					    	   System.out.println("Cards on Hand "+cardOnHand);
+					    	   System.out.println("Cards on Table "+cardOnTable);
+				    		 
+							
+				    		   
+					    		  
+				    		   
+					    	if(!CardComparator.haveSuitOnHand(cardOnHand, cardOnTable)) {
+					 	       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+						       
+						       view.getCenter().getTisch().addCard(0, cardNr);
+					
+						       sendSelectedCard(cardNr); 
+						       model.getClientThread().removeCard(card);
+						       Connection.setYourTurn(false);
+				   
+					    	}
+					    		   
+						    		   
+					    	if(CardComparator.haveSuitOnHand(cardOnHand, cardOnTable)) {
+						    			   
+					  		   if(card.getSuit().equals(cardOnTable.get(0).getSuit())) {
+								     view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+								       
+								       view.getCenter().getTisch().addCard(0, cardNr);
+							
+								       sendSelectedCard(cardNr); 
+								       model.getClientThread().removeCard(card);
+								       Connection.setYourTurn(false);
+				    			   
+					  		   }
+								
+			    			   
+			    			   
+					 	 }
+				    		 
+				    		 
+				    		 
+				    		 
+				    	 }
+			    	     
+			    	     
+			    	     
+			    	     
+			       }
+			    	   
+			    	   
+			  
+			    		   
+			
+	    		   
+		    	   
+	    
+		    	
+		    	
+		    	
+		    	
+		    	/*
+		    	
+		    	
+		 	   
+			       if(card.getSuit().equals(Connection.getTrumpf())) {
+			    		   
+					       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+					       
+					       view.getCenter().getTisch().addCard(0, cardNr);
+				
+					       sendSelectedCard(cardNr); 
+					       Connection.setYourTurn(false);
+					       
+			    	 } 
+			    		   
+			    		   
+	    		   ArrayList<Card> cardOnHand = new ArrayList<Card>();
+		    	   ArrayList<Card> cardOnTable = new ArrayList<Card>();
+		    	   
+		    	   
+		    	   System.out.println("Cards on Hand "+cardOnHand);
+		    	   System.out.println("Cards on Table "+cardOnTable);
+	    		   
+		    	   
+	    		   for (Card c:  model.getClientThread().getCardsOnHand()) {
+	    			   cardOnHand.add(c);
+	    		   }
+	    		   
+	    		   for (Card c:  model.getClientThread().getCardsOnTable()) {
+	    			   cardOnTable.add(c);
+	    		   }
+	    		   
+		    		  
+	    		   
+		    	if(!CardComparator.haveSuitOnHand(cardOnHand, cardOnTable)) {
+		 	       view.getCenter().getJcwpc().getChildren().remove(event.getSource());
 			       
 			       view.getCenter().getTisch().addCard(0, cardNr);
 		
 			       sendSelectedCard(cardNr); 
 			       Connection.setYourTurn(false);
-		    	 }
+	   
+		    	}
+		    		   
+			    		   
+		    	if(CardComparator.haveSuitOnHand(cardOnHand, cardOnTable)) {
+			    			   
+		  		   if(card.getSuit().equals(cardOnTable.get(0).getSuit())) {
+					     view.getCenter().getJcwpc().getChildren().remove(event.getSource());
+					       
+					       view.getCenter().getTisch().addCard(0, cardNr);
+				
+					       sendSelectedCard(cardNr); 
+					       Connection.setYourTurn(false);
+	    			   
+		  		   }
+					
+ 			   
+ 			   
+		 	 }
+		    	
+		    	*/
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+			    		   
+    		   
+			    	   }
+			    	   
+       
+	
+		    	 
 		    	      
 		     }
 

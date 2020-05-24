@@ -11,12 +11,12 @@ public class Tester {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Card card1 = new Card(Suit.Schilte, Rank.Zaeh);
-		Card card2 = new Card(Suit.Eichle, Rank.Zaeh);
+		Card card1 = new Card(Suit.Eichle, Rank.Zaeh);
+		Card card2 = new Card(Suit.Schilte, Rank.Zaeh);
 		Card card3 = new Card(Suit.Rose, Rank.Zaeh);
 		Card card4 = new Card(Suit.Eichle, Rank.Zaeh);
 		
-		Card card5 = new Card(Suit.Rose, Rank.Zaeh);
+		Card card5 = new Card(Suit.Schilte, Rank.Zaeh);
 		Card card6 = new Card(Suit.Eichle, Rank.Zaeh);
 		
 		ArrayList<Card> cardsOnHand = new ArrayList<Card>();

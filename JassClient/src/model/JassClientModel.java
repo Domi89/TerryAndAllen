@@ -20,6 +20,19 @@ public class JassClientModel {
 	//private ArrayList<Message> history = new ArrayList<Message>();
 	private ObservableList<Card> cardsOnHand = FXCollections.observableArrayList();
 	private ObservableList<Card> cardsOnTable = FXCollections.observableArrayList();
+	
+	public ObservableList<Card> getCardsOnTable() {
+		return cardsOnTable;
+	}
+
+
+
+	public void setCardsOnTable(ObservableList<Card> cardsOnTable) {
+		this.cardsOnTable = cardsOnTable;
+	}
+
+
+
 	private ObservableList<Integer> updatedCards = FXCollections.observableArrayList();
 	private ObservableList<Client> clients = FXCollections.observableArrayList();
 	private ObservableList<Score> scores = FXCollections.observableArrayList();
