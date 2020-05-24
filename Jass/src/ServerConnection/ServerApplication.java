@@ -363,11 +363,33 @@ public class ServerApplication {
 		
 		if(GameStatus.isSmallRoundFinished()) {
 			
-			for (ServerThread sT : serverThreads) {
-				sT.getServerThreadOutput().sendString("smallRoundFinished");
-			}
 			
-			GameStatus.setSmallRoundFinished(false);
+			
+
+			new java.util.Timer().schedule( 
+			        new java.util.TimerTask() {
+			            @Override
+			            public void run() {
+
+			    			for (ServerThread sT : serverThreads) {
+			    				sT.getServerThreadOutput().sendString("smallRoundFinished");
+			    			}
+			    			
+			    			GameStatus.setSmallRoundFinished(false); 
+			            	
+			            	
+			            }
+			        }, 
+			        1000 
+			);
+			
+			
+			
+			
+			
+			
+		
+			
 		}
 	
 		
